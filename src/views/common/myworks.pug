@@ -1,0 +1,28 @@
+- var TagItems = [["HTML5"], ["CSS3"], ["Flexbox"]]
+- var PreviewItems = [["first", "#"], ["second", "#"], ["third", "#"], ["fourth", "#"], ["fifth", "#"]]
+
+h2.title(class='myworks__title') Мои работы
+.myworks__field
+    .myworks__visual
+        .myworks__visual-bg
+            .myworks__visual-previews
+                +previews(PreviewItems)
+            a.myworks__visual-links.myworks__visual-links--left(href="#")
+                .myworks__visual-links-box
+                    .myworks__visual-links-arrow
+            a.myworks__visual-links.myworks__visual-links--right(href="#")
+                .myworks__visual-links-box
+                    .myworks__visual-links-arrow
+    .myworks__description
+        .myworks__content
+            .myworks__number
+                p.myworks__number-text 1
+            .myworks__content-tags
+                +tags(TagItems, 'first')
+            h3.myworks__content-title Сайт школы образования
+            .myworks__content-text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+            a.myworks__link 
+                +icon('link', 'link__icon')
+                p.link__text Посмотреть сайт
+                
+                

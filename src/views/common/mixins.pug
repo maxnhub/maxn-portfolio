@@ -1,0 +1,61 @@
+- var skillsInfo = "Этот сайт я делал в рамках обучения в Школе онлайн образования Loftschool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!"
+
+mixin icon(name, className)
+  - var icon = require(`images/icons/${name}.svg`);
+  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+    use(xlink:href=icon.url)
+
+mixin image(path, className)
+  img(src=require(`images/${path}`) class=className)
+
+mixin link(path)
+  link(href=require(`images/icons/${path}`) rel="shortcut icon" type="image/x-icon")
+
+mixin socials(SocialItems, socialMode)  
+  ul.social__list(class=`social__list_${socialMode}`)
+    each SocialItem in SocialItems  
+      li.social__item(class=`social__item_${socialMode}`)
+        a.social__link(href=`${SocialItem[1]}`)
+          +icon(`${SocialItem[2]}`, 'social__icon' + ` social__icon_${socialMode}`) 
+
+mixin navs(NavItems, navMode)
+  ul.nav-list(class=`${navMode}__nav-list`)
+    each NavItem in NavItems
+      li.nav-item(class=`${navMode}__nav-item_${NavItem[0]}`)
+        a.nav-link(class=`${navMode}__nav-link` href=`${NavItem[1]}`)=`${NavItem[2]}`
+
+mixin skills(SkillItems, skillMode)
+  ul.skills__list(class=`skills__list_${skillMode}`)
+    each SkillItem in SkillItems
+      li.skills__item(class=`skills__item_${SkillItem[0]}`)
+        .skills__item-graphic
+          svg(viewBox="15 15 120 120" preserveAspectRatio="none").skills__shape
+            circle(r="52" cx="75" cy="75").skills__circle.skills__circle--position--under
+            circle(r="52" cx="75" cy="75" style=`animation-delay: -${SkillItem[2]}s`).skills__circle.skills__circle--position--above
+            //- linear-gradient(90deg,#d37d1d 0 25%,#db9222 45% 100%)
+          .skills__item-text=`${SkillItem[1]}`
+        
+mixin tags(TagItems, tagMode)
+  ul.tags__list(class=`myworks__content-tags-list_${tagMode}`)
+    each TagItem in TagItems
+      li.tags__item(class=`myworks__content-tags-item`)
+        .tags__item-text(class=`myworks__content-tags-text`)=`${TagItem[0]}`
+
+mixin previews(PreviewItems)
+  ul.previews__list(class=`previews__list`)
+    each PreviewItem in PreviewItems
+      li.previews__item(class=`previews__item_${PreviewItem[0]}`)
+        a.previews__item-link(href=`${PreviewItem[1]}`)
+
+mixin comments(CommentItems)
+  ul.comments__list
+    each CommentItem in CommentItems
+      li.comments__item(class=`comments__item_${CommentItem[0]}`)
+        .comments__content 
+          +icon('quote', 'comments__icon')
+          .comments__text=`${CommentItem[1]}`
+        .comments__author
+          .comments__avatar(class=`comments__avatar_${CommentItem[0]}`)
+          .comments__person
+            h5.comments__person-title=`${CommentItem[2]}`
+            p.comments__person-text=`${CommentItem[3]}`

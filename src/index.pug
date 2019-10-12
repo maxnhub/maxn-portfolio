@@ -1,0 +1,42 @@
+include views/common/mixins.pug
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    +link('favicon.ico')
+    title Portfolio | main page
+  body
+    .wrapper
+      .maincontent
+        section.main
+          .container
+
+            include views/common/header.pug
+
+            include views/common/main.pug
+          
+        section.about-me
+          .container
+
+            include views/common/aboutme.pug
+
+        section.skills
+          .container
+
+            include views/common/skills.pug
+
+        section.myworks
+          .container
+
+            include views/common/myworks.pug
+
+        section.feedback
+          .container
+
+            include views/common/feedback.pug
+          
+        include views/common/footer.pug
+        

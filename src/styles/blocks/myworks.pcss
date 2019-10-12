@@ -1,0 +1,211 @@
+.myworks {
+    padding-top: 140px;
+    height: 788px;
+
+    &__title {
+        font-family: 'OpenSans', Helvetica, sans-serif;
+        font-size: 36px; 
+        color: #333c49;
+        font-weight: bold;
+        margin-bottom: 57px;
+        padding-left: 5px;
+        letter-spacing: 1.1px;
+    }
+
+    &__field {
+        display: flex;
+        margin-bottom: 185px;
+    }
+
+    &__visual {
+        z-index: 10;
+        
+        &-bg {
+            position: relative;
+            width: 633px;
+            height: 352px;
+            max-width: 100%;
+            max-height: 100%;
+            background: url(../images/content/1.jpg) 10% 10%/cover no-repeat;
+        }
+        
+        &-previews {
+            position: absolute;
+            bottom: 29px;
+            left: 98px;
+            width: 534px;
+            overflow: hidden;
+        }
+
+        &-links {
+            position: absolute;
+            right: -50px;
+            bottom: 78px;
+
+            &-box {
+                width: 50px;
+                height: 50px;
+                background: #353e4e;
+                position: relative;
+
+            }
+            
+            &-arrow {
+                position: absolute;
+                top: 35%;
+                left: 55%;
+                width: 8px;
+                height: 8px;
+                border-left: 2px solid #bebdbd;
+                border-bottom: 2px solid #bebdbd;
+                transform: rotate(-135deg);
+                transform-origin: 0 100%;
+                margin-bottom: 8px;
+            }
+
+            &--right {
+                bottom: 29px;
+
+                & > .myworks__visual-links-box > .myworks__visual-links-arrow {
+                    transform: rotate(45deg);
+                    left: 40%;
+                }
+            }
+
+            &:hover .myworks__visual-links-arrow {
+                border-left: 2px solid #dc9322;
+                border-bottom: 2px solid #dc9322;
+            }
+        }
+    }
+
+    &__number {
+        font-family: 'OpenSans', Helvetica, sans-serif;
+        font-size: 300px; 
+        color: #e6e6e6;
+        font-weight: 900;
+        width: 96px;
+        position: absolute;
+        top: -107px;
+        left: -74px;
+        z-index: 2;
+    }
+
+
+    &__description {
+        display: flex;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-left: 109px;
+
+        &-tags {
+            display: flex;
+            margin-top: 7px;
+        }
+
+        &-title {
+            font-family: 'OpenSans', Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            color: #333c49; 
+            padding: 10px 0px 29px 0;
+            line-height: 47px;
+        }
+
+        &-text {
+            margin-bottom: 63px;
+            line-height: 30px;
+            padding-right: 33px;
+        }
+    }
+
+    &__link {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+
+        &:hover .link__text {
+            color: #dc9322;
+        }
+
+        &:hover .link__icon {
+            fill: #dc9322;
+        }
+    }
+}
+
+.tags__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags__item {
+    border-radius: 30px;
+    background: #f3f5f9;
+    padding: 10px 15px;
+    margin: 0 15px 30px 0;
+
+    &-text {
+        font-family: 'OpenSans', Helvetica, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.link__icon {
+    width: 18px;
+    height: 18px;
+    fill: #586ed3;
+    margin-right: 20px;
+}
+
+.link__text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #586ed3;
+}
+
+.previews__list {
+    display: flex;
+    overflow: hidden;
+    width: 890px;
+}
+
+.previews__item {
+    width: 178px;
+    height: 100px;
+
+    &_first {
+        background: url(../images/content/1.jpg) 10% 10%/cover no-repeat;
+    }
+
+    &_second {
+        background: url(../images/content/2.jpg) 10% 10%/cover no-repeat;
+    }
+
+    &_third {
+        background: url(../images/content/3.jpg) 10% 10%/cover no-repeat;
+    }
+
+    &_fourth {
+        background: url(../images/content/4.jpg) 10% 10%/cover no-repeat;
+    }
+
+    &_fifth {
+        background: url(../images/content/5.jpg) 10% 10%/cover no-repeat;
+    }
+
+    &:hover {
+        border: 3px solid #dc9322;
+    }
+}
+
+
