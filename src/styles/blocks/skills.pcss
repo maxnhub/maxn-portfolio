@@ -1,15 +1,24 @@
 .skills {
-    background: url(../images/content/hands.png) -83px 409px/40% no-repeat,
-    url(../images/content/hands-bg.png) center center / cover no-repeat;
+    background: url(../images/content/hands-bg.png) center center / cover no-repeat;
     min-height: 1060px;
     position: relative;
+
+    &:after {
+        content: "";
+        background: url(../images/content/hands.png) 100%/contain no-repeat;
+        width: 69%;
+        height: 69%;
+        position: absolute;
+        bottom: -5.625rem;
+        left: -27.0625rem;
+    }
 
     &__info {
         align-items: center;
         display: flex;
         flex-direction: column;
-        padding-top: 178px;
-        margin-bottom: 84px;
+        padding-top: 14.3125rem;
+        margin-bottom: 6.25rem;
 
         &-block {
             width: 58%;
@@ -21,7 +30,7 @@
 
         &-title {
             font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 30px; 
+            font-size: 31px; 
             color: #fff;
             font-weight: bold;
             margin-bottom: 52px;
@@ -40,7 +49,8 @@
     &__graphic {
         display: flex;
         justify-content: flex-end;
-        padding-right: 27px;
+        padding-right: 11px;
+        padding-bottom: 161px;
     }
 
     &__row {
@@ -69,7 +79,7 @@
     }
 
     &__item {
-        margin-right: 45px;
+        margin-right: 44px;
 
         &-graphic {
             position: relative;
