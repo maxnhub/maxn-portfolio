@@ -5,6 +5,10 @@
         padding-top: 9.3rem;
     }
 
+    @include tablets {
+        padding-top: 8.3rem;
+    }
+
     &__title {
         font-family: 'OpenSans', Helvetica, sans-serif;
         font-size: 37px; 
@@ -34,6 +38,12 @@
             grid-template-columns: 58% 40%;
             margin-bottom: 153px;
         }
+
+        @include tablets {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 8.2rem;
+        }
     }
 
     .myworks__visual {grid: visual;}
@@ -44,6 +54,12 @@
 
     &__visual {
         z-index: 10;
+
+        @include tablets{
+            height: 24.6875rem;
+            width: 44.8rem;
+            margin-bottom: 4.4rem;
+        }
         
         &-bg {
             position: relative;
@@ -56,6 +72,11 @@
             @include desktop {
                 width: 100%;
                 height: 95%;
+            }
+
+            @include tablets {
+                height: 100%;
+                width: 100%;
             }
         }
         
@@ -70,6 +91,11 @@
                 width: 534px;
                 bottom: 2.8125rem;
             }
+
+            @include tablets {
+                width: 37.8rem;
+                bottom: 1.8125rem;
+            }
         }
 
         &-links {
@@ -81,11 +107,21 @@
                 bottom: 5.875rem;
             }
 
+            @include tablets {
+                bottom: 5.5rem;
+                right: -3.6rem;
+            }
+
             &-box {
                 width: 50px;
                 height: 50px;
                 background: #353e4e;
                 position: relative;
+
+                @include tablets {
+                    width: 3.6rem;
+                    height: 3.6rem;
+                }
 
             }
             
@@ -107,6 +143,10 @@
 
                 @include desktop {
                     bottom: 2.8125rem;
+                }
+
+                @include tablets {
+                    bottom: 1.87rem
                 }
 
                 & > .myworks__visual-links-box > .myworks__visual-links-arrow {
@@ -137,6 +177,10 @@
             top: -6.9rem;
             font-size: 19.75rem;
         }
+
+        @include tablets {
+            display: none;
+        }
     }
 
 
@@ -152,6 +196,14 @@
 
         @include desktop {
             padding-left: 5rem;
+        }
+
+        @include tablets {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-left: 9rem;
+            width: 84%;
         }
 
         &-tags {
@@ -170,6 +222,12 @@
             @include desktop {
                 padding: 14px 0 1.8125rem;
             }
+
+            @include tablets {
+                padding: 0 0 1rem;
+                font-size: 2.2rem;
+                letter-spacing: 1px;
+            }
         }
 
         &-text {
@@ -179,6 +237,12 @@
 
             @include desktop {
                 line-height: 32px;
+            }
+
+            @include tablets {
+                line-height: 1.8rem;
+                text-align: center;
+                margin-bottom: 1.3rem;
             }
         }
     }
@@ -235,11 +299,20 @@
     display: flex;
     overflow: hidden;
     width: 890px;
+
+    @include tablets {
+        width: 63rem;
+    }
 }
 
 .previews__item {
     width: 178px;
     height: 100px;
+
+    @include tablets {
+        width: 12.6rem;
+        height: 7.5rem;
+    }
 
     &_first {
         background: url(../images/content/1.jpg) 10% 10%/cover no-repeat;

@@ -1,12 +1,22 @@
 .about-me {
     background: url(../images/content/aboutme-bg.png) center center / cover no-repeat;
-    height: 328px;
+    min-height: 328px;
+
+    @include tablets {
+        min-height: 32.5rem;
+    }
 
     &__visual {
         display: flex;
         justify-content: center;
         margin-left: 5.75rem;
         margin-bottom: 5.6875rem;
+
+        @include tablets {
+            margin-left: 1.7rem;
+            margin-bottom: 3.6875rem;
+            justify-content: flex-start;
+        }
     }
     
     &__avatar {
@@ -17,6 +27,10 @@
         overflow: hidden;
         border-radius: 50% 50%;
         background-position: 85% 50%;
+
+        @include tablets {
+            margin-left: 17px;
+        }
     }
 
     &__description {
@@ -40,6 +54,12 @@
             bottom: -30.1875rem;
             left: 0;
             margin-left: 0;
+
+        }
+
+        @include tablets {
+            grid-template-columns: 40% 54%;
+            bottom: -35rem;
             
         }
     }
@@ -53,9 +73,16 @@
 
     &__column-left {
         margin-right: 6rem;
+
+        @include tablets {
+            margin-right: 0;
+        }
     }
 
     &__column-right {
+        @include tablets {
+            padding-left: 1.5625rem;
+        }
         
     }
 
@@ -73,6 +100,10 @@
         color: #fff;
         margin: 18px 0 28px;
         font-weight: bold;
+
+        @include tablets {
+            
+        }
     }
 
     &__story-info {
@@ -89,10 +120,18 @@
             padding-left: 4.625rem;
         }
 
+        @include tablets {
+            padding-left: 2.625rem;
+        }
+
         &-left {
             margin-right: 67px;
             display: flex;
             flex-direction: column;
+
+            @include tablets {
+                margin-right: 2.1875rem;
+            }
         }
 
         &-right {

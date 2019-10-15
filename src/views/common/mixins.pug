@@ -19,7 +19,7 @@ mixin socials(SocialItems, socialMode)
           +icon(`${SocialItem[2]}`, 'social__icon' + ` social__icon_${socialMode}`) 
 
 mixin navs(NavItems, navMode)
-  ul.nav-list(class=`${navMode}__nav-list`)
+  ul.nav-list(id=`${navMode}__nav-list` class=`${navMode}__nav-list`)
     each NavItem in NavItems
       li.nav-item(class=`${navMode}__nav-item_${NavItem[0]}`)
         a.nav-link(class=`${navMode}__nav-link` href=`${NavItem[1]}`)=`${NavItem[2]}`

@@ -10,6 +10,10 @@
         padding-left: 0;
     }
 
+    @include tablets {
+        padding-top: 4.6rem;
+    }
+
     &__icon {
         width: 50px;
         height: 25px;
@@ -17,6 +21,15 @@
 
     &__socials {
         padding-right: 10px;
+
+        @include tablets {
+            padding-right: 8.625rem;
+        }
     }
 }
 
+#header__nav-list {
+    @include tablets {
+        display: none;
+    }
+}

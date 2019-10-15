@@ -10,6 +10,10 @@
         min-height: 89.375rem;
     }
 
+    @include tablets {
+        min-height: 78.375rem;
+    }
+
     &__title {
         display: grid;
         grid-template: " . desc name name . ." 1fr / 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -23,6 +27,15 @@
             margin-top: 17.8125rem;
         }
 
+        @include tablets {
+            grid-template: "desc"
+            "name";
+            grid-gap: 0 2.5rem;
+            grid-template-columns: 37%;
+            justify-content: center;
+            margin-top: 8.7rem;
+        }
+
         &-desc {
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 19px; 
@@ -33,6 +46,12 @@
 
             @include desktop {
                 line-height: 29px;
+            }
+
+            @include tablets {
+                margin-bottom: 12px;
+                text-align: center;
+                line-height: 2.3rem;
             }
         }
 
@@ -45,6 +64,12 @@
 
             @include desktop {
                 line-height: 59px;
+            }
+
+            @include tablets {
+                text-align: left;
+                font-size: 3.5rem;
+                line-height: 3.4875rem;
             }
 
         }
@@ -61,6 +86,10 @@
         @include desktop {
             bottom: 45%;
             left: 48.5%;
+        }
+
+        @include tablets {
+            display: none;
         }
 
         &-text {

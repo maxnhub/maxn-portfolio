@@ -24,6 +24,10 @@
             margin-bottom: 12.775rem;
         }
 
+        @include tablets {
+            margin-bottom: 7.775rem;
+        }
+
         &-title {
             padding-top: 140px;
             margin-bottom: 85px;
@@ -37,6 +41,11 @@
                 margin-bottom: 6.3125rem;
                 padding-top: 10rem;
             }
+
+            @include tablets {
+                padding-top: 8.7rem;
+                margin-bottom: 4.3125rem;
+            }
             
 
             &-text {
@@ -46,6 +55,11 @@
 
                 @include desktop {
                     margin-right: 7.375rem;
+                }
+
+                @include tablets {
+                    padding-left: 0;
+                    margin-right: 4.375rem;
                 }
             }
         }
@@ -106,6 +120,10 @@
             padding-bottom: 11.8125rem;
         }
 
+        @include tablets {
+            padding-bottom: 5.3rem;
+        }
+
         &-title {
             margin-bottom: 2.825rem;
             font-family: 'OpenSans', Helvetica, sans-serif;
@@ -115,6 +133,11 @@
 
             @include desktop {
                 margin-bottom: 3.825rem;
+            }
+
+            @include tablets {
+                text-align: center;
+                margin-bottom: 1.3rem;
             }
         }
     
@@ -126,6 +149,10 @@
             width: 80%;
             padding-left: 4px;
             margin-bottom: 6.3125rem;
+
+            @include tablets {
+                width: 96%;
+            }
         }
     
         &-row {
@@ -171,6 +198,11 @@
             @include desktop {
                 margin-left: 0;
                 padding: 2.2rem 8.3rem;
+            }
+
+            @include tablets {
+                margin-left: 12.4rem;
+                padding: 2.2rem 8.9rem;
             }
         }
     }

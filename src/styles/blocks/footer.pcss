@@ -17,6 +17,10 @@
             flex-direction: column;
         }
 
+        @include tablets {
+            margin-right: 5.8rem;
+        }
+
         &-copy {
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 48px; 
@@ -56,6 +60,10 @@
         &-text{
             margin-bottom: 2.1rem;
             line-height: 27px;
+
+            @include tablets {
+                margin-bottom: 1.1rem;
+            }
         }
 
         &-italictext {
@@ -71,6 +79,24 @@
 
         &-quotation {
             flex: 1;
+
+            @include tablets {
+                display: none;
+            }
+        }
+    }
+
+    &__nav-list {
+        @include tablets {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__nav-item_ {
+        margin-bottom: 1.7rem;
+
+        &:nth-child(5),&:last-child {
+            margin-bottom: 0;
         }
     }
 }
