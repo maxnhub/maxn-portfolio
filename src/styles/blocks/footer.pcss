@@ -2,7 +2,7 @@
     background: #222427;
     display: flex;
     min-height: 370px;
-    padding-top: 5.5625rem;
+    padding-top: 64px;
 
     &__field {
         display: flex;
@@ -11,8 +11,11 @@
 
     &__author {
         display: flex;
-        flex-direction: column;
         margin-right: 8.8rem;
+
+        @include desktop {
+            flex-direction: column;
+        }
 
         &-copy {
             font-family: 'OpenSans', Helvetica, sans-serif;
@@ -20,7 +23,12 @@
             color: #979595;
             font-weight: 600;
             letter-spacing: 4px;
-            margin-bottom: 1.1rem;
+            margin-right: 60px;
+
+            @include desktop {
+                margin-bottom: 1.1rem;
+                margin-right: 0;
+            }
         }
 
         &-name {

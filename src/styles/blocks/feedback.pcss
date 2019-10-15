@@ -8,32 +8,45 @@
     &:after {
         content: "";
         background: url(../images/content/leaves4.png) 100%/contain no-repeat;
-        width: 39%;
-        height: 40%;
+        width: 35%;
+        height: 35%;
         position: absolute;
-        top: -12.625rem;
-        right: -12.0625rem;
+        top: -11.625rem;
+        right: -3.0625rem;
     }
 
     &__comments {
         display: flex;
         flex-direction: column;
-        margin-bottom: 12.775rem;
+        margin-bottom: 11.775rem;
+
+        @include desktop {
+            margin-bottom: 12.775rem;
+        }
 
         &-title {
-            padding-top: 9.425rem;
-            margin-bottom: 5.8825rem;
+            padding-top: 140px;
+            margin-bottom: 85px;
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 38px; 
             color: #fff;
             font-weight: bold;
             display: flex;
+
+            @include desktop {
+                margin-bottom: 6.3125rem;
+                padding-top: 10rem;
+            }
             
 
             &-text {
-                margin-right: 7.375rem;
+                margin-right: 5.375rem;
                 font-weight: 700;
                 padding-left: 10px;
+
+                @include desktop {
+                    margin-right: 7.375rem;
+                }
             }
         }
 
@@ -89,12 +102,20 @@
     &__connect {
         padding-bottom: 165px;
 
+        @include desktop {
+            padding-bottom: 11.8125rem;
+        }
+
         &-title {
-            margin-bottom: 3.825rem;
+            margin-bottom: 2.825rem;
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 38px; 
             color: #fff;
             font-weight: bold;
+
+            @include desktop {
+                margin-bottom: 3.825rem;
+            }
         }
     
         &-field {
@@ -146,6 +167,11 @@
             color: #fff;
             text-transform: uppercase;
             margin-left: 8px;
+
+            @include desktop {
+                margin-left: 0;
+                padding: 2.2rem 8.3rem;
+            }
         }
     }
 }

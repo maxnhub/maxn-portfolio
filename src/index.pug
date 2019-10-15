@@ -11,17 +11,18 @@ html(lang="en")
   body
     .wrapper
       .maincontent
-        section.main
-          .container
+        .welcome
+          section.main
+            .container
 
-            include views/common/header.pug
+              include views/common/header.pug
 
-            include views/common/main.pug
-          
-        section.about-me
-          .container
+              include views/common/main.pug
 
-            include views/common/aboutme.pug
+              include views/common/aboutme.pug 
+          .about-me
+            .container
+                  
 
         section.skills
           .container

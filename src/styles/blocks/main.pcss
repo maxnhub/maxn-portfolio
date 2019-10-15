@@ -1,33 +1,51 @@
 .main {
-    background: url(../images/content/trainfull.png) center center / cover no-repeat;
+    background: url(../images/content/trainfull1800.png) center center / cover no-repeat;
     height: 200%;
-    min-height: 1300px;
-    text-align: center;
+    min-height: 1450px;
     color: #fff;
     position: relative;
 
+    @include desktop {
+        background: url(../images/content/trainfull.png) 50%/cover no-repeat;
+        min-height: 89.375rem;
+    }
+
     &__title {
-        display: flex;
-        justify-content: center;
-        margin-top: 269px;
+        display: grid;
+        grid-template: " . desc name name . ." 1fr / 1fr 1fr 1fr 1fr 1fr 1fr;
+        margin-top: 24.8125rem;
+        grid-gap: 0 4.5rem;
+        
+
+        @include desktop {
+            grid-template: ". desc name name ." 1fr/ 1fr 1fr 1fr 1fr 1fr;
+            grid-gap: 0 2.5rem;
+            margin-top: 17.8125rem;
+        }
 
         &-desc {
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 19px; 
             color: #979595;
             text-align: right;
-            width: 19%;
             font-weight: 600;
-            margin-right: 4.0625rem;
-            line-height: 27px;
+            grid-area: desc;
+
+            @include desktop {
+                line-height: 29px;
+            }
         }
 
         &-name {
             font-size: 72px;
             text-align: left;
             line-height: 59px;
-            width: 40%;
+            grid-area: name;
             font-weight: 800;
+
+            @include desktop {
+                line-height: 59px;
+            }
 
         }
 
@@ -37,12 +55,32 @@
         display: flex;
         justify-content: center;
         position: absolute;
-        bottom: 41%;
-        left: 48.5%;
+        bottom: 37%;
+        left: 47.5%;
+
+        @include desktop {
+            bottom: 45%;
+            left: 48.5%;
+        }
 
         &-text {
             font-size: 18px;
             margin-right: 15px;
+        }
+
+        &-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: svg-load('scroll.svg', fill=#fff, width=100%, height=100%);
+        }
+        
+        &:hover {
+            color: #da8d21;
+
+            & .main__scroll-icon {
+                background: svg-load('scroll.svg', fill=#da8d21, width=100%, height=100%);
+            }
         }
     }
 }

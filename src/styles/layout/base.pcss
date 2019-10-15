@@ -31,8 +31,12 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 72.125rem;
-  width: 100%;
+  max-width: 1500px;
+  width: 95%;
+
+  @include desktop {
+    max-width: 72.125rem;
+  }
 
   @include phones {
     width: 85%;
@@ -92,4 +96,8 @@ img {
   display: block;
   max-width: 100%;
   max-height: 100%;
+}
+
+.welcome {
+  width: 100%;
 }

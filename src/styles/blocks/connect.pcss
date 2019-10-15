@@ -6,9 +6,19 @@
         padding: 20px 0 20px 52px;
         width: 100%;
         border: 0.1875rem solid transparent;
-        border-bottom: 1px solid #fff;
+        border-top: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
         outline: none;
         background: none;
+
+        @include desktop {
+            border-bottom: 1px solid #fff;
+        }
+
+        &-textarea {
+            border-bottom: 1px solid #fff;
+        }
 
         &::placeholder {
             font-family: 'OpenSans', Helvetica, sans-serif;

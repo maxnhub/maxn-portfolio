@@ -5,7 +5,7 @@
 ```sh
  Студент: Никульников Максим
  Наставник: Белая Любовь
- Ссылка: https://maxnhub.github.io/maxnikulnikov-portfolio/
+ Ссылка: https://maxnhub.github.io/maxn-portfolio/
 ```
 
 #### How to install and build my app

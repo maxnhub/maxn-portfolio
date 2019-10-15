@@ -1,31 +1,70 @@
 .skills {
     background: url(../images/content/hands-bg.png) center center / cover no-repeat;
-    min-height: 1060px;
+    min-height: 944px;
     position: relative;
+
+    @include desktop {
+        padding-top: 32.0625rem;
+        min-height: 1060px;
+    }
 
     &:after {
         content: "";
-        background: url(../images/content/hands.png) 100%/contain no-repeat;
-        width: 69%;
-        height: 69%;
+        background: url(../images/content/hands.png) 0% 100%/contain no-repeat;
+        width: 97%;
+        height: 100%;
         position: absolute;
-        bottom: -5.625rem;
-        left: -27.0625rem;
+        bottom: -5.5rem;
+        left: 0.3125rem;
+
+        @include half-desktop {
+            width: 84%;
+            height: 78%;
+            position: absolute;
+            bottom: -7rem;
+            left: -5.3625rem;
+        }
+
+        @include quad-desktop {
+            width: 84%;
+            height: 63%;
+            position: absolute;
+            bottom: -7rem;
+            left: -5.3625rem;
+        
+        }
+
+        @include desktop {
+            width: 57%;
+            height: 54%;
+            position: absolute;
+            bottom: -4rem;
+            left: -6.3625rem;
+        }
     }
 
     &__info {
         align-items: center;
         display: flex;
         flex-direction: column;
-        padding-top: 14.3125rem;
-        margin-bottom: 6.25rem;
+        padding-top: 63px;
+        margin-bottom: 5.25rem;
+
+        @include desktop {
+            padding-top: 0;
+            margin-bottom: 92px;
+        }
 
         &-block {
-            width: 58%;
+            width: 39%;
             align-items: flex-start;
             display: flex;
             flex-direction: column;
             padding-left: 56px;
+
+            @include desktop {
+                width: 58%;
+            }
         }
 
         &-title {
@@ -49,8 +88,13 @@
     &__graphic {
         display: flex;
         justify-content: flex-end;
-        padding-right: 11px;
-        padding-bottom: 161px;
+        padding-right: 7.6875rem;
+        padding-bottom: 125px;
+
+        @include desktop {
+            padding-right: 1.6875rem;
+            padding-bottom: 11.3125rem;
+        }
     }
 
     &__row {

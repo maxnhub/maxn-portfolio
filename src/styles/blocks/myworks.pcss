@@ -1,45 +1,85 @@
 .myworks {
-    padding-top: 9.875rem;
+    padding-top: 11.875rem;
+
+    @include desktop {
+        padding-top: 9.3rem;
+    }
 
     &__title {
         font-family: 'OpenSans', Helvetica, sans-serif;
         font-size: 37px; 
         color: #333c49;
         font-weight: bold;
-        margin-bottom: 57px;
+        margin-bottom: 5.5625rem;
         padding-left: 5px;
         letter-spacing: 1.1px;
+
+        @include desktop {
+            margin-bottom: 3.5625rem;
+        }
     }
 
     &__field {
-        display: flex;
-        margin-bottom: 9.5625rem;
+        margin-bottom: 207px;
+        display: grid;
+        grid-template-columns: 66% 33%;
+        grid-column-gap: 2rem;
+        grid-template-areas: 
+            "visual tags"
+            "visual title"
+            "visual text"
+            "visual link";
+
+        @include desktop {
+            grid-template-columns: 58% 40%;
+            margin-bottom: 153px;
+        }
     }
+
+    .myworks__visual {grid: visual;}
+    .myworks__visual {grid: tags;}
+    .myworks__content-title {grid: title;}
+    .myworks__content-text {grid: text;}
+    .myworks__link {grid: link;}
 
     &__visual {
         z-index: 10;
         
         &-bg {
             position: relative;
-            width: 42.5625rem;
-            height: 24rem;
+            width: 986px;
+            height: 550px;
             max-width: 100%;
             max-height: 100%;
             background: url(../images/content/1.jpg) 10% 10%/cover no-repeat;
+        
+            @include desktop {
+                width: 100%;
+                height: 95%;
+            }
         }
         
         &-previews {
             position: absolute;
-            bottom: 29px;
-            left: 98px;
-            width: 534px;
+            bottom: 3.8125rem;
+            right: 0;
+            width: 712px;
             overflow: hidden;
+
+            @include desktop {
+                width: 534px;
+                bottom: 2.8125rem;
+            }
         }
 
         &-links {
             position: absolute;
             right: -50px;
-            bottom: 78px;
+            bottom: 6.875rem;
+
+            @include desktop {
+                bottom: 5.875rem;
+            }
 
             &-box {
                 width: 50px;
@@ -63,7 +103,11 @@
             }
 
             &--right {
-                bottom: 29px;
+                bottom: 3.8125rem;
+
+                @include desktop {
+                    bottom: 2.8125rem;
+                }
 
                 & > .myworks__visual-links-box > .myworks__visual-links-arrow {
                     transform: rotate(45deg);
@@ -80,14 +124,19 @@
 
     &__number {
         font-family: 'OpenSans', Helvetica, sans-serif;
-        font-size: 300px; 
+        font-size: 24.75rem; 
         color: #e6e6e6;
         font-weight: 900;
         width: 96px;
         position: absolute;
-        top: -107px;
-        left: -74px;
+        top: -2.6875rem;
+        left: -4.625rem;
         z-index: 2;
+
+        @include desktop {
+            top: -6.9rem;
+            font-size: 19.75rem;
+        }
     }
 
 
@@ -99,7 +148,11 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        padding-left: 109px;
+        padding-left: 7.8125rem;
+
+        @include desktop {
+            padding-left: 5rem;
+        }
 
         &-tags {
             display: flex;
@@ -111,20 +164,26 @@
             font-size: 30px;
             font-weight: bold;
             color: #333c49; 
-            padding: 0.925rem 0 1.8125rem;
+            padding: 0 0 1.8125rem;
             line-height: 3.1375rem;
+
+            @include desktop {
+                padding: 14px 0 1.8125rem;
+            }
         }
 
         &-text {
-            margin-bottom: 63px;
-            line-height: 2.175rem;
+            margin-bottom: 36px;
+            line-height: 30px;
             padding-right: 2.0625rem;
+
+            @include desktop {
+                line-height: 32px;
+            }
         }
     }
 
     &__link {
-        position: absolute;
-        bottom: 0;
         display: flex;
 
         &:hover .link__text {

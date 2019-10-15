@@ -1,5 +1,6 @@
 .about-me {
     background: url(../images/content/aboutme-bg.png) center center / cover no-repeat;
+    height: 328px;
 
     &__visual {
         display: flex;
@@ -19,17 +20,43 @@
     }
 
     &__description {
-        display: flex;
-        justify-content: flex-start;
-        padding-top: 11.575rem;
+        margin-left: 13rem;
+        padding-top: 33rem;
+        display: grid;
+        grid-template-columns: 35% 65%;
+        grid-column-gap: 2rem;
+        grid-template-areas: 
+            "image hello"
+            "image title"
+            "image text"
+            ". text"
+            "facts text"
+            "facts ."
+            "facts info";
+
+        @include desktop {
+            grid-template-columns: 40% 60%;
+            position: absolute;
+            bottom: -30.1875rem;
+            left: 0;
+            margin-left: 0;
+            
+        }
     }
 
+    .about-me__visual {grid: image;}
+    .about-me__facts {grid: facts;}
+    .about-me__story-text {grid: hello;}
+    .about-me__story-title {grid: title;}
+    .about-me__story-text {grid: text;}
+    .about-me__story-info {grid: info;}
+
     &__column-left {
-        margin-right: 11.6875rem;
+        margin-right: 6rem;
     }
 
     &__column-right {
-        width: 40%;
+        
     }
 
     &__story-text {
@@ -57,6 +84,10 @@
     &__facts {
         display: flex;
         padding-left: 10px;
+
+        @include desktop {
+            padding-left: 4.625rem;
+        }
 
         &-left {
             margin-right: 67px;
