@@ -25,58 +25,62 @@
 
     &__field {
         margin-bottom: 207px;
-        display: grid;
-        grid-template-columns: 66% 33%;
-        grid-column-gap: 2rem;
-        grid-template-areas: 
-            "visual tags"
-            "visual title"
-            "visual text"
-            "visual link";
+        display: flex;
 
         @include desktop {
-            grid-template-columns: 58% 40%;
             margin-bottom: 153px;
         }
 
-        @include tablets {
+        @include desktop1000 {
             display: flex;
             flex-direction: column;
             margin-bottom: 8.2rem;
         }
-    }
 
-    .myworks__visual {grid: visual;}
-    .myworks__visual {grid: tags;}
-    .myworks__content-title {grid: title;}
-    .myworks__content-text {grid: text;}
-    .myworks__link {grid: link;}
+        @include tablets {
+
+        }
+    }
 
     &__visual {
         z-index: 10;
+        flex: 2;
+
+        @include desktop1000 {
+            height: 28.6875rem;
+            width: 45.8rem;
+            margin-bottom: 4.4rem;
+        }
 
         @include tablets{
             height: 24.6875rem;
             width: 44.8rem;
             margin-bottom: 4.4rem;
         }
+
+        @include phones {
+            height: 207px;
+            width: 100%;
+        }
         
         &-bg {
             position: relative;
-            width: 986px;
-            height: 550px;
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             background: url(../images/content/1.jpg) 10% 10%/cover no-repeat;
         
             @include desktop {
+                width: 87%;
+                height: 93%;
+            }
+
+            @include desktop1000 {
                 width: 100%;
-                height: 95%;
+                height: 100%;
             }
 
             @include tablets {
-                height: 100%;
-                width: 100%;
+
             }
         }
         
@@ -92,9 +96,17 @@
                 bottom: 2.8125rem;
             }
 
+            @include desktop1000 {
+                width: 356px;
+            }
+
             @include tablets {
                 width: 37.8rem;
                 bottom: 1.8125rem;
+            }
+
+            @include phones {
+                display: none;
             }
         }
 
@@ -102,14 +114,19 @@
             position: absolute;
             right: -50px;
             bottom: 6.875rem;
+            cursor: pointer;
 
             @include desktop {
                 bottom: 5.875rem;
             }
 
             @include tablets {
-                bottom: 5.5rem;
+                bottom: 78px;
                 right: -3.6rem;
+            }
+
+            @include phones {
+                right: 0;
             }
 
             &-box {
@@ -146,7 +163,7 @@
                 }
 
                 @include tablets {
-                    bottom: 1.87rem
+                    bottom: 28px;
                 }
 
                 & > .myworks__visual-links-box > .myworks__visual-links-arrow {
@@ -175,17 +192,25 @@
 
         @include desktop {
             top: -6.9rem;
+            left: -145px;
             font-size: 19.75rem;
         }
 
+        @include desktop1000 {
+            top: -39.9rem;
+            left: 46.9375rem;
+        }
+
         @include tablets {
-            display: none;
+            top: -36.9rem;
+            left: 41.9375rem;
         }
     }
 
 
     &__description {
         display: flex;
+        flex: 1;
     }
 
     &__content {
@@ -195,15 +220,20 @@
         padding-left: 7.8125rem;
 
         @include desktop {
-            padding-left: 5rem;
+            padding-left: 10px;
         }
 
-        @include tablets {
+        @include desktop1000 {
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-left: 9rem;
             width: 84%;
+        }
+
+        @include phones {
+            padding-left: 15px;
+            width: 100%;
         }
 
         &-tags {
@@ -228,6 +258,10 @@
                 font-size: 2.2rem;
                 letter-spacing: 1px;
             }
+
+            @include phones {
+                font-size: 28px;
+            }
         }
 
         &-text {
@@ -243,6 +277,10 @@
                 line-height: 1.8rem;
                 text-align: center;
                 margin-bottom: 1.3rem;
+            }
+
+            @include phones {
+                text-align: start;
             }
         }
     }
@@ -308,6 +346,7 @@
 .previews__item {
     width: 178px;
     height: 100px;
+    cursor: pointer;
 
     @include tablets {
         width: 12.6rem;

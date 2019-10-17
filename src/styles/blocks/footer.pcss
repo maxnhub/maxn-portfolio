@@ -7,6 +7,11 @@
     &__field {
         display: flex;
         padding-left: 8px;
+
+        @include phones {
+            padding-left: 0;
+            flex-direction: column;
+        }
     }
 
     &__author {
@@ -19,6 +24,11 @@
 
         @include tablets {
             margin-right: 5.8rem;
+        }
+
+        @include phones {
+            margin-right: 0;
+            margin-bottom: 25px;
         }
 
         &-copy {
@@ -55,10 +65,14 @@
 
         &-desc {
             display: flex;
-            padding-top: 4rem;
+            padding-top: 30px;
+
+            @include phones {
+                flex-direction: column;
+            }
         }
         &-text{
-            margin-bottom: 2.1rem;
+            margin-bottom: 23px;
             line-height: 27px;
 
             @include tablets {
@@ -75,6 +89,10 @@
 
         &-socials {
             flex: 1;
+
+            @include phones {
+                margin-bottom: 25px;
+            }
         }
 
         &-quotation {
@@ -82,6 +100,11 @@
 
             @include tablets {
                 display: none;
+            }
+
+            @include phones {
+                display: block;
+                margin-bottom: 35px;
             }
         }
     }

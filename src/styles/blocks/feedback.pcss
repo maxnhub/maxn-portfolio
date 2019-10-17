@@ -46,6 +46,10 @@
                 padding-top: 8.7rem;
                 margin-bottom: 4.3125rem;
             }
+
+            @include phones {
+                flex-direction: column;
+            }
             
 
             &-text {
@@ -61,12 +65,21 @@
                     padding-left: 0;
                     margin-right: 4.375rem;
                 }
+
+                @include phones {
+                    font-size: 25px;
+                    margin-right: 0;
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
             }
         }
 
 
 
         &-link {
+            cursor: pointer;
+
             &:hover {
                 & > .feedback__comments-box {
                     border: 2px solid #dc9322;
@@ -77,6 +90,15 @@
                     border-bottom: 2px solid #dc9322;
                 }
             }
+
+            &-field {
+                display: flex;
+
+                @include phones {
+                    justify-content: center;
+                }
+            }
+
         }
 
         &-box {
@@ -139,6 +161,10 @@
                 text-align: center;
                 margin-bottom: 1.3rem;
             }
+
+            @include phones {
+                font-size: 25px;
+            }
         }
     
         &-field {
@@ -159,6 +185,10 @@
             display: flex;
             justify-content: flex-start;
             margin-bottom: 10px;
+
+            @include phones {
+                flex-direction: column;
+            }
         }
     
         &-block, &-textarea {
@@ -173,8 +203,12 @@
                 margin-right: 0;
             }
 
-            &:focus.feedback__connect-icon {
+            &:hover .feedback__connect-icon {
                 fill: #dc9322;
+            }
+
+            @include phones {
+                margin-right: 0;
             }
         }
 
@@ -187,13 +221,18 @@
         }
 
         &-button {
-            background: linear-gradient(to right, #d37d1d 0% 25%, #db9222 45% 100%);
+            background: linear-gradient(to right, #ed7e00 0% 25%, #ff8900 45% 100%);
             padding: 1.875rem 8.5rem;
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 18px; 
             color: #fff;
             text-transform: uppercase;
             margin-left: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background: linear-gradient(to right, #ff8900 0% 25%, #ff9d00 45% 100%);
+            }
 
             @include desktop {
                 margin-left: 0;
@@ -203,6 +242,11 @@
             @include tablets {
                 margin-left: 12.4rem;
                 padding: 2.2rem 8.9rem;
+            }
+
+            @include phones {
+                margin-left: 0;
+                padding: 25px 90px;
             }
         }
     }

@@ -1,21 +1,25 @@
 .about-me {
-    background: url(../images/content/aboutme-bg.png) center center / cover no-repeat;
-    min-height: 328px;
 
     @include tablets {
-        min-height: 32.5rem;
+
     }
 
     &__visual {
-        display: flex;
-        justify-content: center;
-        margin-left: 5.75rem;
-        margin-bottom: 5.6875rem;
+
+        margin-bottom: 75px;
+
+        @include desktop {
+            padding-left: 80px;
+            margin-bottom: 87px;
+        }
 
         @include tablets {
             margin-left: 1.7rem;
             margin-bottom: 3.6875rem;
-            justify-content: flex-start;
+        }
+
+        @include phones {
+            padding-left: 0;
         }
     }
     
@@ -34,54 +38,53 @@
     }
 
     &__description {
-        margin-left: 13rem;
-        padding-top: 33rem;
-        display: grid;
-        grid-template-columns: 35% 65%;
-        grid-column-gap: 2rem;
-        grid-template-areas: 
-            "image hello"
-            "image title"
-            "image text"
-            ". text"
-            "facts text"
-            "facts ."
-            "facts info";
+        margin-left: 15rem;
+        padding-top: 22rem;
+        padding-bottom: 240px;
+        display: flex;
 
         @include desktop {
-            grid-template-columns: 40% 60%;
-            position: absolute;
-            bottom: -30.1875rem;
-            left: 0;
+            padding-top: 728px;
             margin-left: 0;
-
+            padding-bottom: 0;
         }
 
-        @include tablets {
-            grid-template-columns: 40% 54%;
-            bottom: -35rem;
-            
+        @include phones {
+            padding-top: 72px;
+            flex-direction: column;
         }
     }
 
-    .about-me__visual {grid: image;}
-    .about-me__facts {grid: facts;}
-    .about-me__story-text {grid: hello;}
-    .about-me__story-title {grid: title;}
-    .about-me__story-text {grid: text;}
-    .about-me__story-info {grid: info;}
 
     &__column-left {
-        margin-right: 6rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 140px;
+
+        @include desktop {
+            align-items: flex-start;
+        }
 
         @include tablets {
             margin-right: 0;
         }
+
+        @include phones {
+            margin-bottom: 50px;
+        }
     }
 
     &__column-right {
+        flex: 2;
+
         @include tablets {
             padding-left: 1.5625rem;
+        }
+
+        @include phones {
+            padding-left: 0;
         }
         
     }
@@ -117,11 +120,11 @@
         padding-left: 10px;
 
         @include desktop {
-            padding-left: 4.625rem;
+            padding-left: 0;
         }
 
         @include tablets {
-            padding-left: 2.625rem;
+
         }
 
         &-left {

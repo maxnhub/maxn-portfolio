@@ -1,50 +1,67 @@
+.wrapper-main {
+    background: url(../images/content/trainfull.png) center center / cover no-repeat;
+
+    @include desktop {
+        background: url(../images/content/trainfull1200.png) center center / cover no-repeat;
+    }
+
+    @include tablets {
+        background: url(../images/content/trainfull768.png) center center / cover no-repeat;
+    }
+
+    @include phones {
+        background: url(../images/content/trainfull320.png) center center / cover no-repeat;
+    }
+
+}
+
 .main {
-    background: url(../images/content/trainfull1800.png) center center / cover no-repeat;
-    height: 200%;
-    min-height: 1450px;
+
+    height: 100vh;
     color: #fff;
     position: relative;
 
     @include desktop {
-        background: url(../images/content/trainfull.png) 50%/cover no-repeat;
-        min-height: 89.375rem;
+
     }
 
     @include tablets {
-        min-height: 78.375rem;
+
     }
 
     &__title {
-        display: grid;
-        grid-template: " . desc name name . ." 1fr / 1fr 1fr 1fr 1fr 1fr 1fr;
-        margin-top: 24.8125rem;
-        grid-gap: 0 4.5rem;
-        
+        display: flex;
+        width: 73%;
+        margin: 0 auto 331px;
 
-        @include desktop {
-            grid-template: ". desc name name ." 1fr/ 1fr 1fr 1fr 1fr 1fr;
-            grid-gap: 0 2.5rem;
-            margin-top: 17.8125rem;
+        @include desktop1500 {
+            
+            margin-top: 60vh;
+        }
+        
+        @include desktop { 
+            margin-bottom: 242px;
+            margin-top: 47vh;
         }
 
         @include tablets {
-            grid-template: "desc"
-            "name";
-            grid-gap: 0 2.5rem;
-            grid-template-columns: 37%;
-            justify-content: center;
-            margin-top: 8.7rem;
+            flex-direction: column;
+        }
+
+        @include phones {
+            margin-top: 23vh;
         }
 
         &-desc {
             font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 19px; 
-            color: #979595;
+            font-size: 20px; 
+            color: $grey-color;
             text-align: right;
             font-weight: 600;
-            grid-area: desc;
+            margin-right: 79px;
 
             @include desktop {
+                font-size: 19px;
                 line-height: 29px;
             }
 
@@ -53,16 +70,24 @@
                 text-align: center;
                 line-height: 2.3rem;
             }
+
+            @include phones {
+                font-size: 15px;
+                margin-right: 0;
+                margin-bottom: 6px;
+                line-height: 26px;
+            }
         }
 
         &-name {
             font-size: 72px;
             text-align: left;
             line-height: 59px;
-            grid-area: name;
             font-weight: 800;
 
             @include desktop {
+                font-size: 72px;
+                line-height: 59px;
                 line-height: 59px;
             }
 
@@ -72,6 +97,9 @@
                 line-height: 3.4875rem;
             }
 
+            @include phones {
+                font-size: 35px;
+            }
         }
 
     }
@@ -79,9 +107,7 @@
     &__scroll {
         display: flex;
         justify-content: center;
-        position: absolute;
-        bottom: 37%;
-        left: 47.5%;
+        cursor: pointer;
 
         @include desktop {
             bottom: 45%;

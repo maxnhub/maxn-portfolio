@@ -10,6 +10,10 @@
         @include tablets {
             padding-left: 2.8rem;
         }
+
+        @include phones {
+            overflow: hidden;
+        }
     }
 
     &__item {
@@ -26,6 +30,10 @@
             margin-right: 6.1875rem;
         }
 
+        @include phones {
+            width: 100%;
+        }
+
         &:last-child {
             margin-right: 0;
         }
@@ -33,6 +41,10 @@
 
     &__content {
         position: relative;
+
+        @include phones {
+            margin-bottom: 20px;
+        }
     }
 
     &__icon {

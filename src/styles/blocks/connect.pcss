@@ -11,6 +11,7 @@
         border-left: 1px solid transparent;
         outline: none;
         background: none;
+        cursor: pointer;
 
         @include desktop {
             border-bottom: 1px solid #fff;
@@ -28,12 +29,8 @@
             color: #fff;
         }
 
-        &:focus {
+        &:focus, &:hover {
             border: 1px solid #dc9322; 
-        }
-
-        &:focus > .feedback__connect-icon {
-            fill: #dc9322;
         }
     }
 
