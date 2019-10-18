@@ -1,4 +1,4 @@
-include views/common/mixins.pug
+include ./views/common/mixins.pug
 
 <!DOCTYPE html>
 html(lang="ru")
@@ -22,8 +22,12 @@ html(lang="ru")
 
         section.skills
           .container
-
-            include views/common/skills.pug
+            .skills__info
+              .skills__info-block
+                h3.skills__info-title Чем я могу быть полезен вам
+                p.skills__info-text=skillsInfo
+            .skills__widget
+              #skills-component
 
         section.myworks
           .container(class="container--myworks")
@@ -36,4 +40,6 @@ html(lang="ru")
             include views/common/feedback.pug
           
         include views/common/footer.pug
+
+include ./templates/entry.pug
         
