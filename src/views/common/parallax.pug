@@ -1,0 +1,22 @@
+- var name = "Максим Никульников" 
+.parallax__layer
+    +image('content/parallax1.png', 'parallax__image-sky')
+.container
+    include header.pug
+.parallax__layer
+    +image('content/parallax2.png', 'parallax__image-mountain')     
+.parallax__layer
+    +image('content/parallax3.png', 'parallax__image-train')
+    .main__title
+        .main__title-desc Личный сайт веб разработчика
+        h1.main__title-name=`${name}`
+.parallax__layer
+    +image('content/parallax4.png', 'parallax__image-field')
+.parallax__layer
+    .main__scroll
+        p.main__scroll-text Скролл
+        .main__scroll-icon
+.parallax__layer
+    +image('content/parallax5.png', 'parallax__image-shadow')
+.parallax__layer
+    +image('content/parallax6.png', 'parallax__image-shadow2')
