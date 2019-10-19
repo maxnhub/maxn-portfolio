@@ -1,0 +1,25 @@
+[{
+        "id": 1,
+        "title": "Проект Coworking",
+        "skills": "HTML, CSS, Flexbox",
+        "photo": "1.jpg",
+        "link": "//maxnhub.github.io/maxnikulnikov-coworking",
+        "desc": "Проект выполнен в рамках обучения в школе Loftschool на курсе 'Основы вёрстки'."
+    },
+    {
+        "id": 2,
+        "title": "Проект Burgers",
+        "skills": "SASS, GIT, Javascript, AJAX, npm, Gulp",
+        "photo": "2.jpg",
+        "link": "//maxnhub.github.io/maxnikulnikov-burgers/dist/",
+        "desc": "Проект выполнен в рамках обучения в школе Loftschool на курсе 'Веб-разработка для начинающих'."
+    },
+    {
+        "id": 3,
+        "title": "3 Сайт школы онлайн образования",
+        "skills": "3 Html, Css, JavaScript",
+        "photo": "3.jpg",
+        "link": "//rambler.ru",
+        "desc": "3 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    }
+]

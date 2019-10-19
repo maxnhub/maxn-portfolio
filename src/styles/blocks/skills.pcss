@@ -1,4 +1,4 @@
-.skills {
+.myskills {
     background: url(../images/content/hands-bg.png) center center / cover no-repeat;
     min-height: 944px;
     position: relative;
@@ -12,7 +12,10 @@
         padding-top: 8.6rem;
         min-height: 77rem;
     }
+}
 
+.skills {
+    
     &:after {
         content: "";
         background: url(../images/content/hands.png) 0% 100%/contain no-repeat;
@@ -256,6 +259,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  
+    /* @include tablets {
+      width: 135px;
+      height: 135px;
+    } */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 
     &__circle {
         fill: transparent;
@@ -268,7 +279,9 @@
             font-size: 18px; 
             color: #979595;
             font-weight: bold;
-            padding: 0 30px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     
         &-shape {
@@ -283,28 +296,22 @@
 
         &--position--above {
             stroke: #dc9322;
-            stroke-dasharray: 327;
-            stroke-dashoffset: 327;
-            animation: fill 100s linear infinite;
-            animation-play-state: paused;
+            stroke-dasharray: 251;
+            stroke-dashoffset: 251;
         }
     }
 }
 
-.skills__circle--position--above[style="animation-delay: -100s"] {
-    animation: initial;
-    stroke-dashoffset: 0;
-}
 
 @keyframes fill {
     from {
-        stroke-dashoffset: 327;
+        stroke-dashoffset: 251;
     }
 
     to {
         stroke-dashoffset: 0;
     }
-}
+} 
 
 .skills__widget {
     display: flex;
@@ -315,7 +322,8 @@
 }
   
 .skills__widget-container {
-    width: 66%;
+    width: 68%;
+    z-index: 1;
     @include tablets {
       width: 95%;
     }

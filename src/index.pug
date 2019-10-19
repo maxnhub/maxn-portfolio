@@ -15,12 +15,17 @@ html(lang="ru")
         .wrapper-main
           section.main
             include views/common/parallax.pug
+            .container
+              include views/common/header.pug
+            .main__scroll
+              p.main__scroll-text Скролл
+              .main__scroll-icon
         section.about-me
           .container
             include views/common/aboutme.pug
                   
 
-        section.skills
+        section.myskills
           .container
             .skills__info
               .skills__info-block
@@ -41,5 +46,5 @@ html(lang="ru")
           
         include views/common/footer.pug
 
-include ./templates/entry.pug
+    include ./templates/entry.pug
         

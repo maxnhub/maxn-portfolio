@@ -1,3 +1,4 @@
+
 .parallax__layer {
     position: absolute;
     top: 0;
@@ -5,6 +6,22 @@
     width: 100%;
     height: 100%;
     will-change: transform;
+
+}
+
+.parallax__content {
+    height: 1100px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    transform: translateY(0);
+    background: #1b1f22;
+
+    @include desktop {
+        height: 900px;
+    }
+
 }
 
 .parallax__image-sky {
@@ -18,29 +35,83 @@
 .parallax__image-mountain {
     position: absolute;
     left: 0;
-    top: 396px;
+    top: 270px;
+
+    @include desktop {
+        top: 210px;
+    }
+
+    @include desktop1000 {
+        top: 160px;
+    }
 }
 
 .parallax__image-train {
     position: absolute;
-    top: 540px;
+    top: 384px;
     left: 0;
+
+    @include desktop {
+        top: 285px;
+    }
+
+    @include desktop1000 {
+        top: 200px;
+    }
+
 }
 
 .parallax__image-field {
     position: absolute;
-    top: 960px;
+    top: 665px;
     left: 0;
+
+    @include desktop1350 {
+        top: 605px;
+    }
+
+    @include desktop {
+        top: 545px;
+    }
+
+    @include desktop1000 {
+        top: 443px;
+    }
+
+
+
 }
 
 .parallax__image-shadow {
     position: absolute;
-    bottom: 0;
+    bottom: -300px;
     left: 0;
+
+    @include desktop {
+        bottom: -320px;
+    }
+
+    @include desktop1000 {
+        bottom: -110px;
+    }
+
 }
 
 .parallax__image-shadow2 {
     position: absolute;
-    bottom: 0;
+    bottom: -350px;
     left: 0;
+
+    @include desktop1350 {
+        bottom: -300px;
+    }
+
+    @include desktop {
+        bottom: -228px;
+    }
+
+    @include desktop1000 {
+        bottom: -228px;
+    }
+
 }

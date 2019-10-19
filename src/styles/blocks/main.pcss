@@ -3,7 +3,7 @@
     //background: url(../images/content/trainfull.png) center center / cover no-repeat;
 
     @include desktop {
-        //background: url(../images/content/trainfull1200.png) center center / cover no-repeat;
+        /* background: url(../images/content/trainfull1200.png) center center / cover no-repeat; */
     }
 
     @include tablets {
@@ -18,23 +18,28 @@
 
 .main {
     color: #fff;
-    min-height: 1779px;
+    min-height: 1100px;
     overflow: hidden;
     position: relative;
 
+    @include desktop1500 {
+        /* min-height: 1000px; */
+    }
+
     @include desktop {
-
+        min-height: 900px;
     }
 
-    @include tablets {
 
-    }
+
 
     &__title {
         display: flex;
         width: 65%;
-        margin-top: 27%;
-        margin-left: 25%;
+        top: 338px;
+        left: 25%;
+        margin-right: 10%;
+        position: absolute;
 
         @include desktop1500 {
             
@@ -42,8 +47,11 @@
         }
         
         @include desktop { 
-            margin-bottom: 242px;
-            //margin-top: 47vh;
+            top: 250px;
+        }
+
+        @include desktop1000 {
+            top: 160px;
         }
 
         @include tablets {
@@ -51,7 +59,7 @@
         }
 
         @include phones {
-            //margin-top: 23vh;
+            /* margin-top: 23vh;  */
         }
 
         &-desc {
@@ -65,6 +73,11 @@
             @include desktop {
                 font-size: 19px;
                 line-height: 29px;
+            }
+
+            @include desktop1000 {
+                font-size: 17px;
+                line-height: 27px;
             }
 
             @include tablets {
@@ -91,6 +104,10 @@
                 font-size: 72px;
                 line-height: 59px;
                 line-height: 59px;
+            }
+
+            @include desktop1000 {
+                font-size: 52px;
             }
 
             @include tablets {
