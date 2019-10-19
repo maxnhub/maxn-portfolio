@@ -1,8 +1,8 @@
 - var skillsInfo = "Этот сайт я делал в рамках обучения в Школе онлайн образования Loftschool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!"
 
-mixin icon(name, className)
+mixin icon(name, className, idName)
   - var icon = require(`images/icons/${name}.svg`);
-  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+  svg(id=`${idName}` class=className viewBox=icon.viewBox preserveAspectRatio="none")
     use(xlink:href=icon.url)
 
 mixin image(path, className)

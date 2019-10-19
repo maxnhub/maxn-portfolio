@@ -1,5 +1,6 @@
 import Vue from "vue";
 
+import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 const commentItem = {
@@ -23,9 +24,9 @@ new Vue({
             slidesPerView: 2,
             spaceBetween: 50,
             navigation: {
-                nextEl: '.feedback-comments__arrow--next',
-                prevEl: '.feedback-comments__arrow--prev',
-                disabledClass: '.feedback-comments__arrow--disabled'
+                nextEl: '.comments__arrow--next',
+                prevEl: '.comments__arrow--prev',
+                disabledClass: '.comments__arrow--disabled'
             },
             breakpoints: {
                 480: {
@@ -38,7 +39,8 @@ new Vue({
         addImagePaths(comments) {
             return comments.map(el => {
                 let photo = require(`../images/content/${el.photo}`);
-                el.photo = photoreturn el
+                el.photo = photo
+                return el
             })
         }
     },

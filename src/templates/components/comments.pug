@@ -4,9 +4,9 @@ script(type="text/x-template")#comments-list
             h3.comments__title Что обо мне говорят
             .comments__arrows
                 .comments__arrow.comments__arrow--prev
-                    +icon('arrow-down')
+                    .comments__arrow-box
                 .comments__arrow.comments__arrow--next
-                    +icon('arrow-down')
+                    .comments__arrow-box
         .comments__items
             swiper(ref="mySwiper" :options="swiperOption")
                 comment-item(v-for="item in comments" :item="item")
