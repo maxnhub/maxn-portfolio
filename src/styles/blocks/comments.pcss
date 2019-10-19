@@ -1,5 +1,5 @@
 .comments {
-    &__list {
+    &__items {
         display: flex;
         padding-left: 137px;
 
@@ -39,7 +39,7 @@
         }
     }
 
-    &__content {
+    &__item-about {
         position: relative;
 
         @include phones {
@@ -47,7 +47,7 @@
         }
     }
 
-    &__icon {
+    &__item-quote {
         position: absolute;
         top: 0;
         left: -80px;
@@ -67,7 +67,7 @@
         display: flex;
     }
 
-    &__text {
+    &__item-text {
         font-family: 'OpenSans', Helvetica, sans-serif;
         font-size: 17px; 
         color: #979595;
@@ -81,7 +81,7 @@
         }
     }
 
-    &__avatar {
+    &__item-photo {
         max-height: 70px;
         max-width: 70px;
         width: 70px;
@@ -98,18 +98,9 @@
             height: 75px;
         }
 
-        &_first {
-            background: url(../images/content/feed1.png) 100% / cover no-repeat;
-            background-position-y: 0;
-        }
-
-        &_second {
-            background: url(../images/content/feed2.png) center center / cover no-repeat;
-            background-position-y: 0;
-        }
     }
 
-    &__person {
+    &__item-info {
         display: flex;
         flex-direction: column;
 
@@ -125,7 +116,7 @@
             }
         }
 
-        &-text {
+        &-position {
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 16px; 
             color: #484b4e; 

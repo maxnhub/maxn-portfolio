@@ -34,14 +34,15 @@ html(lang="ru")
             .skills__widget
               #skills-component
 
-        section.myworks
-          .container(class="container--myworks")
-
-            include views/common/myworks.pug
+        section.works
+          .container(class="container--works")
+            .section-title.works__section-title Мои работы
+              .works__content
+                #slider-component
 
         section.feedback
           .container
-
+            #comments-component
             include views/common/feedback.pug
           
         include views/common/footer.pug

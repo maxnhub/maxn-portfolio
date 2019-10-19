@@ -1,17 +1,5 @@
 - var CommentItems = [["first", "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!", "Ковальчук Дмитрий", "Основатель Loftschool"], ["second", "Этот код выдержит любые испытания. Только пожалуйста, не загружайте на слишком старых браузерах", "Сабанцев Владимир", "Преподаватель"]]
 
-.feedback__comments
-    .feedback__comments-title 
-        h4.feedback__comments-title-text Что обо мне говорят
-        .feedback__comments-link-field
-            a.feedback__comments-link.feedback__comments-link--left
-                .feedback__comments-box
-                    
-            a.feedback__comments-link.feedback__comments-link--right
-                .feedback__comments-box
-                
-    .feedback__comments-field
-        +comments(CommentItems)
 .feedback__connect
     h4.feedback__connect-title Связаться со мной
     form.feedback__connect-forms(id="connect-forms")

@@ -16,10 +16,26 @@
     },
     {
         "id": 3,
-        "title": "3 Сайт школы онлайн образования",
-        "skills": "3 Html, Css, JavaScript",
+        "title": "Проект Advanced portfolio",
+        "skills": "Yarn, Pug, Webpack, CSS GRID, Vue.js, Parallax",
         "photo": "3.jpg",
+        "link": "//maxnhub.github.io/maxn-portfolio/",
+        "desc": "Проект выполнен в рамках обучения в школе Loftschool на курсе 'Веб-разработка для продвинутых'."
+    },
+    {
+        "id": 4,
+        "title": "4 Сайт школы онлайн образования",
+        "skills": "4 Html, Css, JavaScript",
+        "photo": "4.jpg",
         "link": "//rambler.ru",
-        "desc": "3 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+        "desc": "4 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    },
+    {
+        "id": 5,
+        "title": "5 Сайт школы онлайн образования",
+        "skills": "5 Html, Css, JavaScript",
+        "photo": "5.jpg",
+        "link": "//rambler.ru",
+        "desc": "5 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
     }
 ]
