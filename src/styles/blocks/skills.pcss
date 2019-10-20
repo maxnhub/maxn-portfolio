@@ -15,6 +15,10 @@
 }
 
 .skills {
+
+    @include phones {
+        padding-bottom: 250px;
+    }
     
     &:after {
         content: "";
@@ -325,6 +329,6 @@
     width: 68%;
     z-index: 1;
     @include tablets {
-      width: 95%;
+      width: 98%;
     }
 }

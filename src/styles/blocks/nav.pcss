@@ -1,6 +1,10 @@
 .nav-list {
     display: flex;
     flex-direction: row;
+
+    @include tablets {
+        display: none;
+    }
 }
 
 .nav-item {

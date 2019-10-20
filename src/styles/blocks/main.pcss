@@ -56,10 +56,28 @@
 
         @include tablets {
             flex-direction: column;
+            top: 150px;
+
+        }
+
+        @include desktop500 {
+            visibility: hidden;
         }
 
         @include phones {
-            /* margin-top: 23vh;  */
+            width: 70%;
+            left: 15%;
+        }
+
+        &--down {
+            visibility: hidden;
+            @include desktop500 {
+                visibility: visible;
+                top: 190px;
+                width: 60%;
+                left: 20%;
+            }
+           
         }
 
         &-desc {
@@ -81,9 +99,15 @@
             }
 
             @include tablets {
-                margin-bottom: 12px;
-                text-align: center;
+                font-size: 18px;
+                margin-bottom: 0;
+                text-align: left;
                 line-height: 2.3rem;
+            }
+
+            @include desktop500 {
+                width: 100%;
+                text-align: center;
             }
 
             @include phones {
@@ -112,8 +136,12 @@
 
             @include tablets {
                 text-align: left;
-                font-size: 3.5rem;
-                line-height: 3.4875rem;
+                font-size: 42px;
+                line-height: 35px;
+            }
+
+            @include desktop500 {
+                text-align: center;
             }
 
             @include phones {

@@ -1,43 +1,92 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 3.625rem;
-    padding-left: 7px;
-    position: absolute;
-    top: 0;
-    width: 90%;
-    
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 3.625rem;
+  padding-left: 7px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  @include desktop {
+    padding-top: 62px;
+    padding-left: 0;
+  }
+  @include tablets {
+    padding-top: 4.6rem;
+  }
 
-    @include desktop {
-        padding-top: 62px;
-        padding-left: 0;
-    }
+  &__icon {
+    width: 50px;
+    height: 25px;
+  }
 
+  &__socials {
+    padding-right: 10px;
     @include tablets {
-        padding-top: 4.6rem;
+      padding-right: 8.625rem;
     }
-
-    &__icon {
-        width: 50px;
-        height: 25px;
+    @include phones {
+      display: none;
     }
+  }
 
-    &__socials {
-        padding-right: 10px;
-
-        @include tablets {
-            padding-right: 8.625rem;
-        }
-
-        @include phones {
-            display: none;
-        }
-    }
+  &__menu {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+  }
 }
 
-#header__nav-list {
-    @include tablets {
-        display: none;
+.header__nav-list {
+  @include tablets {
+    display: none;
+  }
+}
+
+.header__menu--active {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  transition: all .4s;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 15;
+  padding-left: 50px;
+
+  @include phones {
+      width: 100%;
+  }
+
+  & .header__nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: $text-color;
+    margin-bottom: 50px;
+
+    & .nav-item {
+      color: $text-color;
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 0;
+      font-size: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
+  }
+
+  & .header__socials {
+      display: flex;
+  }
 }

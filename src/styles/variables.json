@@ -12,5 +12,6 @@
     "bp-desktop1350": "1350px",
     "bp-desktop1100": "1100px",
     "bp-desktop1000": "1000px",
-    "bp-desktop900": "900px"
+    "bp-desktop900": "900px",
+    "bp-desktop500": "500px"
 }
