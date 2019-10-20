@@ -9,3 +9,4 @@ import "./scripts/works";
 import "./scripts/comments";
 import "./scripts/scroll";
 import "./scripts/fullmenu";
+import "./scripts/parallax-mouse";
