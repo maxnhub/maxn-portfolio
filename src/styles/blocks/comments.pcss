@@ -1,82 +1,190 @@
 .comments {
-    &__list {
-        display: flex;
-        padding-left: 102px;
+  margin-bottom: 100px;
+
+  &__items {
+    
+    @include phones {
+      overflow: hidden;
+    }
+  }
+
+  &__item {
+    width: 100%;
+    padding-left: 80px;
+
+    @include tablets {
+      padding-left: 35px;
     }
 
-    &__item {
-        width: 33%;
-        margin-right: 163px;
-
-        &:last-child {
-            margin-right: 0;
-        }
+    @include phones {
+      padding-left: 0;
     }
 
-    &__content {
-        position: relative;
+    &:last-child {
+      margin-right: 0;  
     }
 
-    &__icon {
+    &-title {
+      font-family: OpenSans,Helvetica,sans-serif;
+      font-size: 1.3125rem;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    &-position {
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 16px;
+      color: $text-color;
+      font-weight: 600;
+    }
+
+    &-about {
+      position: relative;
+      display: flex;
+      @include phones {
+        margin-bottom: 20px;
+      }
+    }
+
+    &-quote {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 70px;
+      height: 70px;
+      fill: #313234;
+      opacity: 0.9;
+      @include tablets {
+        width: 2rem;
+        height: 2rem;
+      }
+      @include phones {
+        display: none;
+      }
+    }
+
+    &-text {
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 17px;
+      color: #979595;
+      font-weight: 600;
+      min-height: 150px;
+      line-height: 2rem;
+      @include tablets {
+        line-height: 1.8rem;
+        min-height: 11.375rem;
+      }
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 29px;
+      color: #979595;
+      font-weight: 600;
+    }
+  }
+
+  &__top {
+    display: flex;
+    padding-top: 8.75rem;
+    margin-bottom: 85px;
+    align-items: center;
+
+    @include phones {
+      flex-direction: column;
+    }
+  }
+
+  &__arrows {
+    display: flex;
+  }
+
+  &__arrow {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    outline: none;
+    z-index: 7;
+
+    &:hover {
+      & > .comments__arrow-box {
+        border: 2px solid #dc9322;
+      }
+
+      & > .comments__arrow-box:before {
+        border-left: 2px solid #dc9322;
+        border-bottom: 2px solid #dc9322;
+      }
+    }
+
+    &--next {
+      margin-left: 30px;
+
+      & > .comments__arrow-box:before {
+        transform: rotate(-135deg);
+        left: 60%;
+      }
+    }
+
+    &--disabled {
+      opacity: .5;
+      cursor: default;
+    }
+
+    &-box {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      border-radius: 50%;
+      border: 2px solid #bebdbd;
+
+      &:before {
+        content: "";
         position: absolute;
-        top: 0;
-        left: -80px;
-        width: 70px;
-        height: 70px;
-        fill: #313234;
-        opacity: 0.9;
+        top: 30%;
+        left: 40%;
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid #bebdbd;
+        border-bottom: 2px solid #bebdbd;
+        transform: rotate(45deg);
+        transform-origin: 0 100%;
+        margin-bottom: 8px;
+      }
     }
+  }
 
-    &__author {
-        display: flex;
+  &__title {
+    margin-right: 50px;
+    font-family: 'OpenSans', Helvetica, sans-serif;
+    font-size: 38px;
+    color: #fff;
+    font-weight: bold;
+
+    @include phones {
+      margin-right: 0;
+      margin-bottom: 50px;
+      font-size: 25px;
     }
+  }
 
-    &__text {
-        font-family: 'OpenSans', Helvetica, sans-serif;
-        font-size: 17px; 
-        color: #979595;
-        font-weight: 600; 
-        min-height: 150px;
-        line-height: 29px;
+  &__item-photo {
+    max-height: 70px;
+    max-width: 70px;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 50% 50%;
+    background-position: 50% 25%;
+    margin-right: 29px;
+    @include desktop {
+      min-height: 75px;
+      min-width: 75px;
+      width: 75px;
+      height: 75px;
     }
-
-    &__avatar {
-        max-height: 75px;
-        max-width: 75px;
-        width: 75px;
-        height: 75px;
-        overflow: hidden;
-        border-radius: 50% 50%;
-        background-position: 50% 25%;
-        margin-right: 29px;
-
-        &_first {
-            background: url(../images/content/feed1.png) 100% / cover no-repeat;
-            background-position-y: 0;
-        }
-
-        &_second {
-            background: url(../images/content/feed2.png) center center / cover no-repeat;
-            background-position-y: 0;
-        }
-    }
-
-    &__person {
-        display: flex;
-        flex-direction: column;
-
-        &-title {
-            font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 21px; 
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        &-text {
-            font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 16px; 
-            color: #484b4e; 
-            font-weight: 600; 
-        }
-    }
+  }
 }

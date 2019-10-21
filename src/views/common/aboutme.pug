@@ -1,22 +1,20 @@
-- var name = "Максим Никульников"
-
 .about-me__description
-            .about-me__column-left
-              .about-me__visual
-                +image('content/user.jpg', 'about-me__avatar')
-
-              .about-me__facts
-                .about-me__facts-left
-                    span.about-me__text Проживаю: 
-                    span.about-me__text Возраст:
-                    span.about-me__text Родился:
-                .about-me__facts-right
-                    span.about-me__text-right Санкт-Петербург
-                    span.about-me__text-right 27 лет
-                    span.about-me__text-right 17 июля 1992
-            .about-me__column-right
-              .about-me__story
-                p.about-me__story-text Привет, меня зовут
-                h2.about-me__story-title #{name}
-                p.about-me__story-text Раньше я работал в международной логистике, но всегда интересовался веб-разработкой. Занимался самообразованием, совмещая с работой, но в конце концов скопил денег, уволился и взялся за учебу всерьез с Loftschool. Настроен крайне серьезно, в начале второго курса обучения сильно поломал правую руку, и несмотря на эти неудобства всё сдал на отлично и в срок. Готов учиться и осваивать новые технологии.
-                p.about-me__story-info=skillsInfo
+    .about-me__column-left
+        .about-me__visual
+            +image('content/user.jpg', 'about-me__avatar')
+        .about-me__facts
+            .about-me__facts-left
+                span.about-me__text Проживаю: 
+                span.about-me__text Возраст:
+                span.about-me__text Родился:
+            .about-me__facts-right
+                span.about-me__text-right Санкт-Петербург
+                span.about-me__text-right 27 лет
+                span.about-me__text-right 17 июля 1992
+    .about-me__column-right
+        .about-me__story
+            p.about-me__story-text Привет, меня зовут
+            h2.about-me__story-title #{name}
+            p.about-me__story-text Раньше я работал в международной логистике, но всегда интересовался веб-разработкой. Занимался самообразованием, совмещая с работой, но в конце концов скопил денег, уволился и взялся за учебу всерьез с Loftschool. Настроен крайне серьезно, в начале второго курса обучения сильно поломал правую руку, и несмотря на эти неудобства всё сдал на отлично и в срок. Готов учиться и осваивать новые технологии.
+            p.about-me__story-info=skillsInfo
++icon('code', 'about-me__icon', 'code')

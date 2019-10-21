@@ -2,17 +2,35 @@
     background: #222427;
     display: flex;
     min-height: 370px;
-    padding-top: 73px;
+    padding-top: 64px;
+    padding-bottom: 64px;
 
     &__field {
         display: flex;
         padding-left: 8px;
+
+        @include phones {
+            padding-left: 0;
+            flex-direction: column;
+        }
     }
 
     &__author {
         display: flex;
-        flex-direction: column;
-        margin-right: 116px;
+        margin-right: 8.8rem;
+
+        @include desktop {
+            flex-direction: column;
+        }
+
+        @include tablets {
+            margin-right: 5.8rem;
+        }
+
+        @include phones {
+            margin-right: 0;
+            margin-bottom: 25px;
+        }
 
         &-copy {
             font-family: 'OpenSans', Helvetica, sans-serif;
@@ -20,7 +38,12 @@
             color: #979595;
             font-weight: 600;
             letter-spacing: 4px;
-            margin-bottom: 8px;
+            margin-right: 60px;
+
+            @include desktop {
+                margin-bottom: 1.1rem;
+                margin-right: 0;
+            }
         }
 
         &-name {
@@ -43,11 +66,19 @@
 
         &-desc {
             display: flex;
-            padding-top: 58px;
+            padding-top: 30px;
+
+            @include tablets {
+                flex-direction: column;
+            }
         }
         &-text{
-            margin-bottom: 27px;
+            padding-bottom: 23px;
             line-height: 27px;
+
+            @include tablets {
+                padding-bottom: 1.1rem;
+            }
         }
 
         &-italictext {
@@ -59,10 +90,33 @@
 
         &-socials {
             flex: 1;
+
+            @include tablets {
+                padding-bottom: 35px;
+            }
         }
 
         &-quotation {
             flex: 1;
+
+            @include phones {
+                padding-bottom: 35px;
+            }
+        }
+    }
+
+    &__nav-list {
+        display: flex;
+        @include tablets {
+            flex-wrap: wrap;
+        }
+    }
+
+    &__nav-item_ {
+        margin-bottom: 1.7rem;
+
+        &:nth-child(5),&:last-child {
+            margin-bottom: 0;
         }
     }
 }

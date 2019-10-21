@@ -1,11 +1,14 @@
 - var items = ["Главная", "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"]
 - var SocialItems = [['','https://instagram.com/maxnikulnikov', 'insta'],['', 'https://vk.com/maxnikulnikov', 'vk'],['', 'https://github.com/maxnhub', 'github']]
-- var NavItems = [["", "#", "Главное"], ["", "#", "Обо мне"], ["", "#", "Навыки"], ["", "#", "Работы"], ["", "#", "Отзывы"], ["", "#", "Связаться"]]
+- var NavItems = [["", "#main", "Главное"], ["", "#about-me", "Обо мне"], ["", "#myskills", "Навыки"], ["", "#works", "Работы"], ["", "#feedback", "Отзывы"], ["", "#connect", "Связаться"]]
 
 header.header
     +icon('favicon', 'header__icon')
-    +navs(NavItems, 'header')
-    .header__socials
-        +socials(SocialItems, 'header')
+    .header__menu
+        +navs(NavItems, 'header')
+        .header__socials
+            +socials(SocialItems, 'header')
+        button.hamburger-menu(href="#")
+            .hamburger-menu__stick
             
             

@@ -1,8 +1,8 @@
 - var skillsInfo = "Этот сайт я делал в рамках обучения в Школе онлайн образования Loftschool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!"
 
-mixin icon(name, className)
+mixin icon(name, className, idName)
   - var icon = require(`images/icons/${name}.svg`);
-  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+  svg(id=`${idName}` class=className viewBox=icon.viewBox preserveAspectRatio="none")
     use(xlink:href=icon.url)
 
 mixin image(path, className)
@@ -19,21 +19,21 @@ mixin socials(SocialItems, socialMode)
           +icon(`${SocialItem[2]}`, 'social__icon' + ` social__icon_${socialMode}`) 
 
 mixin navs(NavItems, navMode)
-  ul.nav-list(class=`${navMode}__nav-list`)
+  ul.nav-list(id=`${navMode}__nav-list` class=`${navMode}__nav-list`)
     each NavItem in NavItems
       li.nav-item(class=`${navMode}__nav-item_${NavItem[0]}`)
         a.nav-link(class=`${navMode}__nav-link` href=`${NavItem[1]}`)=`${NavItem[2]}`
 
-mixin skills(SkillItems, skillMode)
-  ul.skills__list(class=`skills__list_${skillMode}`)
-    each SkillItem in SkillItems
-      li.skills__item(class=`skills__item_${SkillItem[0]}`)
-        .skills__item-graphic
-          svg(viewBox="15 15 120 120" preserveAspectRatio="none").skills__shape
-            circle(r="52" cx="75" cy="75").skills__circle.skills__circle--position--under
-            circle(r="52" cx="75" cy="75" style=`animation-delay: -${SkillItem[2]}s`).skills__circle.skills__circle--position--above
-            //- linear-gradient(90deg,#d37d1d 0 25%,#db9222 45% 100%)
-          .skills__item-text=`${SkillItem[1]}`
+//- mixin skills(SkillItems, skillMode)
+//-   ul.skills__list(class=`skills__list_${skillMode}`)
+//-     each SkillItem in SkillItems
+//-       li.skills__item(class=`skills__item_${SkillItem[0]}`)
+//-         .skills__item-graphic
+//-           svg(viewBox="15 15 120 120" preserveAspectRatio="none").skills__shape
+//-             circle(r="52" cx="75" cy="75").skills__circle.skills__circle--position--under
+//-             circle(r="52" cx="75" cy="75" style=`animation-delay: -${SkillItem[2]}s`).skills__circle.skills__circle--position--above
+//-             //- linear-gradient(90deg,#d37d1d 0 25%,#db9222 45% 100%)
+//-           .skills__item-text=`${SkillItem[1]}`
         
 mixin tags(TagItems, tagMode)
   ul.tags__list(class=`myworks__content-tags-list_${tagMode}`)

@@ -1,42 +1,51 @@
-include views/common/mixins.pug
+include ./views/common/mixins.pug
 
 <!DOCTYPE html>
-html(lang="en")
+html(lang="ru")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     +link('favicon.ico')
-    title Portfolio | main page
+    title Portfolio Nikulnikov Maksim | main page
   body
     .wrapper
       .maincontent
-        section.main
+        .wrapper-main
+          section.main(id="main")
+            include views/common/parallax.pug
+            .container
+              include views/common/header.pug
+            a.main__scroll(href="#about-me")
+              p.main__scroll-text Скролл
+              .main__scroll-icon
+        section.about-me(id="about-me")
           .container
-
-            include views/common/header.pug
-
-            include views/common/main.pug
-          
-        section.about-me
-          .container
-
             include views/common/aboutme.pug
+                  
 
-        section.skills
+        section.myskills(id="myskills")
           .container
+            .skills__info
+              .skills__info-block
+                h3.skills__info-title Чем я могу быть полезен вам
+                p.skills__info-text=skillsInfo
+            .skills__widget
+              #skills-component
 
-            include views/common/skills.pug
+        section.works(id="works")
+          .container(class="container--works")
+            .works__wrapper
+              .section-title.works__section-title Мои работы
+              .works__content
+                #slider-component
 
-        section.myworks
+        section.feedback(id="feedback")
           .container
-
-            include views/common/myworks.pug
-
-        section.feedback
-          .container
-
+            #comments-component
             include views/common/feedback.pug
           
         include views/common/footer.pug
+
+    include ./templates/entry.pug
         

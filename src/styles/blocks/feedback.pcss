@@ -2,32 +2,84 @@
     background: url(../images/content/leaves1.png) 95% 88%/35% no-repeat,
     url(../images/content/leaves2.png) 95% 54%/9% no-repeat,
     url(../images/content/leaves3.png) 78% 37%/11% no-repeat,
-    url(../images/content/leaves4.png) 110% -15%/30% no-repeat,
     url(../images/content/leaves-bg.png) center center / cover no-repeat;
     position: relative;
+
+    &:after {
+        content: "";
+        background: url(../images/content/leaves4.png) 100%/contain no-repeat;
+        width: 35%;
+        height: 35%;
+        position: absolute;
+        top: -11.625rem;
+        right: -3.0625rem;
+    }
 
     &__comments {
         display: flex;
         flex-direction: column;
-        margin-bottom: 182px;
+        margin-bottom: 11.775rem;
+
+        @include desktop {
+            margin-bottom: 12.775rem;
+        }
+
+        @include tablets {
+            margin-bottom: 7.775rem;
+        }
 
         &-title {
-            padding-top: 138px;
-            margin-bottom: 89px;
+            padding-top: 140px;
+            margin-bottom: 85px;
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 38px; 
             color: #fff;
             font-weight: bold;
             display: flex;
 
+            @include desktop {
+                margin-bottom: 6.3125rem;
+                padding-top: 10rem;
+            }
+
+            @include tablets {
+                padding-top: 8.7rem;
+                margin-bottom: 4.3125rem;
+            }
+
+            @include phones {
+                flex-direction: column;
+            }
+            
+
             &-text {
-                margin-right: 102px;
+                margin-right: 5.375rem;
+                font-weight: 700;
+                padding-left: 10px;
+
+                @include desktop {
+                    margin-right: 7.375rem;
+                }
+
+                @include tablets {
+                    padding-left: 0;
+                    margin-right: 4.375rem;
+                }
+
+                @include phones {
+                    font-size: 25px;
+                    margin-right: 0;
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
             }
         }
 
 
 
         &-link {
+            cursor: pointer;
+
             &:hover {
                 & > .feedback__comments-box {
                     border: 2px solid #dc9322;
@@ -38,11 +90,25 @@
                     border-bottom: 2px solid #dc9322;
                 }
             }
+
+            &-field {
+                display: flex;
+
+                @include phones {
+                    justify-content: center;
+                }
+            }
+
+            &--disabled {
+                opacity: .5;
+                cursor: default;
+            }
+
         }
 
         &-box {
-            width: 50px;
-            height: 50px;
+            width: 3.4rem;
+            height: 3.4rem;
             position: relative;
             border-radius: 50%;
             border: 2px solid #bebdbd;
@@ -52,8 +118,8 @@
                 position: absolute;
                 top: 35%;
                 left: 40%;
-                width: 8px;
-                height: 8px;
+                width: 0.4rem;
+                height: 0.4rem;
                 border-left: 2px solid #bebdbd;
                 border-bottom: 2px solid #bebdbd;
                 transform: rotate(45deg);
@@ -77,12 +143,33 @@
     &__connect {
         padding-bottom: 165px;
 
+        @include desktop {
+            padding-bottom: 11.8125rem;
+        }
+
+        @include tablets {
+            padding-bottom: 5.3rem;
+        }
+
         &-title {
-            margin-bottom: 50px;
+            margin-bottom: 2.825rem;
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 38px; 
             color: #fff;
             font-weight: bold;
+
+            @include desktop {
+                margin-bottom: 3.825rem;
+            }
+
+            @include tablets {
+                text-align: center;
+                margin-bottom: 1.3rem;
+            }
+
+            @include phones {
+                font-size: 25px;
+            }
         }
     
         &-field {
@@ -92,13 +179,21 @@
             flex-direction: column;
             width: 80%;
             padding-left: 4px;
-            margin-bottom: 85px;
+            margin-bottom: 6.3125rem;
+
+            @include tablets {
+                width: 96%;
+            }
         }
     
         &-row {
             display: flex;
             justify-content: flex-start;
             margin-bottom: 10px;
+
+            @include phones {
+                flex-direction: column;
+            }
         }
     
         &-block, &-textarea {
@@ -113,8 +208,12 @@
                 margin-right: 0;
             }
 
-            &:focus.feedback__connect-icon {
-                fill: #dc9322;
+            &:hover .feedback__connect-icon {
+                fill: $orange-color;
+            }
+
+            @include phones {
+                margin-right: 0;
             }
         }
 
@@ -127,13 +226,33 @@
         }
 
         &-button {
-            background: linear-gradient(to right, #d37d1d 0% 25%, #db9222 45% 100%);
-            padding: 30px 120px;
+            background: linear-gradient(to right, #ed7e00 0% 25%, #ff8900 45% 100%);
+            padding: 1.875rem 8.5rem;
             font-family: 'OpenSans', Helvetica, sans-serif;
             font-size: 18px; 
             color: #fff;
             text-transform: uppercase;
             margin-left: 8px;
+            cursor: pointer;
+
+            &:hover {
+                background: linear-gradient(to right, #ff8900 0% 25%, #ff9d00 45% 100%);
+            }
+
+            @include desktop {
+                margin-left: 0;
+                padding: 2.2rem 8.3rem;
+            }
+
+            @include tablets {
+                margin-left: 12.4rem;
+                padding: 2.2rem 8.9rem;
+            }
+
+            @include phones {
+                margin-left: 0;
+                padding: 25px 90px;
+            }
         }
     }
 }

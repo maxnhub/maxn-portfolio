@@ -1,17 +1,6 @@
 - var CommentItems = [["first", "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!", "Ковальчук Дмитрий", "Основатель Loftschool"], ["second", "Этот код выдержит любые испытания. Только пожалуйста, не загружайте на слишком старых браузерах", "Сабанцев Владимир", "Преподаватель"]]
 
-.feedback__comments
-    .feedback__comments-title 
-        h4.feedback__comments-title-text Что обо мне говорят
-        a.feedback__comments-link.feedback__comments-link--left
-            .feedback__comments-box
-                
-        a.feedback__comments-link.feedback__comments-link--right
-            .feedback__comments-box
-                
-    .feedback__comments-field
-        +comments(CommentItems)
-.feedback__connect
+.feedback__connect(id="connect")
     h4.feedback__connect-title Связаться со мной
     form.feedback__connect-forms(id="connect-forms")
         .feedback__connect-field    
@@ -31,5 +20,5 @@
                     .feedback__connect-icon
                         +icon('message', 'feedback__connect-icon')
                     label.connect__subtext(for="textarea-connect-id") Сообщение к письму
-                    input.connect__form(id="textarea-connect-id" name="textarea" placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена вопроса." required)
+                    textarea.connect__form(class="connect__form-textarea" id="textarea-connect-id" name="textarea" placeholder="Требуется ваша помощь в создании сайта. Интересуют сроки и цена." required)
         button.feedback__connect-button(id="submit-button" type="submit" value="Отправить") Отправить    

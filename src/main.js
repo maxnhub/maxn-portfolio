@@ -4,3 +4,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 import "./scripts/skills";
+import "./scripts/parallax";
+import "./scripts/works";
+import "./scripts/comments";
+import "./scripts/scroll";
+import "./scripts/fullmenu";
+import "./scripts/parallax-mouse";

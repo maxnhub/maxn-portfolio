@@ -1,0 +1,24 @@
+script(type="text/x-template")#comments-list
+    .comments#comments   
+        .comments__top  
+            h3.comments__title Что обо мне говорят
+            .comments__arrows
+                .comments__arrow.comments__arrow--prev
+                    .comments__arrow-box
+                .comments__arrow.comments__arrow--next
+                    .comments__arrow-box
+        .comments__items
+            swiper(ref="mySwiper" :options="swiperOption")
+                comment-item(v-for="item in comments" :item="item")
+
+script(type="text/x-template")#comment-item
+    swiper-slide
+        .comments__item
+            .comments__item-quote   
+                +icon('quote')
+            .comments__item-text.text {{ item.text }}
+            .comments__item-about
+                img.comments__item-photo(:src="item.photo")
+                .comments__item-info
+                    .comments__item-title.name {{ item.name }}
+                    .comments__item-position.text {{ item.position }}

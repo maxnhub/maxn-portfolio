@@ -1,0 +1,151 @@
+
+.parallax__layer {
+    position: absolute;
+    top: 0;
+    left: -10%;
+    width: 110%;
+    height: 110%;
+    will-change: transform;
+
+}
+
+.parallax__content {
+    height: 1100px;
+    position: absolute;
+    top: 38%;
+    left: 0;
+    right: 0;
+    transform: translateY(0);
+    background: linear-gradient(to top , #1b1f22 50%, transparent 75%);
+
+    @include desktop {
+        height: 900px;
+    }
+
+    @include desktop500 {
+        top: 12%;
+    }
+
+}
+
+.parallax__image-top {
+    position: absolute;
+    visibility: hidden;
+
+    @include desktop1000 {
+        visibility: visible;
+        top: 0;
+        left: 0;
+    }
+}
+
+.parallax__image-down {
+    position: absolute;
+    visibility: hidden;
+
+    @include desktop1000 {
+        visibility: visible;
+        top: 200px;
+        left: 0;
+    }
+
+    @include desktop500 {
+        top: 150px;
+    }
+}
+
+.parallax__image-sky {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.parallax__image-mountain {
+    position: absolute;
+    left: 0;
+    top: 270px;
+
+    @include desktop {
+        top: 210px;
+    }
+
+    @include desktop1000 {
+        top: 160px;
+    }
+}
+
+.parallax__image-train {
+    position: absolute;
+    top: 384px;
+    left: 0;
+
+    @include desktop {
+        top: 285px;
+    }
+
+    @include desktop1000 {
+        /* top: 200px; */
+        visibility: hidden;
+    }
+
+}
+
+.parallax__image-field {
+    position: absolute;
+    top: 665px;
+    left: 0;
+
+    @include desktop1350 {
+        top: 605px;
+    }
+
+    @include desktop {
+        top: 545px;
+    }
+
+    @include desktop1000 {
+        /* top: 443px; */
+        visibility: hidden;
+    }
+
+
+
+}
+
+.parallax__image-shadow {
+    position: absolute;
+    bottom: -300px;
+    left: 0;
+
+    @include desktop {
+        bottom: -320px;
+    }
+
+    @include desktop1000 {
+        /* bottom: -110px; */
+        visibility: hidden;
+    }
+
+}
+
+.parallax__image-shadow2 {
+    position: absolute;
+    bottom: -350px;
+    left: 0;
+
+    @include desktop1350 {
+        bottom: -300px;
+    }
+
+    @include desktop {
+        bottom: -228px;
+    }
+
+    @include desktop1000 {
+        /* bottom: -228px; */
+        visibility: hidden;
+    }
+
+}
