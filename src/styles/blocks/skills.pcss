@@ -1,342 +1,288 @@
 .myskills {
-    background: url(../images/content/hands-bg.png) center center / cover no-repeat;
-    min-height: 944px;
-    position: relative;
-
-    @include desktop {
-        padding-top: 114px;
-        min-height: 1060px;
-    }
-
-    @include tablets {
-        padding-top: 8.6rem;
-        min-height: 77rem;
-    }
+  background: url(../images/content/hands-bg.png) center center / cover no-repeat;
+  position: relative;
+  padding-bottom: 230px;
+  @include desktop {
+    padding-top: 114px;
+  }
+  @include tablets {
+    padding-top: 8.6rem;
+  }
 }
 
 .skills {
+  @include phones {
+    padding-bottom: 250px;
+  }
 
-    @include phones {
-        padding-bottom: 250px;
+  &:after {
+    content: "";
+    background: url(../images/content/hands.png) 0% 100%/contain no-repeat;
+    width: 97%;
+    height: 100%;
+    position: absolute;
+    bottom: -5.5rem;
+    left: 0.3125rem;
+    z-index: 5;
+    @include desktop1500 {
+      width: 84%;
+      height: 78%;
+      position: absolute;
+      bottom: -7rem;
+      left: -5.3625rem;
     }
-    
-    &:after {
-        content: "";
-        background: url(../images/content/hands.png) 0% 100%/contain no-repeat;
-        width: 97%;
-        height: 100%;
-        position: absolute;
-        bottom: -5.5rem;
-        left: 0.3125rem;
+    @include desktop1350 {
+      width: 84%;
+      height: 63%;
+      position: absolute;
+      bottom: -7rem;
+      left: -5.3625rem;
+    }
+    @include desktop {
+      width: 61%;
+      height: 72%;
+      position: absolute;
+      bottom: -4rem;
+      left: -6.3625rem;
+    }
+    @include desktop1100 {
+      width: 53%;
+      height: 53%;
+    }
+    @include desktop900 {
+      width: 38%;
+      height: 38%;
+    }
+    @include tablets {
+      width: 35%;
+      height: 35%;
+      position: absolute;
+      bottom: -33px;
+      left: 14.3rem;
+      transform: rotate(270deg);
+    }
+    @include tablets705 {
+      transform: rotate(180deg);
+      left: 66%;
+      bottom: 23%;
+      height: 31%;
+    }
+    @include phones {
+      width: 100%;
+      height: 25%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: rotate(270deg);
+    }
+  }
 
-        @include desktop1500 {
-            width: 84%;
-            height: 78%;
-            position: absolute;
-            bottom: -7rem;
-            left: -5.3625rem;
-        }
+  &__item {
+    margin-bottom: 50px;
 
-        @include desktop1350 {
-            width: 84%;
-            height: 63%;
-            position: absolute;
-            bottom: -7rem;
-            left: -5.3625rem;
-        
-        }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
-        @include desktop {
-            width: 61%;
-            height: 72%;
-            position: absolute;
-            bottom: -4rem;
-            left: -6.3625rem;
-        }
+  &__info {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 139px;
+    margin-bottom: 5.25rem;
+    @include desktop {
+      padding-top: 0;
+      margin-bottom: 101px;
+    }
+    @include tablets {
+      margin-bottom: 3.75rem;
+    }
 
-        @include desktop1100 {
-            width: 53%;
-            height: 53%;
-        }
+    &-block {
+      width: 39%;
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      padding-left: 56px;
+      @include desktop {
+        width: 58%;
+      }
+      @include tablets {
+        padding-left: 3.5rem;
+        align-items: center;
+        width: 83%;
+      }
+      @include phones {
+        padding-left: 0;
+        align-items: flex-start;
+        width: 100%;
+      }
+    }
 
-        @include desktop900 {
-            width: 38%;
-            height: 38%;
-        }
+    &-title {
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 31px;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 52px;
+      letter-spacing: 1px;
+      @include tablets {
+        line-height: 40px;
+        width: 68%;
+        text-align: center;
+        margin-bottom: 1.25rem;
+      }
+      @include phones {
+        width: 100%;
+        text-align: start;
+      }
+    }
 
-        @include tablets {
-            width: 48%;
-            height: 48%;
-            position: absolute;
-            bottom: -5.3rem;
-            left: 14.3rem;
-            transform: rotate(270deg);
-        }
+    &-text {
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 29px;
+      color: #979595;
+      font-weight: 600;
+      @include tablets {
+        text-align: center;
+      }
+      @include phones {
+        text-align: start;
+      }
+    }
+  }
 
-        @include tablets705 {
-            transform: rotate(180deg);
-            left: 53%;
-            bottom: 23%;
-            height: 31%;
-        }
+  &-row {
+    margin-bottom: 40px;
+    @include desktop {
+      margin-bottom: 49px;
+    }
+    @include tablets {
+      margin-bottom: 3.5rem;
+    }
 
-        @include phones {
-            width: 100%;
-            height: 25%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            transform: rotate(270deg);
-        }
+    &__title {
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 24px;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 40px;
+      letter-spacing: 0.8px;
+      @include tablets {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > .skills__item:last-child {
+        margin-right: 0;
+      }
     }
 
     &__item {
-        margin-bottom: 50px;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+      margin-right: 44px;
+      z-index: 10;
+      @include tablets {
+        margin-right: 1.4rem;
+      }
+      @include phones {
+        margin-right: 0;
+      }
     }
+  }
 
-    &__info {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        padding-top: 139px;
-        margin-bottom: 5.25rem;
-
-        @include desktop {
-            padding-top: 0;
-            margin-bottom: 101px;
-        }
-
-        @include tablets {
-            margin-bottom: 3.75rem;
-        }
-
-        &-block {
-            width: 39%;
-            align-items: flex-start;
-            display: flex;
-            flex-direction: column;
-            padding-left: 56px;
-
-            @include desktop {
-                width: 58%;
-            }
-
-            @include tablets {
-                padding-left: 3.5rem;
-                align-items: center;
-                width: 83%;
-            }
-
-            @include phones {
-                padding-left: 0;
-                align-items: flex-start;
-                width: 100%;
-            }
-        }
-
-        &-title {
-            font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 31px; 
-            color: #fff;
-            font-weight: bold;
-            margin-bottom: 52px;
-            letter-spacing: 1px;
-
-            @include tablets {
-                line-height: 40px;
-                width: 68%;
-                text-align: center;
-                margin-bottom: 1.25rem;
-            }
-
-            @include phones {
-                width: 100%;
-                text-align: start;
-            }
-        }
-
-        &-text {
-            font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 16px;
-            line-height: 29px;
-            color: #979595;
-            font-weight: 600;
-
-            @include tablets {
-                text-align: center;
-            }
-
-            @include phones {
-                text-align: start;
-            }
-        }
-    }
-
-    /* &__graphic {
-        display: flex;
-        justify-content: flex-end;
-        padding-right: 7.6875rem;
-        padding-bottom: 125px;
-
-        @include desktop {
-            padding-right: 1.6875rem;
-            padding-bottom: 148px;
-        }
-
-        @include tablets {
-            padding-right: 3.6875rem;
-            padding-bottom: 0;
-        }
-
-        @include phones {
-            padding-bottom: 215px;
-            padding-right: 0;
-        }
-    } */
-
-    &-row {
-        margin-bottom: 40px;
-
-        @include desktop {
-            margin-bottom: 49px;
-
-        }
-
-        @include tablets {
-            margin-bottom: 3.5rem;
-        }
-
-        &__title {
-        font-family: 'OpenSans', Helvetica, sans-serif;
-        font-size: 24px; 
-        color: #fff;
-        font-weight: bold;
-        margin-bottom: 40px;
-        letter-spacing: 0.8px;
-
-        @include tablets {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        &__list {
-            display: flex;
-            flex-wrap: wrap;
-    
-            & > .skills__item:last-child {
-                margin-right: 0;
-            }
-        }
-
-        &__item {
-            margin-right: 44px;
-    
-            @include tablets {
-                margin-right: 1.4rem;
-            }
-    
-            @include phones {
-                margin-right: 0;
-            }
-        }
-    }
-
-    &__img {
-        max-width: 100%;
-        max-height: 100%;
-        width: 50%;
-        position: absolute;
-        left: -15%;
-        bottom: -15%;
-    }
-
-    
-
-    
+  &__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 50%;
+    position: absolute;
+    left: -15%;
+    bottom: -15%;
+  }
 }
 
 .skill {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    /* @include tablets {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* @include tablets {
       width: 135px;
       height: 135px;
     } */
-    /* display: flex;
+  /* display: flex;
     justify-content: center;
     align-items: center; */
 
-    &__circle {
-        fill: transparent;
-        stroke-width: 10px;
-        stroke: #484b4e;
+  &__circle {
+    fill: transparent;
+    stroke-width: 10px;
+    stroke: #484b4e;
 
-        &-text {
-            position: absolute;
-            font-family: 'OpenSans', Helvetica, sans-serif;
-            font-size: 18px; 
-            color: #979595;
-            font-weight: bold;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    
-        &-shape {
-            width: 150px;
-            height: 150px;
-            transform: rotate(-90deg);
-        }
-
-        &--position--under {
-            stroke-width: 2px;
-        }
-
-        &--position--above {
-            stroke: #dc9322;
-            stroke-dasharray: 251;
-            stroke-dashoffset: 251;
-        }
+    &-text {
+      position: absolute;
+      font-family: 'OpenSans', Helvetica, sans-serif;
+      font-size: 18px;
+      color: #979595;
+      font-weight: bold;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
-}
 
+    &-shape {
+      width: 150px;
+      height: 150px;
+      transform: rotate(-90deg);
+    }
+
+    &--position--under {
+      stroke-width: 2px;
+    }
+
+    &--position--above {
+      stroke: #dc9322;
+      stroke-dasharray: 251;
+      stroke-dashoffset: 251;
+    }
+  }
+}
 
 @keyframes fill {
-    from {
-        stroke-dashoffset: 251;
-    }
+  from {
+    stroke-dashoffset: 251;
+  }
 
-    to {
-        stroke-dashoffset: 0;
-    }
-} 
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
 .skills__widget {
-    display: flex;
-    justify-content: flex-end;
-    @include tablets {
-      justify-content: center;
-    }
+  display: flex;
+  justify-content: flex-end;
+  @include tablets {
+    justify-content: center;
+  }
 }
-  
+
 .skills__widget-container {
-    width: 68%;
-    z-index: 1;
-    @include tablets {
-      width: 98%;
-    }
+  width: 68%;
+  z-index: 1;
+  @include tablets {
+    width: 98%;
+  }
 }

@@ -22,12 +22,13 @@
         }
 
         @include tablets {
-            margin-left: 1.7rem;
+            padding-left: 0;
+            padding-right: 60px;
             margin-bottom: 3.6875rem;
         }
 
         @include phones {
-            padding-left: 0;
+            padding-right: 0;
         }
     }
     
@@ -75,10 +76,12 @@
         }
 
         @include tablets {
-            margin-right: 0;
+            margin-right: 30px;
         }
 
         @include phones {
+            align-items: center;
+            margin-right: 0;
             margin-bottom: 50px;
         }
     }

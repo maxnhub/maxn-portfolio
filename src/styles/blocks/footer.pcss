@@ -3,6 +3,7 @@
     display: flex;
     min-height: 370px;
     padding-top: 64px;
+    padding-bottom: 64px;
 
     &__field {
         display: flex;
@@ -67,16 +68,16 @@
             display: flex;
             padding-top: 30px;
 
-            @include phones {
+            @include tablets {
                 flex-direction: column;
             }
         }
         &-text{
-            margin-bottom: 23px;
+            padding-bottom: 23px;
             line-height: 27px;
 
             @include tablets {
-                margin-bottom: 1.1rem;
+                padding-bottom: 1.1rem;
             }
         }
 
@@ -90,26 +91,22 @@
         &-socials {
             flex: 1;
 
-            @include phones {
-                margin-bottom: 25px;
+            @include tablets {
+                padding-bottom: 35px;
             }
         }
 
         &-quotation {
             flex: 1;
 
-            @include tablets {
-                display: none;
-            }
-
             @include phones {
-                display: block;
-                margin-bottom: 35px;
+                padding-bottom: 35px;
             }
         }
     }
 
     &__nav-list {
+        display: flex;
         @include tablets {
             flex-wrap: wrap;
         }
