@@ -11,6 +11,7 @@ module.exports = (env, argv) => {
     const isProductionBuild = argv.mode === "production";
     const publicPath = '/maxn-portfolio/';
 
+
     const pcss = {
         test: /\.(p|post|)css$/,
         use: [
@@ -98,6 +99,7 @@ module.exports = (env, argv) => {
         resolve: {
             alias: {
                 vue$: "vue/dist/vue.esm.js",
+                "@": path.resolve(__dirname, "src/admin"),
                 images: path.resolve(__dirname, "src/images")
             },
             extensions: ["*", ".js", ".vue", ".json"]
