@@ -2,13 +2,7 @@
   margin-bottom: 100px;
 
   &__items {
-    padding-left: 137px;
-    @include desktop {
-      padding-left: 6.5625rem;
-    }
-    @include tablets {
-      padding-left: 2.8rem;
-    }
+    
     @include phones {
       overflow: hidden;
     }
@@ -17,10 +11,13 @@
   &__item {
     width: 100%;
     padding-left: 75px;
-    
+
+    @include phones {
+      padding-left: 0;
+    }
 
     &:last-child {
-      margin-right: 0;
+      margin-right: 0;  
     }
 
     &-title {
@@ -48,15 +45,17 @@
     &-quote {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 30px;
       width: 70px;
       height: 70px;
       fill: #313234;
       opacity: 0.9;
       @include tablets {
-        left: -2.5rem;
         width: 2rem;
         height: 2rem;
+      }
+      @include phones {
+        display: none;
       }
     }
 
@@ -89,6 +88,10 @@
     padding-top: 8.75rem;
     margin-bottom: 85px;
     align-items: center;
+
+    @include phones {
+      flex-direction: column;
+    }
   }
 
   &__arrows {
@@ -97,6 +100,10 @@
 
   &__arrow {
     cursor: pointer;
+    border: none;
+    background: transparent;
+    outline: none;
+    z-index: 7;
 
     &:hover {
       & > .comments__arrow-box {
@@ -152,6 +159,12 @@
     font-size: 38px;
     color: #fff;
     font-weight: bold;
+
+    @include phones {
+      margin-right: 0;
+      margin-bottom: 50px;
+      font-size: 25px;
+    }
   }
 
   &__item-photo {

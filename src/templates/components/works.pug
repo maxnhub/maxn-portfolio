@@ -25,8 +25,8 @@ script(type="text/x-template")#slider-display
 
 script(type="text/x-template")#slider-btns
   .works-slider__buttons
-    a(href="#" @click.prevent="$emit('slide', 'next')").works-slider__btn.works-slider__btn_next
-    a(href="#" @click.prevent="$emit('slide', 'prev')").works-slider__btn.works-slider__btn_prev
+    button(href="#" @click.prevent="$emit('slide', 'next')").works-slider__btn.works-slider__btn_next
+    button(href="#" @click.prevent="$emit('slide', 'prev')").works-slider__btn.works-slider__btn_prev
 
 script(type="text/x-template")#slider-thumbs
   ul.works-slider__thumbs
@@ -46,7 +46,7 @@ script(type="text/x-template")#slider-info
     .works-slider__desc
       p {{currentWork.desc}}
     .works-slider__link 
-      a(:href="currentWork.link").works-desc__link
+      a(:href="currentWork.link" target="_blank").works-desc__link
         +icon('link', 'link__icon')
         p.link__text Посмотреть сайт
 
