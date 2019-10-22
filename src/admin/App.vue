@@ -68,10 +68,10 @@ div
                   label.input__subtext(for="works-link-id") Ссылка
                   input.input__form(id="works-link-id" type="text" name="link")
                   label.input__subtext(for="works-textarea-id") Описание
-                  textarea.input__textarea(class="works-textarea-id" id="textarea-connect-id" name="textarea")
+                  textarea.input__textarea(class="works-textarea" id="textarea-connect-id" name="textarea")
                   label.input__subtext(for="works-tag-id") Добавление тэга
                   input.input__form(id="works-tag-id" type="text" name="tag")
-                  .works__buttons
+                  .block__buttons
                     button.cancel Отмена
                     button.load Загрузить
 
@@ -86,20 +86,65 @@ div
                 .work__tag html
                 .work__tag css
                 .work__tag javascript
-
             .work__desc
               .work__name Новая работа
               .work__name-desc Описание этой работы
               .work__link http://google.com
-              .work__buttons
-                button.work__button.work__button--fix 
-                  .work__button-text Править
-                  .work__icon.work__icon--fix
+              .fix-del__buttons
+                button.fix-del__button.fix-del__button--fix 
+                  .fix-del__button-text Править
+                  .fix-del__icon.fix-del__icon--fix
                     svg-icon(:className="admin__icon" :iconName="'pencil'")
-                button.work__button.work__button--delete 
-                  .work__button-text Удалить
-                  .work__icon.work__icon--delete
+                button.fix-del__button.fix-del__button--delete 
+                  .fix-del__button-text Удалить
+                  .fix-del__icon.fix-del__icon--delete
                     svg-icon(:className="admin__icon" :iconName="'remove'")
+
+        .feedback
+          .change-block.change-block--feedback
+            .change-block-title Добавить отзыв 
+            .feedback__field
+              .feedback__visual
+                .feedback__avatar
+                  .feedback__avatar-icon
+                    svg-icon(:className="admin__icon" :iconName="'user'")
+                button.add-avatar Добавить фото
+              .feedback__desc
+                form.feedback__forms
+                  .feedback__desc-row
+                    .feedback__desc-item
+                      label.input__subtext(for="feedback-name-id") Имя автора
+                      input.input__form(id="feedback-name-id" type="text" name="author-name")
+                    .feedback__desc-item
+                      label.input__subtext(for="feedback-position-id") Титул автора
+                      input.input__form(id="feedback-position-id" type="text" name="author-position")
+                  .feedback__desc-item.feedback__desc-item--textarea
+                    label.input__subtext(for="feedback-textarea-id") Отзыв
+                    textarea.input__textarea(class="feedback-textarea" id="textarea-feedback-id" name="feedback-textarea")
+                  .block__buttons
+                    button.cancel Отмена
+                    button.load Загрузить
+        .new-feedback
+          button.load-big
+            .load-big__icon-box
+              svg-icon(:className="load__icon" :iconName="'remove'")
+            .load__text Добавить работу
+          .change-block.change-block--feedback
+            .change-block-title.change-block-title--new-feedback
+              .new-feedback__visual
+              .new-feedback__desc
+                .new-feedback__author Имя Фамилия
+                .new-feedback__author-position Программист
+            .new-feedback-text Данный план является примерным ориентиром. Вы всегда можете работать в удобном для себя темпе. Оптимальное время, которое мы рекомендуем выделять на обучение: 32-34 часа в неделю.
+            .fix-del__buttons.fix-del__buttons--feedback
+              button.fix-del__button.fix-del__button--fix 
+                .fix-del__button-text Править
+                .fix-del__icon.fix-del__icon--fix
+                  svg-icon(:className="admin__icon" :iconName="'pencil'")
+              button.fix-del__button.fix-del__button--delete 
+                .fix-del__button-text Удалить
+                .fix-del__icon.fix-del__icon--delete
+                  svg-icon(:className="admin__icon" :iconName="'remove'")
 
 
 
@@ -315,6 +360,7 @@ img {
   margin-bottom: 85px;
 
   &__add-name {
+    grid-area: name;
     padding: 0 10px 30px;
     display: flex;
     border-bottom: 1px solid #a7aaaf;
@@ -331,7 +377,12 @@ img {
   align-items: center;
 }
 
+.skills__add-content {
+  grid-area: content;
+}
+
 .skills__add-row {
+  grid-area: row;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -348,7 +399,12 @@ img {
   padding: 15px 0;
 
   & .input__form {
-    border: none;
+    border-bottom: 1px solid transparent;
+
+    &:focus {
+      border-bottom: 1px solid black;
+    }
+
   }
 
   & #skill-name {
@@ -408,8 +464,13 @@ img {
 
   &--skills {
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-gap: 20px;
+    grid-template-areas: 
+    "name"
+    "content"
+    "row";
   }
 
   &-title {
@@ -422,6 +483,22 @@ img {
     font-family: "OpenSans", Helvetica, sans-serif;
     font-weight: 700;
     margin-bottom: 30px;
+
+    &--new-feedback {
+      padding: 0 0 30px 0;
+      justify-content: flex-start;
+      grid-area: author;
+    }
+  }
+
+  &--feedback {
+    display: grid;
+    grid-template-rows: 100px auto 70px;
+    grid-gap: 20px;
+    grid-template-areas: 
+    "author"
+    "text"
+    "buttons";
   }
 }
 
@@ -434,9 +511,9 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 3.125rem;
-  grid-template-areas: 
-  "drag add"
-  ". add";
+  grid-template-areas:
+    "drag add"
+    ". add";
 }
 
 .works__drag {
@@ -463,11 +540,14 @@ img {
 }
 
 .input__form {
+  font-size: 18px;
+  font-weight: 600;
   border: 1px solid transparent;
   border-bottom: 1px solid black;
   outline: none;
   background: none;
   padding: 10px 0;
+  color: #424d63;
 
   &::placeholder {
     position: relative;
@@ -475,6 +555,7 @@ img {
     font-weight: 600;
     color: #a7aaaf;
   }
+
 }
 
 .input__textarea {
@@ -517,6 +598,7 @@ img {
   font-weight: 700;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 100px 0;
 }
@@ -529,9 +611,9 @@ img {
   border: 2px solid white;
 
   & .admin__icon {
-  width: 50px;
-  height: 50px;
-  transform: translate(5%, 85%) rotate(45deg);
+    width: 50px;
+    height: 50px;
+    transform: translate(0%, 90%) rotate(45deg);
   }
 }
 
@@ -560,7 +642,8 @@ img {
 .new-works {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 30px; 
+  grid-gap: 30px;
+  margin-bottom: 50px;
 }
 
 .change-block--work {
@@ -573,7 +656,7 @@ img {
 .work__visual {
   width: 100%;
   height: 100%;
-  background: url(../images/content/2.jpg) center center / cover no-repeat; 
+  background: url(../images/content/2.jpg) center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -624,14 +707,18 @@ img {
   font-family: "OpenSans", Helvetica, sans-serif;
 }
 
-.work__buttons {
+.fix-del__buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-top: 25px;
   align-items: center;
+
+  &--feedback {
+    grid-area: buttons;
+  }
 }
 
-.work__icon {
+.fix-del__icon {
   width: 25px;
   height: 25px;
 
@@ -649,23 +736,125 @@ img {
   }
 }
 
-.work__button {
+.fix-del__button {
   display: flex;
   align-items: center;
   &-text {
-  color: #a7aaaf;
-  font-size: 18px;
-  font-family: "OpenSans", Helvetica, sans-serif;
-  margin-right: 20px;
+    color: #a7aaaf;
+    font-size: 18px;
+    font-family: "OpenSans", Helvetica, sans-serif;
+    margin-right: 20px;
   }
 }
 
+.feedback {
+  margin-bottom: 50px;
+}
 
- 
+.feedback__field {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 50px;
+  grid-template-areas:
+    "visual desc desc ."
+    ". desc desc .";
+  padding: 30px 15px;
+}
 
+.feedback__visual {
+  grid-area: visual;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.feedback__avatar {
+  background: #dee4ec;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+.feedback__avatar-icon {
+  fill: white;
+  & .admin__icon {
+    width: 75px;
+    height: 75px;
+  }
+}
 
+.add-avatar {
+  color: #383ace;
+  font-size: 18px;
+  font-family: "OpenSans", Helvetica, sans-serif;
+  font-weight: 700;
+  padding: 20px 40px;
+}
+
+.feedback__desc {
+  grid-area: desc;
+}
+
+.feedback__desc-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+
+  & .input__form {
+  }
+}
+
+.feedback__desc-item {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+
+  &--textarea {
+    width: 100%;
+  }
+}
+
+.new-feedback {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin-bottom: 50px;
+
+  &__visual {
+    background: url(../images/content/feed3.png) center center / cover no-repeat;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    color: #a7aaaf;
+    font-size: 18px;
+    font-family: "OpenSans", Helvetica, sans-serif;
+  }
+
+  &__author {
+    color: #424d63;
+    padding-bottom: 10px;
+    font-weight: 700;
+  }
+
+  &-text {
+    color: black;
+    font-size: 16px;
+    font-family: "OpenSans", Helvetica, sans-serif;
+    font-weight: 500;
+    grid-area: text;
+  }
+}
 
 
 
