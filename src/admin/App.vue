@@ -151,13 +151,28 @@ div
 
 
 
-
+include ../views/common/mixins.pug
 </template>
 
 
-<style>
+<style lang="postcss">
+
+html {
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+body,
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  font-size: 16px;
 }
 
 button {
@@ -359,12 +374,24 @@ img {
   grid-gap: 50px;
   margin-bottom: 85px;
 
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+
   &__add-name {
     grid-area: name;
     padding: 0 10px 30px;
     display: flex;
     border-bottom: 1px solid #a7aaaf;
     justify-content: space-between;
+
+    & .input__form {
+      &::placeholder {
+        @media screen and (max-width: 768px) {
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
 
@@ -389,6 +416,17 @@ img {
 
   & .input__form {
     margin-right: 30px;
+
+    @media screen and (max-width: 768px) {
+      width: 70%;
+      margin-right: 10px;
+    }
+
+    &::placeholder {
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
   }
 }
 
@@ -405,6 +443,11 @@ img {
       border-bottom: 1px solid black;
     }
 
+    &::placeholder {
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
   }
 
   & #skill-name {
@@ -414,6 +457,10 @@ img {
 
   & .skills__button {
     fill: #a0a5b1;
+  }
+
+  &-buttons {
+    display: flex;
   }
 }
 
@@ -514,6 +561,13 @@ img {
   grid-template-areas:
     "drag add"
     ". add";
+
+    @media screen and (max-width: 480px) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+      "drag"
+      "add";
+    }
 }
 
 .works__drag {
@@ -573,6 +627,10 @@ img {
   grid-area: add;
 }
 
+.block__buttons {
+  display: flex;
+}
+
 .works__buttons {
   display: flex;
   justify-content: flex-end;
@@ -587,7 +645,6 @@ img {
   font-weight: 700;
   padding: 20px 10px;
   text-transform: uppercase;
-  width: 35%;
 }
 
 .load-big {
@@ -644,6 +701,14 @@ img {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .change-block--work {
@@ -663,6 +728,10 @@ img {
   margin-bottom: 45px;
   padding-bottom: 10px;
   padding-right: 10px;
+
+  @media screen and (max-width: 480px) {
+    min-height: 275px;
+  }
 }
 
 .work__tags {
@@ -759,6 +828,13 @@ img {
     "visual desc desc ."
     ". desc desc .";
   padding: 30px 15px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-areas:
+      "visual desc desc"
+      ". desc desc";
+  }
 }
 
 .feedback__visual {
@@ -824,6 +900,14 @@ img {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 
   &__visual {
     background: url(../images/content/feed3.png) center center / cover no-repeat;
