@@ -24,7 +24,7 @@ div
       .block.block--skills
         .section-top
           .section-title Блок "Обо мне"
-          button.add-group
+          button.add-group(v-on:click="showPopup")
             .add-icon 
               svg-icon(:className="admin__icon" :iconName="'remove'")
             .add-group-text Добавить группу
@@ -39,8 +39,8 @@ div
                   svg-icon(:className="admin__icon" :iconName="'remove'") 
             .skills__add-content
               .new-skill
-                input.input__form(id="skill-name" type="text" name="name" placeholder="Новый навык")
-                input.input__form(id="skill-percents" type="text" name="percents" placeholder="0")  
+                input.input__form(id="skill-added-name" type="text" name="name" placeholder="Новый навык")
+                input.input__form(id="skill-added-percents" type="text" name="percents" placeholder="0")  
                 .new-skill-buttons
                   button.skills__button.skills__button--pencil
                     svg-icon(:className="admin__icon" :iconName="'pencil'") 
@@ -145,7 +145,24 @@ div
                 .fix-del__button-text Удалить
                 .fix-del__icon.fix-del__icon--delete
                   svg-icon(:className="admin__icon" :iconName="'remove'")
-
+  .popup__field
+    .popup
+      button.popup__exit(href="#")
+        .popup__exit-stick
+      .popup__title Авторизация
+      .popup__desc
+        .popup__desc-item
+          .popup__icon
+            svg-icon(:className="admin__icon" :iconName="'user'")
+          label.input__subtext(for="login-id") Логин
+          input.input__form(id="login-id" type="text" name="login")
+        .popup__desc-item
+          .popup__icon
+            svg-icon(:className="admin__icon" :iconName="'key'")
+          label.input__subtext(for="password-id") Пароль
+          input.input__form(id="password-id" type="password" name="password")
+        .popup__button
+          button.load Отправить
 
 
 
@@ -173,6 +190,10 @@ html {
 body {
   margin: 0;
   font-size: 16px;
+
+  &--active {
+    overflow: hidden;
+  }
 }
 
 button {
@@ -643,7 +664,7 @@ img {
   font-size: 18px;
   font-family: "OpenSans", Helvetica, sans-serif;
   font-weight: 700;
-  padding: 20px 10px;
+  padding: 20px 25px;
   text-transform: uppercase;
 }
 
@@ -940,16 +961,142 @@ img {
   }
 }
 
+.popup__field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../images/content/trainfull-popup.png) center center / cover no-repeat; 
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacitu: 0.4;
+  visibility: hidden;
+
+  &--active {
+    visibility: visible;
+  }
+}
+
+.popup {
+  background: #fff;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  z-index: 10;
+  padding: 60px 75px;
+
+  &__title {
+    color: #424d63;
+    font-size: 18px;
+    font-family: "OpenSans", Helvetica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__desc-item {
+    padding: 30px 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    & .input__subtext {
+      padding-left: 40px;
+      padding-bottom: 0;
+    }
+
+    & .input__form {
+      padding: 10px 0 10px 40px;
+    }
+  }
+
+  &__icon {
+    fill: #a7aaaf;
+    width: 20px;
+    height: 20px;
+
+    & .admin__icon {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 0;
+      bottom: 35%;
+    }
+  }
+
+  &__exit {
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+
+    &-stick {
+      transform:rotate(50deg);
+
+      &, &:after {
+        background: #ec8468;
+        width: 1.5rem;
+        height: 0.3125rem;
+        border-radius: 0.1875rem;
+      }
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        transform:rotate(80deg);
+        bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
+
 
 
 </style>
 
 <script>
 import svgIcon from "./elements/svg-icon.vue";
+import showPopup from "./elements/popup.vue";
 
 export default {
   components: {
     svgIcon: () => import("./elements/svg-icon")
+  },
+  methods: {
+    showPopup: () => import("./elements/popup")
+  },
+  mounted() {
+    function renderPopup() {
+      const popup = document.querySelector(".popup__field");
+      const body = document.querySelector("body");
+      popup.classList.add("popup__field--active");
+      body.classList.add("body--active");
+
+      popup.querySelector(".popup__exit").addEventListener("click", e => {
+        e.preventDefault();
+
+        popup.classList.remove("popup__field--active");
+        body.classList.remove("body--active");
+      });
+    }
+
+    function showPopup() {
+      const button = document.querySelector(".add-group");
+      button.addEventListener("click", e => {
+        renderPopup();
+      });
+    }
   }
 };
+
+
 </script>
