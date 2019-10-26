@@ -21,12 +21,130 @@ div
           a.navigation__link(href="#feedback") Отзывы
   .main
     .container
-      main
+      .block.block--skills
+        .section-top
+          .section-title Блок "Обо мне"
+          button.add-group(v-on:click="showPopup")
+            .add-icon 
+              svg-icon(:className="'admin__icon'" :iconName="'remove'")
+            .add-group-text Добавить группу
+        .skills
+          .change-block.change-block--skills
+            .skills__add-name
+              input.input__form(id="skills-group-name" type="text" name="group-name" placeholder="Название новой группы")
+              .skills__buttons
+                button.skills__button.skills__button--tick
+                  svg-icon(:className="'admin__icon'" :iconName="'tick'") 
+                button.skills__button.skills__button--remove
+                  svg-icon(:className="'admin__icon'" :iconName="'remove'") 
+            .skills__add-content
+              .new-skill
+                input.input__form(id="skill-added-name" type="text" name="name" placeholder="Новый навык")
+                input.input__form(id="skill-added-percents" type="text" name="percents" placeholder="0")  
+                .new-skill-buttons
+                  button.skills__button.skills__button--pencil
+                    svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
+                  button.skills__button.skills__button--trash
+                    svg-icon(:className="'admin__icon'" :iconName="'trash'")
+
+            .skills__add-row
+              input.input__form(id="skill-name" type="text" name="name" placeholder="Новый навык")
+              input.input__form(id="skill-percents" type="text" name="percents" placeholder="0")  
+              button.add-icon 
+                svg-icon(:className="'admin__icon'" :iconName="'remove'")
+          .change-block.change-block--skills
         
-        works
+        .works
+          .change-block.change-block--works
+            .change-block-title Добавление работы
+            .works__field
+              .works__drag
+                .works__drag-desc Перетащите либо загрузите изображения
+                button.load Загрузить
+              .works__add
+                form.works__form
+                  label.input__subtext(for="works-name-id") Название
+                  input.input__form(id="works-name-id" type="text" name="name")
+                  label.input__subtext(for="works-link-id") Ссылка
+                  input.input__form(id="works-link-id" type="text" name="link")
+                  label.input__subtext(for="works-textarea-id") Описание
+                  textarea.input__textarea(class="works-textarea" id="textarea-connect-id" name="textarea")
+                  label.input__subtext(for="works-tag-id") Добавление тэга
+                  input.input__form(id="works-tag-id" type="text" name="tag")
+                  .block__buttons
+                    button.cancel Отмена
+                    button.load Загрузить
 
-        feedback
+        .new-works
+          button.load-big
+            .load-big__icon-box
+              svg-icon(:className="'load__icon'" :iconName="'remove'")
+            .load__text Добавить работу
+          .change-block.change-block--work
+            .work__visual
+              .work__tags
+                .work__tag html
+                .work__tag css
+                .work__tag javascript
+            .work__desc
+              .work__name Новая работа
+              .work__name-desc Описание этой работы
+              .work__link http://google.com
+              .fix-del__buttons
+                button.fix-del__button.fix-del__button--fix(type="button") 
+                  .fix-del__button-text Править
+                  .fix-del__icon.fix-del__icon--fix
+                    svg-icon(:className="'admin__icon'" :iconName="'pencil'")
+                button.fix-del__button.fix-del__button--delete(type="button")
+                  .fix-del__button-text Удалить
+                  .fix-del__icon.fix-del__icon--delete
+                    svg-icon(:className="'admin__icon'" :iconName="'remove'")
 
+        .feedback
+          .change-block.change-block--feedback
+            .change-block-title Добавить отзыв 
+            .feedback__field
+              .feedback__visual
+                .feedback__avatar
+                  .feedback__avatar-icon
+                    svg-icon(:className="'admin__icon'" :iconName="'user'")
+                button.add-avatar Добавить фото
+              .feedback__desc
+                form.feedback__forms
+                  .feedback__desc-row
+                    .feedback__desc-item
+                      label.input__subtext(for="feedback-name-id") Имя автора
+                      input.input__form(id="feedback-name-id" type="text" name="author-name")
+                    .feedback__desc-item
+                      label.input__subtext(for="feedback-position-id") Титул автора
+                      input.input__form(id="feedback-position-id" type="text" name="author-position")
+                  .feedback__desc-item.feedback__desc-item--textarea
+                    label.input__subtext(for="feedback-textarea-id") Отзыв
+                    textarea.input__textarea(class="feedback-textarea" id="textarea-feedback-id" name="feedback-textarea")
+                  .block__buttons
+                    button.cancel(type="button") Отмена
+                    button.load Загрузить
+        .new-feedback
+          button.load-big
+            .load-big__icon-box
+              svg-icon(:className="'load__icon'" :iconName="'remove'")
+            .load__text Добавить работу
+          .change-block.change-block--feedback
+            .change-block-title.change-block-title--new-feedback
+              .new-feedback__visual
+              .new-feedback__desc
+                .new-feedback__author Имя Фамилия
+                .new-feedback__author-position Программист
+            .new-feedback-text Данный план является примерным ориентиром. Вы всегда можете работать в удобном для себя темпе. Оптимальное время, которое мы рекомендуем выделять на обучение: 32-34 часа в неделю.
+            .fix-del__buttons.fix-del__buttons--feedback
+              button.fix-del__button.fix-del__button--fix(type="button") 
+                .fix-del__button-text Править
+                .fix-del__icon.fix-del__icon--fix
+                  svg-icon(:className="'admin__icon'" :iconName="'pencil'")
+              button.fix-del__button.fix-del__button--delete(type="button") 
+                .fix-del__button-text Удалить
+                .fix-del__icon.fix-del__icon--delete
+                  svg-icon(:className="'admin__icon'" :iconName="'remove'")
   .popup__field(v-if="isPopup")
     .popup
       button.popup__exit(href="#" v-on:click="hidePopup" type="button")
@@ -46,55 +164,36 @@ div
         .popup__button
           button.load Отправить
 
-
-
-
-
-include ../views/common/mixins.pug
 </template>
 
 <script>
 import svgIcon from "./elements/svg-icon.vue";
+
 export default {
   data() {
     return {
       isPopup: false
-    }
+    };
   },
   components: {
     svgIcon: () => import("./elements/svg-icon"),
-    works: () => import("./pages/works"),
-    feedback: () => import("./pages/feedback"),
-    main: () => import("./pages/main")
+    works: () => import("./pages/works")
   },
   methods: {
     showPopup() {
-      this.isPopup = true
+      this.isPopup = true;
     },
     hidePopup() {
-      this.isPopup = false
+      this.isPopup = false;
     }
   }
 };
 </script>
 
 
-<style lang="postcss">
-html {
-  @media screen and (max-width: 480px) {
-    font-size: 14px;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 12px;
-  }
-}
-body,
-html {
-  height: 100%;
-}
+<style>
 body {
   margin: 0;
-  font-size: 16px;
 }
 button {
   border: 0;
@@ -193,9 +292,6 @@ img {
     background-color: transparent;
     text-decoration: underline;
     color: white;
-    &:hover {
-      color: #457df5;
-    }
   }
 }
 .navigation {
@@ -258,12 +354,6 @@ img {
       transform: rotate(45deg) translate(-65%, -65%);
     }
   }
-  &:hover {
-    color: #cb89f7;
-    & .add-icon {
-      background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
-    }
-  }
   & .add-group-text {
     padding-left: 20px;
   }
@@ -273,22 +363,11 @@ img {
   grid-template-columns: 1fr 1fr;
   grid-gap: 50px;
   margin-bottom: 85px;
-  @media screen and (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
   &__add-name {
-    grid-area: name;
     padding: 0 10px 30px;
     display: flex;
     border-bottom: 1px solid #a7aaaf;
     justify-content: space-between;
-    & .input__form {
-      &::placeholder {
-        @media screen and (max-width: 768px) {
-          font-size: 14px;
-        }
-      }
-    }
   }
 }
 #skills-group-name {
@@ -298,25 +377,12 @@ img {
   display: flex;
   align-items: center;
 }
-.skills__add-content {
-  grid-area: content;
-}
 .skills__add-row {
-  grid-area: row;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   & .input__form {
     margin-right: 30px;
-    @media screen and (max-width: 768px) {
-      width: 70%;
-      margin-right: 10px;
-    }
-    &::placeholder {
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
   }
 }
 .new-skill {
@@ -325,15 +391,7 @@ img {
   justify-content: space-between;
   padding: 15px 0;
   & .input__form {
-    border-bottom: 1px solid transparent;
-    &:focus {
-      border-bottom: 1px solid black;
-    }
-    &::placeholder {
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
+    border: none;
   }
   & #skill-name {
     margin-right: 30px;
@@ -341,28 +399,16 @@ img {
   }
   & .skills__button {
     fill: #a0a5b1;
-    &:hover {
-      fill: #c9cbce;
-    }
-  }
-  &-buttons {
-    display: flex;
   }
 }
 .skills__button {
   width: 30px;
   height: 30px;
   &--tick {
-    fill: #1bd802;
-    &:hover {
-      fill: #1ff503;
-    }
+    fill: green;
   }
   &--remove {
     fill: #c73034;
-    &:hover {
-      fill: #ec3a40;
-    }
   }
 }
 .admin__icon {
@@ -387,22 +433,14 @@ img {
     height: 10px;
     transform: rotate(45deg);
   }
-  &:hover {
-    background: linear-gradient(to right, #af45f5 35%, #b70efa 50%);
-  }
 }
 .change-block {
   box-shadow: 0 0 15px 2px rgba(122, 122, 122, 0.3);
   padding: 30px;
   &--skills {
     flex: 1;
-    display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
-    grid-gap: 20px;
-    grid-template-areas: 
-    "name"
-    "content"
-    "row";
+    display: flex;
+    flex-direction: column;
   }
   &-title {
     padding: 30px 10px 30px;
@@ -414,20 +452,6 @@ img {
     font-family: "OpenSans", Helvetica, sans-serif;
     font-weight: 700;
     margin-bottom: 30px;
-    &--new-feedback {
-      padding: 0 0 30px 0;
-      justify-content: flex-start;
-      grid-area: author;
-    }
-  }
-  &--feedback {
-    display: grid;
-    grid-template-rows: 100px auto 70px;
-    grid-gap: 20px;
-    grid-template-areas: 
-    "author"
-    "text"
-    "buttons";
   }
 }
 .works {
@@ -441,12 +465,6 @@ img {
   grid-template-areas:
     "drag add"
     ". add";
-    @media screen and (max-width: 480px) {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-      "drag"
-      "add";
-    }
 }
 .works__drag {
   text-align: center;
@@ -470,14 +488,11 @@ img {
   }
 }
 .input__form {
-  font-size: 18px;
-  font-weight: 600;
   border: 1px solid transparent;
   border-bottom: 1px solid black;
   outline: none;
   background: none;
   padding: 10px 0;
-  color: #424d63;
   &::placeholder {
     position: relative;
     font-size: 18px;
@@ -493,13 +508,9 @@ img {
 }
 .input__subtext {
   padding-bottom: 10px;
-  position: relative;
 }
 .works__add {
   grid-area: add;
-}
-.block__buttons {
-  display: flex;
 }
 .works__buttons {
   display: flex;
@@ -512,11 +523,9 @@ img {
   font-size: 18px;
   font-family: "OpenSans", Helvetica, sans-serif;
   font-weight: 700;
-  padding: 20px 25px;
+  padding: 20px 10px;
   text-transform: uppercase;
-  &:hover {
-    background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
-  }
+  width: 35%;
 }
 .load-big {
   background: linear-gradient(to right, #1756e1 35%, #3f35cb 50%);
@@ -526,12 +535,8 @@ img {
   font-weight: 700;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 100px 0;
-  &:hover {
-    background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
-  }
 }
 .load-big__icon-box {
   width: 150px;
@@ -542,7 +547,7 @@ img {
   & .load__icon {
     width: 50px;
     height: 50px;
-    transform: translate(0%, 90%) rotate(45deg);
+    transform: translate(5%, 85%) rotate(45deg);
   }
 }
 .load__text {
@@ -555,9 +560,6 @@ img {
   font-weight: 700;
   padding: 20px 40px;
   margin-right: 30px;
-  &:hover {
-    color: #cb89f7;
-  }
 }
 .works__form {
   display: flex;
@@ -570,13 +572,6 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
-  margin-bottom: 50px;
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media screen and (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
 }
 .change-block--work {
   display: flex;
@@ -594,9 +589,6 @@ img {
   margin-bottom: 45px;
   padding-bottom: 10px;
   padding-right: 10px;
-  @media screen and (max-width: 480px) {
-    min-height: 275px;
-  }
 }
 .work__tags {
   display: flex;
@@ -634,16 +626,13 @@ img {
   font-size: 18px;
   font-family: "OpenSans", Helvetica, sans-serif;
 }
-.fix-del__buttons {
+.work__buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-top: 25px;
   align-items: center;
-  &--feedback {
-    grid-area: buttons;
-  }
 }
-.fix-del__icon {
+.work__icon {
   width: 25px;
   height: 25px;
   &--fix {
@@ -657,7 +646,7 @@ img {
     height: 20px;
   }
 }
-.fix-del__button {
+.work__button {
   display: flex;
   align-items: center;
   &-text {
@@ -665,204 +654,6 @@ img {
     font-size: 18px;
     font-family: "OpenSans", Helvetica, sans-serif;
     margin-right: 20px;
-  }
-  &:hover {
-    & .fix-del__button-text {
-      color: #d4d6d8;
-    }
-    & .fix-del__icon--fix {
-      fill: #af45f5;
-    }
-    & .fix-del__icon--delete {
-      fill: #ec3a40;
-    }
-  }
-}
-.feedback {
-  margin-bottom: 50px;
-}
-.feedback__field {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 50px;
-  grid-template-areas:
-    "visual desc desc ."
-    ". desc desc .";
-  padding: 30px 15px;
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 1fr 1fr ;
-    grid-template-areas:
-      "visual desc desc"
-      ". desc desc";
-  }
-}
-.feedback__visual {
-  grid-area: visual;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.feedback__avatar {
-  background: #dee4ec;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.feedback__avatar-icon {
-  fill: white;
-  & .admin__icon {
-    width: 75px;
-    height: 75px;
-  }
-}
-.add-avatar {
-  color: #383ace;
-  font-size: 18px;
-  font-family: "OpenSans", Helvetica, sans-serif;
-  font-weight: 700;
-  padding: 20px 40px;
-  &:hover {
-    color: #af45f5;
-  }
-}
-.feedback__desc {
-  grid-area: desc;
-}
-.feedback__desc-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 35px;
-  & .input__form {
-  }
-}
-.feedback__desc-item {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-  &--textarea {
-    width: 100%;
-  }
-}
-.new-feedback {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 30px;
-  margin-bottom: 50px;
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media screen and (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-  &__visual {
-    background: url(../images/content/feed3.png) center center / cover no-repeat;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  &__desc {
-    display: flex;
-    flex-direction: column;
-    color: #a7aaaf;
-    font-size: 18px;
-    font-family: "OpenSans", Helvetica, sans-serif;
-  }
-  &__author {
-    color: #424d63;
-    padding-bottom: 10px;
-    font-weight: 700;
-  }
-  &-text {
-    color: black;
-    font-size: 16px;
-    font-family: "OpenSans", Helvetica, sans-serif;
-    font-weight: 500;
-    grid-area: text;
-  }
-}
-.popup__field {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url(../images/content/trainfull-popup.png) center center / cover no-repeat; 
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacitu: 0.4;
-}
-.popup {
-  background: #fff;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem;
-  z-index: 10;
-  padding: 60px 75px;
-  &__title {
-    color: #424d63;
-    font-size: 18px;
-    font-family: "OpenSans", Helvetica, sans-serif;
-    font-weight: 700;
-    text-align: center;
-  }
-  &__desc-item {
-    padding: 30px 0px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    & .input__subtext {
-      padding-left: 40px;
-      padding-bottom: 0;
-    }
-    & .input__form {
-      padding: 10px 0 10px 40px;
-    }
-  }
-  &__icon {
-    fill: #a7aaaf;
-    width: 20px;
-    height: 20px;
-    & .admin__icon {
-      width: 25px;
-      height: 25px;
-      position: absolute;
-      left: 0;
-      bottom: 35%;
-    }
-  }
-  &__exit {
-    position: absolute;
-    top: 1.5rem;
-    right: 1rem;
-    &-stick {
-      transform:rotate(50deg);
-      &, &:after {
-        background: #ec8468;
-        width: 1.5rem;
-        height: 0.3125rem;
-        border-radius: 0.1875rem;
-      }
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        transform:rotate(80deg);
-        bottom: 0;
-      }
-    }
-  }
-  &__button {
-    display: flex;
-    justify-content: center;
   }
 }
 </style>

@@ -52,7 +52,9 @@
         "last 2 versions"
     ],
     "dependencies": {
+        "@babel/polyfill": "^7.6.0",
         "axios": "^0.19.0",
+        "babel-polyfill": "^6.26.0",
         "node": "^12.11.0",
         "normalize.css": "^8.0.1",
         "promptly": "^3.0.3",
