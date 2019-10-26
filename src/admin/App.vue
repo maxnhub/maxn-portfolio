@@ -91,11 +91,11 @@ div
               .work__name-desc Описание этой работы
               .work__link http://google.com
               .fix-del__buttons
-                button.fix-del__button.fix-del__button--fix 
+                button.fix-del__button.fix-del__button--fix(type="button") 
                   .fix-del__button-text Править
                   .fix-del__icon.fix-del__icon--fix
                     svg-icon(:className="admin__icon" :iconName="'pencil'")
-                button.fix-del__button.fix-del__button--delete 
+                button.fix-del__button.fix-del__button--delete(type="button")
                   .fix-del__button-text Удалить
                   .fix-del__icon.fix-del__icon--delete
                     svg-icon(:className="admin__icon" :iconName="'remove'")
@@ -122,7 +122,7 @@ div
                     label.input__subtext(for="feedback-textarea-id") Отзыв
                     textarea.input__textarea(class="feedback-textarea" id="textarea-feedback-id" name="feedback-textarea")
                   .block__buttons
-                    button.cancel Отмена
+                    button.cancel(type="button") Отмена
                     button.load Загрузить
         .new-feedback
           button.load-big
@@ -137,17 +137,17 @@ div
                 .new-feedback__author-position Программист
             .new-feedback-text Данный план является примерным ориентиром. Вы всегда можете работать в удобном для себя темпе. Оптимальное время, которое мы рекомендуем выделять на обучение: 32-34 часа в неделю.
             .fix-del__buttons.fix-del__buttons--feedback
-              button.fix-del__button.fix-del__button--fix 
+              button.fix-del__button.fix-del__button--fix(type="button") 
                 .fix-del__button-text Править
                 .fix-del__icon.fix-del__icon--fix
                   svg-icon(:className="admin__icon" :iconName="'pencil'")
-              button.fix-del__button.fix-del__button--delete 
+              button.fix-del__button.fix-del__button--delete(type="button") 
                 .fix-del__button-text Удалить
                 .fix-del__icon.fix-del__icon--delete
                   svg-icon(:className="admin__icon" :iconName="'remove'")
-  .popup__field
+  .popup__field(v-if="isPopup")
     .popup
-      button.popup__exit(href="#")
+      button.popup__exit(href="#" v-on:click="hidePopup" type="button")
         .popup__exit-stick
       .popup__title Авторизация
       .popup__desc
@@ -171,6 +171,31 @@ div
 include ../views/common/mixins.pug
 </template>
 
+<script>
+import svgIcon from "./elements/svg-icon.vue";
+
+export default {
+  data() {
+    return {
+      isPopup: false
+    }
+  },
+  components: {
+    svgIcon: () => import("./elements/svg-icon")
+  },
+  methods: {
+    showPopup() {
+      this.isPopup = true
+    },
+    hidePopup() {
+      this.isPopup = false
+    }
+  }
+};
+
+
+</script>
+
 
 <style lang="postcss">
 
@@ -190,10 +215,6 @@ html {
 body {
   margin: 0;
   font-size: 16px;
-
-  &--active {
-    overflow: hidden;
-  }
 }
 
 button {
@@ -309,6 +330,10 @@ img {
     background-color: transparent;
     text-decoration: underline;
     color: white;
+
+    &:hover {
+      color: #457df5;
+    }
   }
 }
 
@@ -384,10 +409,18 @@ img {
     }
   }
 
+  &:hover {
+    color: #cb89f7;
+    & .add-icon {
+      background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
+    }
+  }
+
   & .add-group-text {
     padding-left: 20px;
   }
 }
+
 
 .skills {
   display: grid;
@@ -478,6 +511,10 @@ img {
 
   & .skills__button {
     fill: #a0a5b1;
+
+    &:hover {
+      fill: #c9cbce;
+    }
   }
 
   &-buttons {
@@ -490,11 +527,19 @@ img {
   height: 30px;
 
   &--tick {
-    fill: green;
+    fill: #1bd802;
+
+    &:hover {
+      fill: #1ff503;
+    }
   }
 
   &--remove {
     fill: #c73034;
+
+    &:hover {
+      fill: #ec3a40;
+    }
   }
 }
 
@@ -523,6 +568,10 @@ img {
     width: 10px;
     height: 10px;
     transform: rotate(45deg);
+  }
+
+  &:hover {
+    background: linear-gradient(to right, #af45f5 35%, #b70efa 50%);
   }
 }
 
@@ -666,6 +715,10 @@ img {
   font-weight: 700;
   padding: 20px 25px;
   text-transform: uppercase;
+
+  &:hover {
+    background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
+  }
 }
 
 .load-big {
@@ -679,6 +732,10 @@ img {
   justify-content: center;
   align-items: center;
   padding: 100px 0;
+
+  &:hover {
+    background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
+  }
 }
 
 .load-big__icon-box {
@@ -706,6 +763,10 @@ img {
   font-weight: 700;
   padding: 20px 40px;
   margin-right: 30px;
+
+  &:hover {
+    color: #cb89f7;
+  }
 }
 
 .works__form {
@@ -835,6 +896,21 @@ img {
     font-family: "OpenSans", Helvetica, sans-serif;
     margin-right: 20px;
   }
+
+  &:hover {
+
+    & .fix-del__button-text {
+      color: #d4d6d8;
+    }
+
+    & .fix-del__icon--fix {
+      fill: #af45f5;
+    }
+
+    & .fix-del__icon--delete {
+      fill: #ec3a40;
+    }
+  }
 }
 
 .feedback {
@@ -891,6 +967,10 @@ img {
   font-family: "OpenSans", Helvetica, sans-serif;
   font-weight: 700;
   padding: 20px 40px;
+
+  &:hover {
+    color: #af45f5;
+  }
 }
 
 .feedback__desc {
@@ -972,11 +1052,6 @@ img {
   top: 0;
   left: 0;
   opacitu: 0.4;
-  visibility: hidden;
-
-  &--active {
-    visibility: visible;
-  }
 }
 
 .popup {
@@ -1063,40 +1138,3 @@ img {
 
 </style>
 
-<script>
-import svgIcon from "./elements/svg-icon.vue";
-import showPopup from "./elements/popup.vue";
-
-export default {
-  components: {
-    svgIcon: () => import("./elements/svg-icon")
-  },
-  methods: {
-    showPopup: () => import("./elements/popup")
-  },
-  mounted() {
-    function renderPopup() {
-      const popup = document.querySelector(".popup__field");
-      const body = document.querySelector("body");
-      popup.classList.add("popup__field--active");
-      body.classList.add("body--active");
-
-      popup.querySelector(".popup__exit").addEventListener("click", e => {
-        e.preventDefault();
-
-        popup.classList.remove("popup__field--active");
-        body.classList.remove("body--active");
-      });
-    }
-
-    function showPopup() {
-      const button = document.querySelector(".add-group");
-      button.addEventListener("click", e => {
-        renderPopup();
-      });
-    }
-  }
-};
-
-
-</script>

@@ -3,9 +3,9 @@ script(type="text/x-template")#comments-list
         .comments__top  
             h3.comments__title Что обо мне говорят
             .comments__arrows
-                .comments__arrow.comments__arrow--prev
+                button.comments__arrow.comments__arrow--prev
                     .comments__arrow-box
-                .comments__arrow.comments__arrow--next
+                button.comments__arrow.comments__arrow--next
                     .comments__arrow-box
         .comments__items
             swiper(ref="mySwiper" :options="swiperOption")
