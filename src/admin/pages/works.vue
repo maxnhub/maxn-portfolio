@@ -11,16 +11,16 @@ div
         .works__add
           form.works__form(@submit.prevent="submitForm")
             label.input__subtext(for="works-name-id") Название
-              span.error {{ this.validation.firstError('dataForm.name') }}
+              span.error(v-if="isError") {{ this.validation.firstError('formData.name') }}
             input.input__form(v-model="formData.name" id="works-name-id" type="text" name="name")
             label.input__subtext(for="works-link-id") Ссылка
-              span.error {{ this.validation.firstError('dataForm.link') }}
+              span.error(v-if="isError") {{ this.validation.firstError('formData.link') }}
             input.input__form(v-model="formData.link" id="works-link-id" type="text" name="link")
             label.input__subtext(for="works-textarea-id") Описание
-              span.error {{ this.validation.firstError('dataForm.description') }}
+              span.error(v-if="isError") {{ this.validation.firstError('formData.description') }}
             textarea.input__textarea(v-model="formData.description" class="works-textarea" id="textarea-connect-id" name="textarea")
             label.input__subtext(for="works-tag-id") Добавление тэга
-              span.error {{ this.validation.firstError('dataForm.tags') }}
+              span.error(v-if="isError") {{ this.validation.firstError('formData.tags') }}
             input.input__form(v-model="formData.tags" id="works-tag-id" type="text" name="tag")
             .block__buttons
               button.cancel(type="button") Отмена
@@ -65,7 +65,8 @@ export default {
         description: "",
         tags: "",
         photo: ""
-      }
+      },
+      isError: false
     };
   },
   components: {
@@ -73,24 +74,30 @@ export default {
   },
   methods: {
     submitForm() {
-      const success = this.$validate();
-      console.log("success", success);
+      this.$validate().then((result) => {
+        if (result) {
+          console.log("Send form here", result)
+        } else {
+          console.log("Validation error", result),
+          this.isError = true
+        }
+      })
     }
   },
   validators: {
-    "dataForm.name": function(value) {
+    "formData.name": function(value) {
       return Validator.value(value).required("Введите имя");
     },
-    "dataForm.link": function(value) {
+    "formData.link": function(value) {
       return Validator.value(value).required("Введите ссылку");
     },
-    "dataForm.description": function(value) {
+    "formData.description": function(value) {
       return Validator.value(value).required("Введите описание");
     },
-    "dataForm.tags": function(value) {
+    "formData.tags": function(value) {
       return Validator.value(value).required("Введите тэги");
     },
-    "dataForm.photo": function(value) {
+    "formData.photo": function(value) {
       return Validator.value(value).required("Загрузите изображение");
     }
   }

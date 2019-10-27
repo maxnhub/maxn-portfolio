@@ -10,45 +10,15 @@ div
           .header__goal Панель администрирования
 
         button.header__button Выйти
-  .navigation
-    .container
-      ul.navigation__list
-        li.navigation__item 
-          a.navigation__link(href="#skills") Обо мне
-        li.navigation__item 
-          a.navigation__link(href="#works") Работы
-        li.navigation__item 
-          a.navigation__link(href="#feedback") Отзывы
+  navigation
   .main
     .container
-      main
-        
-        works
-
-        feedback
-
-  .popup__field(v-if="isPopup")
-    .popup
-      button.popup__exit(href="#" v-on:click="hidePopup" type="button")
-        .popup__exit-stick
-      .popup__title Авторизация
-      .popup__desc
-        .popup__desc-item
-          .popup__icon
-            svg-icon(:className="'admin__icon'" :iconName="'user'")
-          label.input__subtext(for="login-id") Логин
-          input.input__form(id="login-id" type="text" name="login")
-        .popup__desc-item
-          .popup__icon
-            svg-icon(:className="'admin__icon'" :iconName="'key'")
-          label.input__subtext(for="password-id") Пароль
-          input.input__form(id="password-id" type="password" name="password")
-        .popup__button
-          button.load Отправить
-
-
-
-
+      about
+    .container  
+      works
+    .container
+      feedback
+  popup
 
 include ../views/common/mixins.pug
 </template>
@@ -65,16 +35,11 @@ export default {
     svgIcon: () => import("./elements/svg-icon"),
     works: () => import("./pages/works"),
     feedback: () => import("./pages/feedback"),
-    main: () => import("./pages/main")
-  },
-  methods: {
-    showPopup() {
-      this.isPopup = true
-    },
-    hidePopup() {
-      this.isPopup = false
-    }
+    about: () => import("./pages/about"),
+    navigation: () => import("./elements/navigation"),
+    popup: () => import("./pages/popup")
   }
+
 };
 </script>
 
@@ -198,31 +163,7 @@ img {
     }
   }
 }
-.navigation {
-  display: flex;
-  align-items: center;
-  margin-top: 70px;
-  &__list {
-    display: flex;
-    height: 70px;
-    margin: 0;
-  }
-  &__item {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin-right: 30px;
-    padding: 0 20px;
-    border-bottom: 3px solid transparent;
-    &:last-child {
-      margin-right: 0;
-    }
-    &:hover {
-      color: #383ace;
-      border-bottom: 3px solid #383ace;
-    }
-  }
-}
+
 .main {
   background: #f8f9fd;
   padding: 65px 0;
@@ -241,130 +182,10 @@ img {
   font-weight: bold;
   margin-right: 50px;
 }
-.add-group {
-  display: flex;
-  align-items: center;
-  color: #383ace;
-  font-size: 24px;
-  font-weight: 700;
-  background: transparent;
-  outline: none;
-  & .add-icon {
-    width: 20px;
-    height: 20px;
-    & .admin__icon {
-      width: 8px;
-      height: 8px;
-      transform: rotate(45deg) translate(-65%, -65%);
-    }
-  }
-  &:hover {
-    color: #cb89f7;
-    & .add-icon {
-      background: linear-gradient(to right, #cb89f7 25%, #b70efa 50%);
-    }
-  }
-  & .add-group-text {
-    padding-left: 20px;
-  }
-}
-.skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 50px;
-  margin-bottom: 85px;
-  @media screen and (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-  &__add-name {
-    grid-area: name;
-    padding: 0 10px 30px;
-    display: flex;
-    border-bottom: 1px solid #a7aaaf;
-    justify-content: space-between;
-    & .input__form {
-      &::placeholder {
-        @media screen and (max-width: 768px) {
-          font-size: 14px;
-        }
-      }
-    }
-  }
-}
-#skills-group-name {
-  width: 70%;
-}
-.skills__add-name-icons {
-  display: flex;
-  align-items: center;
-}
-.skills__add-content {
-  grid-area: content;
-}
-.skills__add-row {
-  grid-area: row;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  & .input__form {
-    margin-right: 30px;
-    @media screen and (max-width: 768px) {
-      width: 70%;
-      margin-right: 10px;
-    }
-    &::placeholder {
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
-  }
-}
-.new-skill {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 0;
-  & .input__form {
-    border-bottom: 1px solid transparent;
-    &:focus {
-      border-bottom: 1px solid black;
-    }
-    &::placeholder {
-      @media screen and (max-width: 768px) {
-        font-size: 14px;
-      }
-    }
-  }
-  & #skill-name {
-    margin-right: 30px;
-    width: 60%;
-  }
-  & .skills__button {
-    fill: #a0a5b1;
-    &:hover {
-      fill: #c9cbce;
-    }
-  }
-  &-buttons {
-    display: flex;
-  }
-}
-.skills__button {
-  width: 30px;
-  height: 30px;
-  &--tick {
-    fill: #1bd802;
-    &:hover {
-      fill: #1ff503;
-    }
-  }
-  &--remove {
-    fill: #c73034;
-    &:hover {
-      fill: #ec3a40;
-    }
-  }
-}
+
+
+
+
 .admin__icon {
   width: 15px;
   height: 15px;
@@ -373,9 +194,7 @@ img {
     margin-right: 0;
   }
 }
-#skill-percents {
-  width: 10%;
-}
+
 .add-icon {
   width: 30px;
   height: 30px;
