@@ -40,22 +40,19 @@
 import svgIcon from "../elements/svg-icon.vue";
 
 export default {
+
     data() {
         return {
             isPopup: false
         }
     },
     components: {
-        svgIcon: () => import("../elements/svg-icon"),
-        popup: () => import("../pages/popup")
+        svgIcon: () => import("../elements/svg-icon")
     },
     methods: {
         showPopup() {
             this.isPopup = true
-        },
-        hidePopup() {
-            this.isPopup = false
-        }   
+        }
     }
 
 }

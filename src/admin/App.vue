@@ -18,7 +18,7 @@ div
       works
     .container
       feedback
-  popup
+  popup(v-if="isPopup")
 
 include ../views/common/mixins.pug
 </template>
@@ -28,7 +28,7 @@ import svgIcon from "./elements/svg-icon.vue";
 export default {
   data() {
     return {
-      isPopup: false
+      
     }
   },
   components: {

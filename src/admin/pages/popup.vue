@@ -1,5 +1,5 @@
 <template lang="pug">
-.popup__field(v-if="isPopup")
+.popup__field
     .popup
         button.popup__exit(href="#" v-on:click="hidePopup" type="button")
             .popup__exit-stick
@@ -21,18 +21,7 @@
 
 <script>
 export default {
-    data() {
-        return {
-            isPopup: false
-        }
-    },
-    components: {
-        about: () => import("../pages/about")
-    },
     methods: {
-        showPopup() {
-            this.isPopup = true
-        },
         hidePopup() {
             this.isPopup = false
         }   
