@@ -8,8 +8,9 @@ div
             img.header__avatar(src="../images/content/user.jpg")
           .header__name Максим Никульников
           .header__goal Панель администрирования
+          button(type="button" @click="isPopup=true").header__button Авторизоваться
 
-        button.header__button Выйти
+        button.header__button(type="button") Выйти
   navigation
   .main
     .container
@@ -18,7 +19,7 @@ div
       works
     .container
       feedback
-  popup(v-if="isPopup")
+  popup(v-if="isPopup" @close-popup="isPopup=false")
 
 include ../views/common/mixins.pug
 </template>
@@ -28,7 +29,7 @@ import svgIcon from "./elements/svg-icon.vue";
 export default {
   data() {
     return {
-      
+      isPopup: false
     }
   },
   components: {
@@ -161,6 +162,9 @@ img {
     &:hover {
       color: #457df5;
     }
+  }
+  &__goal {
+    margin-right: 30px;
   }
 }
 

@@ -4,7 +4,7 @@
             .block.block--skills
                 .section-top
                     .section-title Блок "Обо мне"
-                    button.add-group(v-on:click="showPopup")
+                    button.add-group
                         .add-icon
                             svg-icon(:className="'admin__icon'" :iconName="'remove'")
                         .add-group-text Добавить группу
@@ -40,22 +40,10 @@
 import svgIcon from "../elements/svg-icon.vue";
 
 export default {
-
-    data() {
-        return {
-            isPopup: false
-        }
-    },
     components: {
         svgIcon: () => import("../elements/svg-icon")
     },
-    methods: {
-        showPopup() {
-            this.isPopup = true
-        }
-    }
-
-}
+  }
 </script>
 
 <style>
