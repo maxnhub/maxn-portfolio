@@ -26,6 +26,8 @@ include ../views/common/mixins.pug
 
 <script>
 import svgIcon from "./elements/svg-icon.vue";
+
+
 export default {
   data() {
     return {
@@ -217,16 +219,6 @@ img {
 .change-block {
   box-shadow: 0 0 15px 2px rgba(122, 122, 122, 0.3);
   padding: 30px;
-  &--skills {
-    flex: 1;
-    display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
-    grid-gap: 20px;
-    grid-template-areas: 
-    "name"
-    "content"
-    "row";
-  }
   &-title {
     padding: 30px 10px 30px;
     display: flex;

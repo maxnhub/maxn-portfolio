@@ -23,6 +23,11 @@
 
 <script>
 import { Validator } from "simple-vue-validator";
+import svgIcon from "../elements/svg-icon.vue";
+import axios from 'axios';
+
+const baseUrl = "https://webdev-api.loftschool.com/";
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzIyNjI2NTYsImV4cCI6MTU3MjI4MDY1NiwibmJmIjoxNTcyMjYyNjU2LCJqdGkiOiJMa1FBNWVyTW9mdVFTT2I3In0.102dADWsH-fF4MXLFsZ6ufomwkyKgTxBUrsTBXrz8ys"
 
 export default {
     data() {
@@ -34,11 +39,23 @@ export default {
             isError: false
         }
     },
+    components: {
+        svgIcon: () => import("../elements/svg-icon")
+    },
     methods: {
         hidePopup() {
             this.$emit('close-popup')
         },
         submitFormLogin() {
+            axios.post(baseUrl + '/login', {
+                name: this.formLogin.user,
+                password: this.formLogin.password
+            }).then(response => {
+                console.log(response.data),
+                this.$emit('close-popup')
+            }).catch(error => {
+                console.log(error.response.data)
+            }),
             this.$validate().then((result) => {
                 if (result) {
                     console.log("Send form here", result)

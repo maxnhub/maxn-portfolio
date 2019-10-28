@@ -2,16 +2,16 @@
 div
     .feedback
         .change-block-title Добавить отзыв 
-        .feedback__field
+        form.feedback__field(@submit.prevent="submitFormFeedback")
             .feedback__visual
-                form.feedback__avatar
+                .feedback__avatar
                     img(v-if="filePreview" :src="filePreview")
                     input(style="display:none" type="file" @change="handleFile" ref="fileUpload")
                     .feedback__avatar-icon
                         svg-icon(:className="'admin__icon'" :iconName="'user'")
                 button.add-avatar(type="button" @click="$refs.fileUpload.click()") Добавить фото
             .feedback__desc
-                form.feedback__forms(@submit.prevent="submitForm")
+                .feedback__forms
                     .feedback__desc-row
                         .feedback__desc-item
                             label.input__subtext(for="feedback-name-id") Имя автора
@@ -53,12 +53,19 @@ div
 
 <script>
 import svgIcon from "../elements/svg-icon.vue";
+import axios from 'axios';
+
+const baseUrl = "https://webdev-api.loftschool.com/";
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzIyNjI2NTYsImV4cCI6MTU3MjI4MDY1NiwibmJmIjoxNTcyMjYyNjU2LCJqdGkiOiJMa1FBNWVyTW9mdVFTT2I3In0.102dADWsH-fF4MXLFsZ6ufomwkyKgTxBUrsTBXrz8ys";
+
+axios.defaults.baseURL = baseUrl;
+axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 
 export default {
     data() {
         return {
             formFeedback: {
-                avatar: "",
+                photo: "",
                 author: "",
                 position: "",
                 description: ""
@@ -75,7 +82,7 @@ export default {
             // Взять файл из формы
             const photoFile = this.fileFromForm(e)
             // Вставить файл в объект formFeedback
-            this.formFeedback.avatar = photoFile
+            this.formFeedback.photo = photoFile
             // Сгенерировать превью для файла
             this.renderFile(photoFile).then((f) => {
             this.filePreview = f
@@ -101,7 +108,17 @@ export default {
                 }
             });
         },
-        submitForm() {
+        submitFormFeedback() {
+            axios.post('/reviews', {
+                photo: this.formFeedback.photo,
+                author: this.formFeedback.author,
+                occ: this.formFeedback.position,
+                text: this.formFeedback.description
+            }).then(response => {
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error.response.data)
+            }),
             this.$validate().then((result) => {
                 if (result) {
                 console.log("Send form here", result)
@@ -113,14 +130,17 @@ export default {
         },
     },
     validators: {
+        "formFeedback.photo": function(value) {
+            return Validator.value(value).required("Имя Фамилия");
+        },
         "formFeedback.author": function(value) {
-        return Validator.value(value).required("Имя Фамилия");
+            return Validator.value(value).required("Имя Фамилия");
         },
         "formFeedback.position": function(value) {
-        return Validator.value(value).required("Введите должность");
+            return Validator.value(value).required("Введите должность");
         },
         "formFeedback.description": function(value) {
-        return Validator.value(value).required("Заполните отзыв");
+            return Validator.value(value).required("Заполните отзыв");
         }           
     }
 }
@@ -250,6 +270,27 @@ export default {
     font-family: "OpenSans", Helvetica, sans-serif;
     font-weight: 500;
     grid-area: text;
+  }
+}
+.error {
+  background: crimson;
+  padding: 10px 15px;
+  color: white;
+  position: absolute;
+  top: 160%;
+  left: 25%;
+  border-radius: 5px;
+
+  &:after {
+    content: '';
+    left: 5px;
+    border: 10px solid transparent;
+    width: 0px;
+    height: 0px;
+    border-bottom-color: crimson;
+    border-top-width: 0px;
+    position: absolute;
+    bottom: 100%;
   }
 }
 </style>

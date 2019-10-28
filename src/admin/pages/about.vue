@@ -1,49 +1,161 @@
 <template lang="pug">
-
-    
-            .block.block--skills
-                .section-top
-                    .section-title Блок "Обо мне"
-                    button.add-group
-                        .add-icon
-                            svg-icon(:className="'admin__icon'" :iconName="'remove'")
-                        .add-group-text Добавить группу
-                .skills
-                    .change-block.change-block--skills
-                        .skills__add-name
-                            input.input__form(id="skills-group-name" type="text" name="group-name" placeholder="Название новой группы")
-                            .skills__buttons
-                                button.skills__button.skills__button--tick
-                                    svg-icon(:className="'admin__icon'" :iconName="'tick'") 
-                                button.skills__button.skills__button--remove
-                                    svg-icon(:className="'admin__icon'" :iconName="'remove'")
-                        .skills__add-content
-                            .new-skill
-                                input.input__form(id="skill-added-name" type="text" name="name" placeholder="Новый навык")
-                                input.input__form(id="skill-added-percents" type="text" name="percents" placeholder="0")  
-                                .new-skill-buttons
-                                    button.skills__button.skills__button--pencil
-                                        svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
-                                    button.skills__button.skills__button--trash
-                                        svg-icon(:className="'admin__icon'" :iconName="'trash'")
-                        .skills__add-row
-                            input.input__form(id="skill-name" type="text" name="name" placeholder="Новый навык")
-                            input.input__form(id="skill-percents" type="text" name="percents" placeholder="0")  
-                            button.add-icon 
-                                svg-icon(:className="'admin__icon'" :iconName="'remove'")
-                    .change-block.change-block--skills
-
-
+  .block.block--skills
+    .section-top
+      .section-title Блок "Обо мне"
+      button.add-group
+        .add-icon
+          svg-icon(:className="'admin__icon'" :iconName="'remove'")
+        .add-group-text Добавить группу
+    ul.skills
+      li.change-block.change-block--skills(v-for="cat in categories" :key="cat.id")
+        form.skills__add-name(@submit.prevent)
+          input.input__form(v-model="formSkills.title" id="skills-group-name" type="text" name="group-name" placeholder="Название новой группы")
+          .skills__buttons
+            .skills__buttons-ready(v-if="isReady")
+              button.skills__button.skills__button--tick(v-on:click="createCategory")
+                svg-icon(:className="'admin__icon'" :iconName="'tick'") 
+              button.skills__button.skills__button--remove(type="button" v-on:click="cancelCreateCategory")
+                svg-icon(:className="'admin__icon'" :iconName="'remove'")
+            .skills__buttons-go(v-if="isGo")
+              button.skills__button.skills__button--pencil(type="button" v-on:click="renameCategory")
+                svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
+              button.skills__button.skills__button--trash(type="button" v-on:click="deleteCategory")
+                svg-icon(:className="'admin__icon'" :iconName="'trash'")  
+        .skills__desc
+          ul.skills__add-content
+            li.sk(v-for="skill in skills" :key="skill.id")
+              form.new-skill(@submit.prevent)  
+                input.input__form(id="skill-added-name" type="text" name="name" placeholder="Новый навык")
+                input.input__form(id="skill-added-percents" type="text" name="percents" placeholder="0")  
+                .new-skill-buttons
+                  .skills-buttons-ready(v-if="isReadySkill")
+                    button.skills__button.skills__button--tick(v-on:click="createSkill")
+                      svg-icon(:className="'admin__icon'" :iconName="'tick'") 
+                    button.skills__button.skills__button--remove(type="button" v-on:click="cancelCreateSkill")
+                      svg-icon(:className="'admin__icon'" :iconName="'remove'")
+                  .skills-buttons-go(v-if="isGoSkill")
+                    button.skills__button.skills__button--pencil(type="button" v-on:click="renameSkill")
+                      svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
+                    button.skills__button.skills__button--trash(type="button" v-on:click="deleteSkill")
+                      svg-icon(:className="'admin__icon'" :iconName="'trash'")
+          form.skills__add-row(@submit.prevent="createNewSkill") 
+            input.input__form(v-model="formSkills.skill" id="skill-name" type="text" name="name" placeholder="Новый навык")
+            input.input__form(v-model="formSkills.percents" id="skill-percents" type="text" name="percents" placeholder="0")  
+            button.add-icon 
+              svg-icon(:className="'admin__icon'" :iconName="'remove'")
+      
 </template>
 
 <script>
 import svgIcon from "../elements/svg-icon.vue";
+import axios from 'axios';
+
+const baseUrl = "https://webdev-api.loftschool.com/";
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzIyNjI2NTYsImV4cCI6MTU3MjI4MDY1NiwibmJmIjoxNTcyMjYyNjU2LCJqdGkiOiJMa1FBNWVyTW9mdVFTT2I3In0.102dADWsH-fF4MXLFsZ6ufomwkyKgTxBUrsTBXrz8ys";
+
+axios.defaults.baseURL = baseUrl;
+axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 
 export default {
-    components: {
-        svgIcon: () => import("../elements/svg-icon")
+  data() {
+    return {
+      formSkills: {
+        title: "",
+        skill: "",
+        percents: ""
+      },
+      isReady: true,
+      isGo: false,
+      isReadySkill: true,
+      isGoSkill: false,
+      categories: [],
+      skills: [] 
+    }
+  },
+  components: {
+      svgIcon: () => import("../elements/svg-icon")
+  },
+  created() {
+    this.fetchCategories();
+    this.fetchSkills()
+  },
+  methods: {
+    createCategory() {
+      axios.post('/categories', {
+        title: this.formSkills.title
+      }).then(response => {
+        this.categories.unshift(response.data)
+      })
     },
+    fetchCategories() {
+      axios.get('/categories/182').then(response => {
+        this.categories = response.data
+      })
+    },
+    cancelCreateCategory() {
+      this.isGo = true;
+      this.isReady = false
+    },
+    deleteCategory() {
+      axios.delete('/categories/182').then(response => {
+        this.isReady = true;
+        this.isGo = false
+      })
+      
+    },
+    renameCategory() {
+      axios.post('/categories/182', {
+        title: this.formSkills.title
+      });
+      this.isReady = true;
+      this.isGo = false
+    },
+    createSkill() {
+      axios.post('/skills', {
+        title: this.formSkills.skill,
+        percent: this.formSkills.percents
+      }).then(response => {
+        this.skills.unshift(response.data)
+      })
+    },
+    fetchSkills() {
+      axios.get('/skills/182').then(response => {
+        this.skills = response.data
+      })
+    },
+    createNewSkill() {
+      axios.post('/skills', {
+        title: this.formSkills.skill,
+        percents: this.formSkills.percents
+      })
+    },
+    cancelCreateSkill() {
+      this.isGoSkill = true;
+      this.isReadySkill = false
+    },
+    deleteSkill() {
+      axios.delete('/skills/182');
+      this.isReadySkill = true;
+      this.isGoSkill = false
+
+    },
+    renameSkill() {
+      axios.post('/skills/182', {
+        title: this.formSkills.skill
+      });
+      this.isReadySkill = true;
+      this.isGoSkill = false
+    },
+    hideButtonsReadySkill() {
+      this.isGoSkill = true;
+      this.isReadySkill = false
+    },
+    hideButtonsGoSkill() {
+      this.isReadySkill = true;
+      this.isGoSkill = false
+    }
   }
+}
 </script>
 
 <style>
@@ -52,14 +164,25 @@ export default {
   padding: 30px;
   &--skills {
     flex: 1;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    /* display: grid;
     grid-template-rows: 1fr 3fr 1fr;
     grid-gap: 20px;
     grid-template-areas: 
     "name"
     "content"
-    "row";
+    "row"; */
   }
+}
+
+.skills__desc {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-gap: 20px;
+  grid-template-areas: 
+  "content"
+  "row";
 }
 
 .add-group {
@@ -100,8 +223,9 @@ export default {
   align-items: flex-end;
   & .input__form {
     margin-right: 30px;
+    width: 70%;
     @media screen and (max-width: 768px) {
-      width: 70%;
+      
       margin-right: 10px;
     }
     &::placeholder {
@@ -118,6 +242,7 @@ export default {
   padding: 15px 0;
   & .input__form {
     border-bottom: 1px solid transparent;
+    width: 70%;
     &:focus {
       border-bottom: 1px solid black;
     }
@@ -130,12 +255,6 @@ export default {
   & #skill-name {
     margin-right: 30px;
     width: 60%;
-  }
-  & .skills__button {
-    fill: #a0a5b1;
-    &:hover {
-      fill: #c9cbce;
-    }
   }
   &-buttons {
       display: flex;
@@ -157,9 +276,17 @@ export default {
       fill: #ec3a40;
     }
   }
+  &--pencil, &--trash {
+    fill: #a0a5b1;
+    &:hover {
+      fill: #c9cbce;
+    }
+  }
 }
 
-#skill-percents {
+
+
+#skill-percents, #skill-added-percents {
   width: 10%;
 }
 
@@ -197,5 +324,9 @@ export default {
 }
 .skills-buttons {
     display: flex;
+
+    &-ready, &-go {
+      display: flex;
+    }
 }
 </style>
