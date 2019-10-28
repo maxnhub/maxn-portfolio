@@ -4,22 +4,27 @@ div
         .change-block-title Добавить отзыв 
         .feedback__field
             .feedback__visual
-                .feedback__avatar
+                form.feedback__avatar
+                    img(v-if="filePreview" :src="filePreview")
+                    input(style="display:none" type="file" @change="handleFile" ref="fileUpload")
                     .feedback__avatar-icon
                         svg-icon(:className="'admin__icon'" :iconName="'user'")
-                button.add-avatar Добавить фото
+                button.add-avatar(type="button" @click="$refs.fileUpload.click()") Добавить фото
             .feedback__desc
-                form.feedback__forms
+                form.feedback__forms(@submit.prevent="submitForm")
                     .feedback__desc-row
                         .feedback__desc-item
                             label.input__subtext(for="feedback-name-id") Имя автора
-                            input.input__form(id="feedback-name-id" type="text" name="author-name")
+                                span.error(v-if="isError") {{ this.validation.firstError('formFeedback.author') }}
+                            input.input__form(v-model="formFeedback.author" id="feedback-name-id" type="text" name="author-name")
                         .feedback__desc-item
                             label.input__subtext(for="feedback-position-id") Титул автора
-                            input.input__form(id="feedback-position-id" type="text" name="author-position")
+                                span.error(v-if="isError") {{ this.validation.firstError('formFeedback.position') }}
+                            input.input__form(v-model="formFeedback.position" id="feedback-position-id" type="text" name="author-position")
                     .feedback__desc-item.feedback__desc-item--textarea
                         label.input__subtext(for="feedback-textarea-id") Отзыв
-                        textarea.input__textarea(class="feedback-textarea" id="textarea-feedback-id" name="feedback-textarea")
+                            span.error(v-if="isError") {{ this.validation.firstError('formFeedback.description') }}
+                        textarea.input__textarea(v-model="formFeedback.description" class="feedback-textarea" id="textarea-feedback-id" name="feedback-textarea")
                     .block__buttons
                         button.cancel(type="button") Отмена
                         button.load Загрузить
@@ -50,12 +55,201 @@ div
 import svgIcon from "../elements/svg-icon.vue";
 
 export default {
+    data() {
+        return {
+            formFeedback: {
+                avatar: "",
+                author: "",
+                position: "",
+                description: ""
+            },
+            isError: false,
+            filePreview: ""
+        }; 
+    },
     components: {
         svgIcon: () => import("../elements/svg-icon")
+    },
+    methods: {
+        handleFile(e) {
+            // Взять файл из формы
+            const photoFile = this.fileFromForm(e)
+            // Вставить файл в объект formFeedback
+            this.formFeedback.avatar = photoFile
+            // Сгенерировать превью для файла
+            this.renderFile(photoFile).then((f) => {
+            this.filePreview = f
+            })
+        },
+        fileFromForm(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length) throw new Error("Нет файла");
+
+            return files[0]
+        },
+        renderFile(file) {
+            const reader = new FileReader();
+
+            return new Promise((resolve, reject) => {
+                try {
+                    reader.readAsDataURL(file);
+                    reader.onloadend = () => {
+                        resolve(reader.result);
+                    };
+                } catch (error) {
+                    throw new Error("Ошибка при чтении файла");
+                }
+            });
+        },
+        submitForm() {
+            this.$validate().then((result) => {
+                if (result) {
+                console.log("Send form here", result)
+                } else {
+                console.log("Validation error", result),
+                this.isError = true
+                }
+            })
+        },
+    },
+    validators: {
+        "formFeedback.author": function(value) {
+        return Validator.value(value).required("Имя Фамилия");
+        },
+        "formFeedback.position": function(value) {
+        return Validator.value(value).required("Введите должность");
+        },
+        "formFeedback.description": function(value) {
+        return Validator.value(value).required("Заполните отзыв");
+        }           
     }
 }
 </script>
 
 <style>
+.feedback {
+  margin-bottom: 50px;
+}
+.feedback__field {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 50px;
+  grid-template-areas:
+    "visual desc desc ."
+    ". desc desc .";
+  padding: 30px 15px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-areas:
+      "visual desc desc"
+      ". desc desc";
+  }
+}
+.feedback__visual {
+  grid-area: visual;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.feedback__avatar {
+  background: #dee4ec;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
 
+  & img {
+      width: 100%;
+      height: 100%;
+      z-index: 7;
+  }
+}
+.feedback__avatar-icon {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    z-index: 2;
+    fill: white;
+    & .admin__icon {
+        width: 75px;
+        height: 75px;
+    }
+}
+.add-avatar {
+  color: #383ace;
+  font-size: 18px;
+  font-family: "OpenSans", Helvetica, sans-serif;
+  font-weight: 700;
+  padding: 20px 40px;
+  &:hover {
+    color: #af45f5;
+  }
+  & img {
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+  }
+}
+.feedback__desc {
+  grid-area: desc;
+}
+.feedback__desc-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 35px;
+  & .input__form {
+  }
+}
+.feedback__desc-item {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  &--textarea {
+    width: 100%;
+  }
+}
+.new-feedback {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  margin-bottom: 50px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+  &__visual {
+    background: url(../../images/content/feed3.png) center center / cover no-repeat;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    color: #a7aaaf;
+    font-size: 18px;
+    font-family: "OpenSans", Helvetica, sans-serif;
+  }
+  &__author {
+    color: #424d63;
+    padding-bottom: 10px;
+    font-weight: 700;
+  }
+  &-text {
+    color: black;
+    font-size: 16px;
+    font-family: "OpenSans", Helvetica, sans-serif;
+    font-weight: 500;
+    grid-area: text;
+  }
+}
 </style>
