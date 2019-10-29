@@ -8,50 +8,36 @@
         .add-group-text Добавить группу
     ul.skills
       li.change-block.change-block--skills(v-for="cat in categories" :key="cat.id")
-        form.skills__add-name(@submit.prevent)
-          input.input__form(v-model="formSkills.title" id="skills-group-name" type="text" name="group-name" placeholder="Название новой группы")
-          .skills__buttons
-            .skills__buttons-ready(v-if="isReady")
-              button.skills__button.skills__button--tick(v-on:click="createCategory")
-                svg-icon(:className="'admin__icon'" :iconName="'tick'") 
-              button.skills__button.skills__button--remove(type="button" v-on:click="cancelCreateCategory")
+        category-edit(:category="cat")
+          .skills__desc
+            ul.skills__add-content
+                form.new-skill(@submit.prevent)  
+                  input.input__form(id="skill-added-name" type="text" name="name" placeholder="Новый навык")
+                  input.input__form(id="skill-added-percents" type="text" name="percents" placeholder="0")  
+                  .new-skill-buttons
+                    .skills-buttons-ready(v-if="isReadySkill")
+                      button.skills__button.skills__button--tick(v-on:click="createSkill")
+                        svg-icon(:className="'admin__icon'" :iconName="'tick'") 
+                      button.skills__button.skills__button--remove(type="button" v-on:click="cancelCreateSkill")
+                        svg-icon(:className="'admin__icon'" :iconName="'remove'")
+                    .skills-buttons-go(v-if="isGoSkill")
+                      button.skills__button.skills__button--pencil(type="button" v-on:click="renameSkill")
+                        svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
+                      button.skills__button.skills__button--trash(type="button" v-on:click="deleteSkill")
+                        svg-icon(:className="'admin__icon'" :iconName="'trash'")
+            form.skills__add-row(@submit.prevent="createNewSkill") 
+              input.input__form(v-model="formSkills.skill" id="skill-name" type="text" name="name" placeholder="Новый навык")
+              input.input__form(v-model="formSkills.percents" id="skill-percents" type="text" name="percents" placeholder="0")  
+              button.add-icon 
                 svg-icon(:className="'admin__icon'" :iconName="'remove'")
-            .skills__buttons-go(v-if="isGo")
-              button.skills__button.skills__button--pencil(type="button" v-on:click="renameCategory")
-                svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
-              button.skills__button.skills__button--trash(type="button" v-on:click="deleteCategory")
-                svg-icon(:className="'admin__icon'" :iconName="'trash'")  
-        .skills__desc
-          ul.skills__add-content
-            li.sk(v-for="skill in skills" :key="skill.id")
-              form.new-skill(@submit.prevent)  
-                input.input__form(id="skill-added-name" type="text" name="name" placeholder="Новый навык")
-                input.input__form(id="skill-added-percents" type="text" name="percents" placeholder="0")  
-                .new-skill-buttons
-                  .skills-buttons-ready(v-if="isReadySkill")
-                    button.skills__button.skills__button--tick(v-on:click="createSkill")
-                      svg-icon(:className="'admin__icon'" :iconName="'tick'") 
-                    button.skills__button.skills__button--remove(type="button" v-on:click="cancelCreateSkill")
-                      svg-icon(:className="'admin__icon'" :iconName="'remove'")
-                  .skills-buttons-go(v-if="isGoSkill")
-                    button.skills__button.skills__button--pencil(type="button" v-on:click="renameSkill")
-                      svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
-                    button.skills__button.skills__button--trash(type="button" v-on:click="deleteSkill")
-                      svg-icon(:className="'admin__icon'" :iconName="'trash'")
-          form.skills__add-row(@submit.prevent="createNewSkill") 
-            input.input__form(v-model="formSkills.skill" id="skill-name" type="text" name="name" placeholder="Новый навык")
-            input.input__form(v-model="formSkills.percents" id="skill-percents" type="text" name="percents" placeholder="0")  
-            button.add-icon 
-              svg-icon(:className="'admin__icon'" :iconName="'remove'")
       
 </template>
 
 <script>
-import svgIcon from "../elements/svg-icon.vue";
 import axios from 'axios';
 
 const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzIyNjI2NTYsImV4cCI6MTU3MjI4MDY1NiwibmJmIjoxNTcyMjYyNjU2LCJqdGkiOiJMa1FBNWVyTW9mdVFTT2I3In0.102dADWsH-fF4MXLFsZ6ufomwkyKgTxBUrsTBXrz8ys";
+const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzIzMzkxNjYsImV4cCI6MTU3MjM1NzE2NiwibmJmIjoxNTcyMzM5MTY2LCJqdGkiOiJETWtFSGdoTHJRckhOSFN5In0.hO1JaKOowpplLaqgB1V8WJE7I2d2yFTG1qo_ywWFLUg";
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.headers['Authorization'] = `Bearer ${token}`;
@@ -60,56 +46,19 @@ export default {
   data() {
     return {
       formSkills: {
-        title: "",
         skill: "",
         percents: ""
-      },
-      isReady: true,
-      isGo: false,
+      },   
       isReadySkill: true,
       isGoSkill: false,
-      categories: [],
       skills: [] 
     }
   },
   components: {
-      svgIcon: () => import("../elements/svg-icon")
-  },
-  created() {
-    this.fetchCategories();
-    this.fetchSkills()
+    svgIcon: () => import("../elements/svg-icon.vue"),
+    categoryEdit: () => import("../elements/category-edit.vue")
   },
   methods: {
-    createCategory() {
-      axios.post('/categories', {
-        title: this.formSkills.title
-      }).then(response => {
-        this.categories.unshift(response.data)
-      })
-    },
-    fetchCategories() {
-      axios.get('/categories/182').then(response => {
-        this.categories = response.data
-      })
-    },
-    cancelCreateCategory() {
-      this.isGo = true;
-      this.isReady = false
-    },
-    deleteCategory() {
-      axios.delete('/categories/182').then(response => {
-        this.isReady = true;
-        this.isGo = false
-      })
-      
-    },
-    renameCategory() {
-      axios.post('/categories/182', {
-        title: this.formSkills.title
-      });
-      this.isReady = true;
-      this.isGo = false
-    },
     createSkill() {
       axios.post('/skills', {
         title: this.formSkills.skill,
