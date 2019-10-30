@@ -1,0 +1,1 @@
+.error--login{background:#dc143c;padding:.625rem .9375rem;color:#fff;position:absolute;top:160%;left:25%;border-radius:5px}.error--login:after{content:"";left:.3125rem;width:0;height:0;border-color:transparent transparent #dc143c;border-style:solid;border-width:0 10px 10px;position:absolute;bottom:100%}
