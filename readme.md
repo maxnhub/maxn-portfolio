@@ -11,8 +11,8 @@
 #### How to install and build my app
 
 ```sh
-1. git clone git@github.com:maxnhub/maxnikulnikov-portfolio.git
-2. cd maxnikulnikov-portfolio
+1. git clone git@github.com:maxnhub/maxn-portfolio.git
+2. cd maxn-portfolio
 3. npm i
 4. npm run build
 ```
