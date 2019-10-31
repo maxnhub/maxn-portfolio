@@ -56,13 +56,7 @@ div
 <script>
 import svgIcon from "../elements/svg-icon.vue";
 import { Validator } from "simple-vue-validator";
-import axios from 'axios';
-
-const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4M…5TIn0.kwXiPQ6d3Dc-4YaQhxxMOvQXoslDiw83g5G7DembkFQ";
-
-axios.defaults.baseURL = baseUrl;
-axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+import $axios from "@/requests.js";
 
 export default {
   data() {
@@ -113,7 +107,7 @@ export default {
       });
     },
     submitForm() {
-      axios.post(baseUrl + '/works', {
+      $axios.post(baseUrl + '/works', {
         title: this.formData.name,
         techs: this.formData.tags,
         photo: this.formData.photo,

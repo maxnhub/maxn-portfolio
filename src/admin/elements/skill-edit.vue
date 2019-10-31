@@ -13,15 +13,12 @@ form.new-skill(@submit.prevent)
                 svg-icon(:className="'admin__icon'" :iconName="'pencil'") 
             button.skills__button.skills__button--trash(type="button" v-on:click="deleteSkill")
                 svg-icon(:className="'admin__icon'" :iconName="'trash'")
-
 </template>
 
 <script>
 import svgIcon from "./svg-icon.vue";
-import axios from 'axios';
+import $axios from "@/requests.js";
 
-const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4M…5TIn0.kwXiPQ6d3Dc-4YaQhxxMOvQXoslDiw83g5G7DembkFQ";
 
 export default {
     data() {
@@ -39,7 +36,7 @@ export default {
     },
     methods: {
         createSkill() {
-            axios.post('/skills', {
+            $axios.post('/skills', {
                 title: this.formSkills.skill,
                 percent: this.formSkills.percents
             }).then(response => {
@@ -47,7 +44,7 @@ export default {
             })
         },
         createNewSkill() {
-            axios.post('/skills', {
+            $axios.post('/skills', {
                 title: this.formSkills.skill,
                 percents: this.formSkills.percents
             })
@@ -57,12 +54,12 @@ export default {
             this.isReadySkill = false
         },
         deleteSkill() {
-            axios.delete('/skills/182');
+            $axios.delete('/skills/' + SkillItem.id);
                 this.isReadySkill = true;
                 this.isGoSkill = false
         },
         renameSkill() {
-            axios.post('/skills/182', {
+            $axios.post('/skills/182', {
                 title: this.formSkills.skill
             });
                 this.isReadySkill = true;

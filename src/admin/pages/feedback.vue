@@ -53,13 +53,8 @@ div
 
 <script>
 import svgIcon from "../elements/svg-icon.vue";
-import axios from 'axios';
+import $axios from "@/requests.js";
 
-const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4M…5TIn0.kwXiPQ6d3Dc-4YaQhxxMOvQXoslDiw83g5G7DembkFQ";
-
-axios.defaults.baseURL = baseUrl;
-axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 
 export default {
     data() {
@@ -109,7 +104,7 @@ export default {
             });
         },
         submitFormFeedback() {
-            axios.post('/reviews', {
+            $axios.post('/reviews', {
                 photo: this.formFeedback.photo,
                 author: this.formFeedback.author,
                 occ: this.formFeedback.position,

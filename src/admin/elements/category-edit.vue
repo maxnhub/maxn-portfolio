@@ -1,7 +1,7 @@
 <template lang="pug">
 
 form.skills__add-name(@submit.prevent)
-  input.input__form(:disabled="isDisabled" v-model="cat.category" id="skills-group-name" type="text" name="group-name" placeholder="Название новой группы")
+  input.input__form(:disabled="isDisabled" v-model="cat.category" type="text" name="group-name" placeholder="Название новой группы")
   .skills__buttons
     .skills__buttons-ready(v-if="isReady")
       button.skills__button.skills__button--tick(v-on:click="createCategory")
@@ -17,10 +17,7 @@ form.skills__add-name(@submit.prevent)
 
 <script>
 import svgIcon from "./svg-icon.vue";
-import axios from 'axios';
-
-const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzI0MjU2NjcsImV4cCI6MTU3MjQ0MzY2NywibmJmIjoxNTcyNDI1NjY3LCJqdGkiOiJUVkRKRGhyUk9aRlJxV2F1In0.G8KhT9Vk-IInb6WxNRhR0RZwjfSzmjGAvr6bYhNzh-c";
+import $axios from "@/requests.js";
 
 export default {
     data() {
@@ -31,19 +28,19 @@ export default {
           cat: {...this.category}
         }
     },
-    props: {
-        props: ['category']
-    },
+    props:  ['category']
+    ,
     components: {
       svgIcon: () => import("../elements/svg-icon.vue")
     },
     methods: {
       createCategory() {
-      axios.post('/categories', {
+      $axios.post('/categories', {
         title: this.cat.category
       }).then(response => {
         this.categories.unshift(response.data)
-      })
+      });
+      this.isDisabled = true
     },
     cancelCreateCategory() {
       this.isGo = true;
@@ -51,12 +48,11 @@ export default {
       this.isDisabled = true
     },
     deleteCategory() {
-      axios.delete('/categories/182');
-      this.isReady = true;
+      $axios.delete('/categories/' + this.category.id),
       this.isGo = false
     },
     renameCategory() {
-      axios.post('/categories/182', {
+      $axios.post('/categories/182', {
         title: this.cat.category
       });
       this.isReady = true;

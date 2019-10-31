@@ -22,13 +22,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import $axios from "@/requests.js";
 
-const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4M…5TIn0.kwXiPQ6d3Dc-4YaQhxxMOvQXoslDiw83g5G7DembkFQ";
+// const baseUrl = "https://webdev-api.loftschool.com/";
+// const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4M…5TIn0.kwXiPQ6d3Dc-4YaQhxxMOvQXoslDiw83g5G7DembkFQ";
 
-axios.defaults.baseURL = baseUrl;
-axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+// axios.defaults.baseURL = baseUrl;
+// axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 
 export default {
   data() {
@@ -50,12 +50,12 @@ export default {
   },
   methods: {
     fetchCategories() {
-      axios.get('/categories/182').then(response => {
+      $axios.get('/categories/182').then(response => {
         this.categories = response.data
       })
     },
     fetchSkills() {
-      axios.get('/skills/182').then(response => {
+      $axios.get('/skills/182').then(response => {
         this.skills = response.data
       })
     }
