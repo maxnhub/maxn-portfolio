@@ -2,51 +2,33 @@
   .block.block--skills
     .section-top
       .section-title Блок "Обо мне"
-      button.add-group
+      button.add-group(v-on:click="addNewGroup")
         .add-icon
           svg-icon(:className="'admin__icon'" :iconName="'remove'")
         .add-group-text Добавить группу
     ul.skills
       li.change-block.change-block--skills(v-for="cat in categories" :key="cat.id")
         category-edit(:category="cat")
-          .skills__desc
-            ul.skills__add-content
-              li.skills__add-content-item(v-for="skill in skills" :key="skill.id")
-                skill-edit(:skillItem="skill")
-            form.skills__add-row(@submit.prevent="createNewSkill") 
-              input.input__form(v-model="formSkills.skill" id="skill-name" type="text" name="name" placeholder="Новый навык")
-              input.input__form(v-model="formSkills.percents" id="skill-percents" type="text" name="percents" placeholder="0")  
-              button.add-icon 
-                svg-icon(:className="'admin__icon'" :iconName="'remove'")
+          
       
 </template>
 
 <script>
 import $axios from "@/requests.js";
 
-// const baseUrl = "https://webdev-api.loftschool.com/";
-// const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4M…5TIn0.kwXiPQ6d3Dc-4YaQhxxMOvQXoslDiw83g5G7DembkFQ";
-
-// axios.defaults.baseURL = baseUrl;
-// axios.defaults.headers['Authorization'] = `Bearer ${token}`;
-
 export default {
   data() {
-    return {
-      formSkills: {
-        skill: "",
-        percents: ""
-      },   
+    return {    
       isReadySkill: true,
       isGoSkill: false,
-      skills: [],
-      categories: []
+      categories: [],
+      cat: ""
     }
   },
   components: {
     svgIcon: () => import("../elements/svg-icon.vue"),
-    categoryEdit: () => import("../elements/category-edit.vue"),
-    skillEdit: () => import("../elements/skill-edit.vue")
+    categoryEdit: () => import("../elements/category-edit.vue")
+    
   },
   methods: {
     fetchCategories() {
@@ -54,15 +36,12 @@ export default {
         this.categories = response.data
       })
     },
-    fetchSkills() {
-      $axios.get('/skills/182').then(response => {
-        this.skills = response.data
-      })
-    }
+    addNewGroup(cat) {
+      this.categories.push(cat)
+    }  
   },
   created() {
-    this.fetchCategories();
-    this.fetchSkills()
+    this.fetchCategories()
   }
 }
 </script>
