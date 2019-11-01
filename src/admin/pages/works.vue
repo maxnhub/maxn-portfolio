@@ -24,32 +24,16 @@ div
               span.error(v-if="isError") {{ this.validation.firstError('formData.tags') }}
             input.input__form(v-model="formData.tags" id="works-tag-id" type="text" name="tag")
             .block__buttons
-              button.cancel(type="button") Отмена
+              button.cancel(type="button" v-on:click="cancelCreateWorkBlock") Отмена
               button.load Загрузить
   .new-works
-          button.load-big
+          button.load-big(v-on:click="addNewWorkBlock")
             .load-big__icon-box
               svg-icon(:className="'load__icon'" :iconName="'remove'")
             .load__text Добавить работу
-          .change-block.change-block--work
-            .work__visual
-              .work__tags
-                .work__tag html
-                .work__tag css
-                .work__tag javascript
-            .work__desc
-              .work__name Новая работа
-              .work__name-desc Описание этой работы
-              .work__link http://google.com
-              .fix-del__buttons
-                button.fix-del__button.fix-del__button--fix(type="button") 
-                  .fix-del__button-text Править
-                  .fix-del__icon.fix-del__icon--fix
-                    svg-icon(:className="'admin__icon'" :iconName="'pencil'")
-                button.fix-del__button.fix-del__button--delete(type="button")
-                  .fix-del__button-text Удалить
-                  .fix-del__icon.fix-del__icon--delete
-                    svg-icon(:className="'admin__icon'" :iconName="'remove'")
+          ul.works-list  
+            li.change-block.change-block--work(v-for="work in works" :key="work.id")
+              work-edit(:workItem="formData")
   
 </template>
 
@@ -65,15 +49,17 @@ export default {
         name: "",
         link: "",
         description: "",
-        tags: "",
+        tags: [],
         photo: ""
       },
       isError: false,
-      filePreview: ""
+      filePreview: "",
+      works: []
     };
   },
   components: {
-    svgIcon: () => import("../elements/svg-icon")
+    svgIcon: () => import("../elements/svg-icon"),
+    workEdit: () => import("../elements/work-edit.vue")
   },
   methods: {
     handleFile(e) {
@@ -107,7 +93,7 @@ export default {
       });
     },
     submitForm() {
-      $axios.post(baseUrl + '/works', {
+      $axios.post('/works', {
         title: this.formData.name,
         techs: this.formData.tags,
         photo: this.formData.photo,
@@ -125,8 +111,36 @@ export default {
           console.log("Validation error", result),
           this.isError = true
         }
+      });
+    },
+    fetchWorks() {
+      $axios.get('/works/182').then(response => {
+        this.works = response.data
       })
-    }
+    },
+    addNewWorkBlock(formData) {
+      this.works.push(formData)
+    },
+    createWorkBlock() {
+      $axios.post('/works', {
+        title: this.formData.name,
+        techs: this.formData.tags,
+        photo: this.formData.photo,
+        link: this.formData.link,
+        description: this.formData.description
+      }).then(response => {
+        this.works.unshift(response.data)
+      });
+    },
+    cancelCreateWorkBlock() {
+      $axios.post('/works', {
+        title: "",
+        techs: "",
+        photo: "",
+        link: "",
+        description: ""
+      })
+    }  
   },
   validators: {
     "formData.name": function(value) {
@@ -145,6 +159,9 @@ export default {
     "formData.photo": function(value) {
       return Validator.value(value).required("Загрузите изображение");
     }
+  },
+  created() {
+    this.fetchWorks()
   }
 };
 </script>
