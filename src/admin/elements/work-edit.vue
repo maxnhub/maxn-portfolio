@@ -1,6 +1,6 @@
 <template lang="pug">
 .work__visual
-    ul.work__tags
+    ul.work__tags(v-model="formData.techs")
         li.work__tag(v-for="tag in tags" :key="tag.id")
     .work__desc
         input__form.work__name(:disabled="isDisabled" v-model="formData.title" id="work-name" type="text" name="name" placeholder="Новая работа")
@@ -36,7 +36,7 @@ export default {
         rewriteWorkBlock() {
             $axios.post('/works/', {
                 title: this.formData.title,
-                techs: this.formData.tags,
+                techs: this.formData.techs,
                 description: this.formData.description,
                 link: this.formData.link,
                 photo: this.formData.photo

@@ -56,18 +56,22 @@
       margin-bottom: 35px;
     }
   }
-  
-  .new-works {
+
+  .works-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 32% 31% 31%;
     grid-gap: 30px;
     margin-bottom: 50px;
     @media screen and (max-width: 768px) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 48% 48%;
     }
     @media screen and (max-width: 480px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 100%;
     }
+  }
+  
+  .new-works {
+    
   }
   .change-block--work {
     display: flex;

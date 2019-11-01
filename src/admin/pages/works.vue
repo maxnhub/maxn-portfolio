@@ -12,8 +12,8 @@ div
         .works__add
           form.works__form(@submit.prevent="submitForm")
             label.input__subtext(for="works-name-id") Название
-              span.error(v-if="isError") {{ this.validation.firstError('formData.name') }}
-            input.input__form(v-model="formData.name" id="works-name-id" type="text" name="name")
+              span.error(v-if="isError") {{ this.validation.firstError('formData.title') }}
+            input.input__form(v-model="formData.title" id="works-name-id" type="text" name="name")
             label.input__subtext(for="works-link-id") Ссылка
               span.error(v-if="isError") {{ this.validation.firstError('formData.link') }}
             input.input__form(v-model="formData.link" id="works-link-id" type="text" name="link")
@@ -21,19 +21,19 @@ div
               span.error(v-if="isError") {{ this.validation.firstError('formData.description') }}
             textarea.input__textarea(v-model="formData.description" class="works-textarea" id="textarea-connect-id" name="textarea")
             label.input__subtext(for="works-tag-id") Добавление тэга
-              span.error(v-if="isError") {{ this.validation.firstError('formData.tags') }}
-            input.input__form(v-model="formData.tags" id="works-tag-id" type="text" name="tag")
+              span.error(v-if="isError") {{ this.validation.firstError('formData.techs') }}
+            input.input__form(v-model="formData.techs" id="works-tag-id" type="text" name="tag")
             .block__buttons
               button.cancel(type="button" v-on:click="cancelCreateWorkBlock") Отмена
               button.load Загрузить
-  .new-works
-          button.load-big(v-on:click="addNewWorkBlock")
-            .load-big__icon-box
-              svg-icon(:className="'load__icon'" :iconName="'remove'")
-            .load__text Добавить работу
-          ul.works-list  
-            li.change-block.change-block--work(v-for="work in works" :key="work.id")
-              work-edit(:workItem="formData")
+  .new-works       
+    ul.works-list
+      button.load-big(v-on:click="addNewWorkBlock")
+        .load-big__icon-box
+          svg-icon(:className="'load__icon'" :iconName="'remove'")
+        .load__text Добавить работу  
+      li.change-block.change-block--work(v-for="work in works" :key="work.id")
+        work-edit(:workItem="formData")
   
 </template>
 
@@ -46,10 +46,10 @@ export default {
   data() {
     return {
       formData: {
-        name: "",
+        title: "",
         link: "",
         description: "",
-        tags: [],
+        techs: [],
         photo: ""
       },
       isError: false,
@@ -93,14 +93,12 @@ export default {
       });
     },
     submitForm() {
-      $axios.post('/works', {
-        title: this.formData.name,
-        techs: this.formData.tags,
-        photo: this.formData.photo,
-        link: this.formData.link,
-        description: this.formData.description
-      }).then(response => {
-        console.log(response.data)
+      const formData = new FormData();
+      Object.keys(this.formData).forEach(key => {
+          formData.append(key, this.formData[key]);
+      }),
+      $axios.post('/works', formData).then(response => {
+        console.log(response.data);
       }).catch(error => {
         console.log(error.response.data)
       }),
@@ -123,8 +121,8 @@ export default {
     },
     createWorkBlock() {
       $axios.post('/works', {
-        title: this.formData.name,
-        techs: this.formData.tags,
+        title: this.formData.title,
+        techs: this.formData.techs,
         photo: this.formData.photo,
         link: this.formData.link,
         description: this.formData.description
@@ -143,7 +141,7 @@ export default {
     }  
   },
   validators: {
-    "formData.name": function(value) {
+    "formData.title": function(value) {
       return Validator.value(value).required("Введите имя");
     },
     "formData.link": function(value) {
@@ -152,7 +150,7 @@ export default {
     "formData.description": function(value) {
       return Validator.value(value).required("Введите описание");
     },
-    "formData.tags": function(value) {
+    "formData.techs": function(value) {
       return Validator.value(value).required("Введите тэги");
     }
     ,
