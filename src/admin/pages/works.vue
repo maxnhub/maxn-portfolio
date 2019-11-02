@@ -32,7 +32,7 @@ div
         .load-big__icon-box
           svg-icon(:className="'load__icon'" :iconName="'remove'")
         .load__text Добавить работу  
-      li.change-block.change-block--work(v-for="work in works" :key="work.id")
+      li.change-block.change-block--work(id="change-block-work" v-for="work in works" :key="work.id")
         work-edit(:workItem="formData")
   
 </template>
@@ -97,14 +97,13 @@ export default {
       Object.keys(this.formData).forEach(key => {
           formData.append(key, this.formData[key]);
       }),
-      $axios.post('/works', formData).then(response => {
-        console.log(response.data);
-      }).catch(error => {
-        console.log(error.response.data)
-      }),
       this.$validate().then((result) => {
         if (result) {
-          console.log("Send form here", result)
+          $axios.post('/works', formData).then(response => {
+            this.works.unshift(response.data);
+          }).catch(error => {
+            console.log(error.response.data)
+          })
         } else {
           console.log("Validation error", result),
           this.isError = true

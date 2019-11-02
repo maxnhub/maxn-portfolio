@@ -71,9 +71,15 @@
   }
   
   .new-works {
+    & .change-block--work {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      padding-bottom: 30px;
+    }
     
   }
-  .change-block--work {
+  #change-block-work {
     display: flex;
     flex-direction: column;
     padding: 0;
@@ -81,8 +87,9 @@
   }
   
   .work__visual {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 250px;
     background: url(../../images/content/2.jpg) center center / cover no-repeat;
     display: flex;
     flex-direction: column;
@@ -111,6 +118,10 @@
     padding-left: 25px;
     padding-right: 25px;
     padding-top: 30px;
+
+    & .input__form {
+      border-bottom: 1px solid transparent;
+    }
   }
   .work__name {
     color: #424d63;
