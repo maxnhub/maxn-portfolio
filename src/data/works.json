@@ -24,11 +24,11 @@
     },
     {
         "id": 4,
-        "title": "4 Сайт школы онлайн образования",
-        "skills": "4 Html, Css, JavaScript",
+        "title": "Лендинг Minimo",
+        "skills": "Html, Css, JavaScript, Bootstrap, CSS Grid",
         "photo": "4.jpg",
-        "link": "//rambler.ru",
-        "desc": "4 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+        "link": "//maxnhub.github.io/maxn-minimo/",
+        "desc": "Лендинг сверстан в свободное время."
     },
     {
         "id": 5,
