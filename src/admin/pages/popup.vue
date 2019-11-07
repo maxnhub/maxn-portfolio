@@ -24,10 +24,7 @@
 <script>
 import { Validator } from "simple-vue-validator";
 import svgIcon from "../elements/svg-icon.vue";
-import axios from 'axios';
-
-const baseUrl = "https://webdev-api.loftschool.com/";
-const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE4MiwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1NzIzMzkxNjYsImV4cCI6MTU3MjM1NzE2NiwibmJmIjoxNTcyMzM5MTY2LCJqdGkiOiJETWtFSGdoTHJRckhOSFN5In0.hO1JaKOowpplLaqgB1V8WJE7I2d2yFTG1qo_ywWFLUg";
+import $axios from "@/requests.js";
 
 export default {
     data() {
@@ -47,11 +44,12 @@ export default {
             this.$emit('close-popup')
         },
         submitFormLogin() {
-            axios.post(baseUrl + '/login', {
+            $axios.post('/login', {
                 name: this.formLogin.user,
                 password: this.formLogin.password
             }).then(response => {
                 console.log(response.data),
+                localStorage.setItem("token", response.data.token),
                 this.$emit('close-popup')
             }).catch(error => {
                 console.log(error.response.data)
